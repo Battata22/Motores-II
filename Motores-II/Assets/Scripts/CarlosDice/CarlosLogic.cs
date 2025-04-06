@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace CarlosDice
@@ -24,13 +25,32 @@ namespace CarlosDice
         [SerializeField] int _maxRound;
         [SerializeField] int _currentRound = 0;
 
+        bool _gameStarted = false;
+
         private void Awake()
         {
             _detectPlayerInput = false;
         }
 
-        void StartGame()
+        private void Start()
         {
+            foreach(var button in _posibleButtons)
+            {
+                button.Initialize(this);
+            }
+        }
+
+        private void Update()
+        {
+            if(Input.GetKeyDown(KeyCode.Space))
+                StartGame();
+        }
+
+        public void StartGame()
+        {
+            if (_gameStarted) return;
+            _gameStarted = true;
+
             _currentRound = 1;
 
             AdButtonToList(_initialButtonsCount);
@@ -43,15 +63,19 @@ namespace CarlosDice
                 var button = _posibleButtons[Random.Range(0, _posibleButtons.Length)];
                 _buttonsList.Add(button);
             }
+            StartCoroutine(ShowButtonsOrder(1f));
         }
 
         public void CheckButton(CarlosButtons button)
         {
-            if (button == _buttonsList[_currentButtonIndex])
+            if (button != _buttonsList[_currentButtonIndex])
+            {
                 Lose();
+                return;
+            }
 
             _currentButtonIndex++;
-            if (_currentButtonIndex == _buttonsList.Count - 1)
+            if (_currentButtonIndex >= _buttonsList.Count)
                 CompleteRound();
         }
 
@@ -60,20 +84,49 @@ namespace CarlosDice
             _currentButtonIndex = 0;
 
             _currentRound++;
+
+            foreach (var button in _posibleButtons)
+            {
+                button.SetActive(false);
+            }
+
             if (_currentRound > _maxRound)
                 Win();
             else
+            {
+                AdButtonToList(1);
                 StartCoroutine(ShowButtonsOrder(1f));
+            }
         }
 
         void Lose()
         {
+            Debug.Log("<color=red>Perdiste gil</color>");
 
+            _gameStarted = false;
+
+            _currentRound = 0;
+            _currentButtonIndex = 0;
+
+            foreach (var button in _posibleButtons)
+            {
+                button.SetActive(false);
+            }
+
+            _buttonsList.Clear();
+             
         }
 
         void Win()
         {
+            Debug.Log("<color=green>Ganaste gil</color>");
+            
+            _gameStarted = false;
 
+            _currentRound = 0;
+            _currentButtonIndex = 0;
+
+            _buttonsList.Clear();
         }
 
         IEnumerator ShowButtonsOrder(float initialDelay)
@@ -85,6 +138,13 @@ namespace CarlosDice
                 button.CallLightUp();
 
                 yield return new WaitForSeconds(_timeBtwButtons);
+            }
+
+            foreach(var button in _posibleButtons)
+            {
+                button.SetActive(true);
+
+                yield return null;
             }
         }
     }
