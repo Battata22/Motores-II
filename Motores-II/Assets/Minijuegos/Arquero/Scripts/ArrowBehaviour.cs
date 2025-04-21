@@ -8,6 +8,7 @@ public class ArrowBehaviour : MonoBehaviour
     [SerializeField] Rigidbody rb;
     [SerializeField] float fuerzaDisparo, fuerzaDisparoVert, ayuda;
     [SerializeField] float _speedTiny;
+    [SerializeField] float _puntMulti;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -30,8 +31,24 @@ public class ArrowBehaviour : MonoBehaviour
         transform.localScale -= transform.localScale * Time.deltaTime * _speedTiny;
     }
 
+    float CalcularPuntos(float z)
+    {
+        float res;
+
+        res = z * _puntMulti;
+
+        if (res < 0)
+        {
+            res = res * -1;
+        }
+
+        return res;
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
+        PuntajeManager.instance.AddPoints(CalcularPuntos(transform.position.z));
+
         Destroy(collision.gameObject);
         Destroy(gameObject);
     }
