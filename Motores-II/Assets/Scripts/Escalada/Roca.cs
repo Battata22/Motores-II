@@ -18,7 +18,10 @@ public class Roca : MonoBehaviour
 
     public bool canInteract = false;
     public KeyCode interactKey = KeyCode.None;
-    
+
+    public SwipeDirection inputSwipe;
+
+    public static event Action<float> Oninteract = delegate { };
 
     private void Update()
     {
@@ -30,13 +33,14 @@ public class Roca : MonoBehaviour
             Debug.Log($"<color=green>No me toques mi chilito</color>");
             Interact();
         }
+
     }
 
     public void Interact()
     {
         if (!canInteract) return;
 
-        manager.StepRock();
+        manager.StepRock(transform.position.x);
     }
 
     public void SetSprite()
@@ -63,4 +67,49 @@ public class Roca : MonoBehaviour
             TurnOff(this);
         }
     }
+
+    void CheckSwipe(SwipeData data)
+    {
+        var swipeDir = data.points[data.points.Count - 1] - data.points[0];
+
+        var swipeAngle = Vector2.Angle(Vector2.up, swipeDir);
+
+        switch (swipeAngle)
+        {
+            case < 45:
+                Debug.Log("Swipe para arriba");
+                if (inputSwipe == SwipeDirection.Up)
+                    Interact();
+                break;
+            case > 135:
+                Debug.Log("Swipe para abajo");
+                if (inputSwipe == SwipeDirection.Down)
+                    Interact();
+                break;
+            case >= 45:
+                if(swipeDir.x > 0)
+                {
+                    Debug.Log("Swipe para Derecha");
+                    if (inputSwipe == SwipeDirection.Right)
+                        Interact();
+                }
+                else
+                {
+                    Debug.Log("Swipe para Izquierda");
+                    if (inputSwipe == SwipeDirection.Left)
+                        Interact();
+                }
+                break;
+        }
+
+        //Debug.Log($"SwipeAngle = {swipeAngle}");
+
+    }
+
+    public void SubscribeToSwipe()
+    {
+        SwipeManager.instance.OnSwipeEnd += CheckSwipe;
+    }
 }
+
+

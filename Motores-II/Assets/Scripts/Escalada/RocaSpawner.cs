@@ -13,6 +13,7 @@ public class RocaSpawner : MonoBehaviour
 
     public bool canSpawn;
     [SerializeField] KeyCode _interactKey = KeyCode.None;
+    [SerializeField] SwipeDirection _inputSwipe;
 
 
     private void Awake()
@@ -40,6 +41,8 @@ public class RocaSpawner : MonoBehaviour
         _manager.StepTrigger += roca.StepRock;
         roca.TurnOff += DeactivateRock;
         roca.interactKey = _interactKey;
+        roca.inputSwipe = _inputSwipe;
+        roca.SubscribeToSwipe();
         roca.manager = _manager;
 
         return roca;
