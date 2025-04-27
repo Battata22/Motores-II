@@ -6,10 +6,16 @@ using UnityEngine;
 public class EscaladaManager : MonoBehaviour
 {
     [SerializeField] RocaSpawner[] _spawners;
+    [SerializeField] PlayerEscalada _player;
 
     public event Action StepTrigger;
 
     bool _gameStarted = false;
+
+    private void Start()
+    {
+        StartGame();
+    }
 
     private void Update()
     {
@@ -25,19 +31,19 @@ public class EscaladaManager : MonoBehaviour
                 return;
             }
 
-            StepRock();
+            StepRock(0);
         }
     }
 
     void StartGame()
     {
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 3; i++)
         {
-            StepRock();
+            StepRock(0);
         }
     }
 
-    public void StepRock()
+    public void StepRock(float x)
     {
         var num = UnityEngine.Random.Range(0, _spawners.Length+1);
         var num2 = UnityEngine.Random.Range(0, _spawners.Length+1);
@@ -53,6 +59,6 @@ public class EscaladaManager : MonoBehaviour
         }
 
         StepTrigger();
-
+        _player.SetPos(x);
     }
 }

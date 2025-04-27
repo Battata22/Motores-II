@@ -10,6 +10,12 @@ public class Attack : MonoBehaviour
 
     public bool canMove = false;
 
+    private void Awake()
+    {
+        Destroy(gameObject, 5f);
+    }
+
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Debug.Log($"<color=red>Le pegue a algo</color>");
