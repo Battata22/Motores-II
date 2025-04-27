@@ -108,6 +108,7 @@ public class Roca : MonoBehaviour
 
     public void SubscribeToSwipe()
     {
+        Debug.Log(SwipeManager.instance);
         SwipeManager.instance.OnSwipeEnd += CheckSwipe;
     }
 }

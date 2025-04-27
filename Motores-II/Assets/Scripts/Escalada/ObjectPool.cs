@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+
+[Serializable]
 public class ObjectPool<T>
 {
     //a
+    [SerializeField]
     List<T> _stock = new List<T>();
     Func<T> _Factory;
     Action<T> _On;

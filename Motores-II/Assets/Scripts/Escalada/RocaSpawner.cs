@@ -9,22 +9,26 @@ public class RocaSpawner : MonoBehaviour
     [SerializeField] Roca _rocaPrefab;
     [SerializeField] Transform _spawnPos;
 
-    ObjectPool<Roca> _pool;
+    [SerializeField]ObjectPool<Roca> _pool;
 
     public bool canSpawn;
     [SerializeField] KeyCode _interactKey = KeyCode.None;
     [SerializeField] SwipeDirection _inputSwipe;
 
-
-    private void Awake()
+    private void Start()
     {
+        //yield return new WaitForEndOfFrame();
+
         _pool = new ObjectPool<Roca>(CreateRock, TurnOnRock, TurnOffRock);
     }
 
     public void StepRock()
     {
         if (canSpawn)
+        {
+            Debug.Log(_pool);
             _pool.Get();
+        }
     }
 
     void DeactivateRock(Roca rock)

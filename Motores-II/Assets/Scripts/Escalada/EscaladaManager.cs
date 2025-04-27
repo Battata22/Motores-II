@@ -12,8 +12,10 @@ public class EscaladaManager : MonoBehaviour
 
     bool _gameStarted = false;
 
-    private void Start()
+    private IEnumerator Start()
     {
+
+        yield return new WaitForEndOfFrame();
         StartGame();
     }
 
