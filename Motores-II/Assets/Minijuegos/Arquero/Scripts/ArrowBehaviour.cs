@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Services.RemoteConfig;
 using UnityEngine;
 
 public class ArrowBehaviour : MonoBehaviour
@@ -9,9 +10,22 @@ public class ArrowBehaviour : MonoBehaviour
     [SerializeField] float fuerzaDisparo, fuerzaDisparoVert, ayuda;
     [SerializeField] float _speedTiny;
     [SerializeField] float _puntMulti;
+
+    //private void Awake()
+    //{
+    //    RemoteConfigManager.Instance.OnConfigFetched += SetData;
+    //}
+
+    //void SetData()
+    //{
+    //    _puntMulti = RemoteConfigService.Instance.appConfig.GetFloat("Archer_PuntMultiply");
+    //}
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+
+        _puntMulti = RemoteConfigManager.Instance._puntMulti;
 
         ShootArrow(InputManager.lastCarga);
     }
