@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using Unity.Services.RemoteConfig;
+
 public class AttackSpawner : MonoBehaviour
 {
     [SerializeField] Attack attackPrefab;
@@ -12,17 +14,41 @@ public class AttackSpawner : MonoBehaviour
 
     float randomTime;
 
+    bool _canSpawn = true;
+
     private void Awake()
     {
-        randomTime = 0;
+        randomTime = 1;
         StartCoroutine(AttackCounter(randomTime));
+        RemoteConfigManager.Instance.OnConfigFetched += SetData;
+        
     }
+
+    private void Start()
+    {
+        EscaladaManager.Instance.OnGameOver += GameOver;
+        //randomTimeLimits[0] = RemoteConfigManager.Instance.escaladaAtkTimeMin;
+        //randomTimeLimits[1] = RemoteConfigManager.Instance.escaladaAtkTimeMax;
+    }
+
+    //private void Awake()
+    //{
+    //    RemoteConfigManager.Instance.OnConfigFetched += SetData;
+    //}
+
+    void SetData()
+    {
+        randomTimeLimits[0] = RemoteConfigService.Instance.appConfig.GetFloat("Escalada_MinTimeAtk");
+        randomTimeLimits[1] = RemoteConfigService.Instance.appConfig.GetFloat("Escalada_MaxTimeAtk");
+    }
+
 
     IEnumerator AttackCounter(float wait)
     {
         yield return new WaitForSeconds(wait);
 
-        StartCoroutine(StartAttack());
+        if (_canSpawn)
+            StartCoroutine(StartAttack());
     }
 
     IEnumerator StartAttack()
@@ -41,6 +67,11 @@ public class AttackSpawner : MonoBehaviour
         attack.gameObject.SetActive(true);
         //loop
         StartCoroutine(AttackCounter(SetRandomTime()));
+    }
+
+    public void GameOver() 
+    {
+        _canSpawn = false;
     }
 
     int ChoseSpawner()

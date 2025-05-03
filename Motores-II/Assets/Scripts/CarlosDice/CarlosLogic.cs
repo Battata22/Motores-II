@@ -1,7 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Services.RemoteConfig;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace CarlosDice
 {
@@ -15,6 +18,7 @@ namespace CarlosDice
 
         [SerializeField] CarlosButtons[] _posibleButtons;
         [SerializeField] List<CarlosButtons> _buttonsList;
+        [SerializeField] Image _center;
         [SerializeField] int _initialButtonsCount;
 
         [SerializeField] float _timeBtwButtons;
@@ -30,6 +34,14 @@ namespace CarlosDice
         private void Awake()
         {
             _detectPlayerInput = false;
+
+            Screen.orientation = ScreenOrientation.LandscapeLeft;
+            Screen.autorotateToPortrait = false;
+            Screen.autorotateToLandscapeLeft = true;
+            Screen.autorotateToLandscapeRight = true;
+            Screen.autorotateToPortraitUpsideDown = false;
+
+            QualitySettings.vSyncCount = 1;
         }
 
         private void Start()
@@ -38,11 +50,25 @@ namespace CarlosDice
             {
                 button.Initialize(this);
             }
+
+            RemoteConfigManager.Instance.OnConfigFetched += SetData;
+        }
+
+        void SetData()
+        {
+            _maxRound = RemoteConfigService.Instance.appConfig.GetInt("Carlos_MaxRounds");
+            _initialButtonsCount = RemoteConfigService.Instance.appConfig.GetInt("Carlos_InitialRoundButtons");
         }
 
         private void Update()
         {
-            if(Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKey(KeyCode.Escape))
+            {
+                SceneManager.LoadScene(0);
+            }
+
+
+            if (Input.GetKeyDown(KeyCode.Space))
                 StartGame();
         }
 
@@ -99,9 +125,26 @@ namespace CarlosDice
             }
         }
 
+        void GameOver(bool lose)
+        {
+
+
+            if (lose)
+            {
+                Lose();
+            }
+            else
+            {
+                Win();
+            }
+        }
+
         void Lose()
         {
             Debug.Log("<color=red>Perdiste gil</color>");
+
+            _center.color = Color.red;
+
 
             _gameStarted = false;
 
@@ -120,7 +163,10 @@ namespace CarlosDice
         void Win()
         {
             Debug.Log("<color=green>Ganaste gil</color>");
-            
+
+            _center.color = Color.green;
+
+
             _gameStarted = false;
 
             _currentRound = 0;
@@ -131,6 +177,8 @@ namespace CarlosDice
 
         IEnumerator ShowButtonsOrder(float initialDelay)
         {
+            _center.color = Color.yellow;
+
             yield return new WaitForSeconds(initialDelay);
 
             foreach(var button in _buttonsList)
@@ -146,6 +194,8 @@ namespace CarlosDice
 
                 yield return null;
             }
+
+            _center.color = Color.black;
         }
     }
 }

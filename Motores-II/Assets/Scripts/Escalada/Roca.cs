@@ -25,8 +25,8 @@ public class Roca : MonoBehaviour
 
     private void Update()
     {
-        if (!canInteract && _currentStep == 3)
-            canInteract = true;
+        //if (!canInteract && _currentStep == 3)
+        //    canInteract = true;
 
         if(canInteract && Input.GetKeyDown(interactKey))
         {
@@ -57,7 +57,7 @@ public class Roca : MonoBehaviour
         _currentStep++;
 
         if (_currentStep == 3)
-            canInteract = true;
+            StartCoroutine(SetActive());
         transform.position += new Vector3(0, _stepDistance, 0);
 
         if(_currentStep > _maxStep)
@@ -66,6 +66,13 @@ public class Roca : MonoBehaviour
             canInteract = false ;
             TurnOff(this);
         }
+    }
+
+    IEnumerator SetActive()
+    {
+        yield return new WaitForEndOfFrame();
+        canInteract = true;
+
     }
 
     void CheckSwipe(SwipeData data)
@@ -104,6 +111,16 @@ public class Roca : MonoBehaviour
 
         //Debug.Log($"SwipeAngle = {swipeAngle}");
 
+    }
+
+    public void GameOver()
+    {
+        TurnOff(this);
+    }
+
+    public void SubscribeToGameOver()
+    {
+        EscaladaManager.Instance.OnGameOver += GameOver;
     }
 
     public void SubscribeToSwipe()

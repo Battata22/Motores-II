@@ -47,6 +47,9 @@ public class RocaSpawner : MonoBehaviour
         roca.interactKey = _interactKey;
         roca.inputSwipe = _inputSwipe;
         roca.SubscribeToSwipe();
+
+        roca.SubscribeToGameOver();
+
         roca.manager = _manager;
 
         return roca;
