@@ -59,6 +59,22 @@ public class RemoteConfigManager : MonoBehaviour
     public string _titulo;
     public bool _tiendaState = true;
 
+    [Header("CARLOS")]
+    [SerializeField] int _maxRound;
+    [SerializeField] int _initialButtonsCount;
+    [SerializeField] bool _endless;
+
+    public int Carlos_MaxRound { get { return _maxRound; } }
+    public int Carlos_InitialButtonsCount{ get { return _initialButtonsCount; } }
+    public bool Carlos_Endless { get { return _endless; } }
+
+    [Header("Escalada")]
+    [SerializeField] int _maxHeight;
+    [SerializeField] public float[] Escalada_randomTimeRange = new float[2];
+    public int Escalada_MaxHeight { get { return _maxHeight; } }
+
+
+
     void ApplyRemoteSettings(ConfigResponse configResponse)
     {
         Debug.Log("RemoteConfigService.Instance.appConfig fetched: " + RemoteConfigService.Instance.appConfig.config.ToString());
@@ -68,6 +84,17 @@ public class RemoteConfigManager : MonoBehaviour
         _puntMulti = RemoteConfigService.Instance.appConfig.GetFloat("Archer_PuntMultiply");
         _titulo = RemoteConfigService.Instance.appConfig.GetString("TituloText");
         _tiendaState = RemoteConfigService.Instance.appConfig.GetBool("ShopActive");
+
+        //carlos
+        _maxRound = RemoteConfigService.Instance.appConfig.GetInt("Carlos_MaxRounds");
+        _initialButtonsCount = RemoteConfigService.Instance.appConfig.GetInt("Carlos_InitialRoundButtons");
+        _endless = RemoteConfigService.Instance.appConfig.GetBool("Carlos_Endless");
+
+        //Escalada
+
+        _maxHeight = RemoteConfigService.Instance.appConfig.GetInt("Escalada_MaxHeight");
+        Escalada_randomTimeRange[0] = RemoteConfigService.Instance.appConfig.GetFloat("Escalada_MinTimeAtk");
+        Escalada_randomTimeRange[1] = RemoteConfigService.Instance.appConfig.GetFloat("Escalada_MaxTimeAtk");
 
         //CONSULTAR AL PROFE POR COMO HACER QUE SE ACTUALICE CUANDO CAMBIE, CON EL EVENTO?
         //Aun asi el evento queda configurado y funcional supuestamente

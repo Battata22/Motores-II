@@ -39,8 +39,8 @@ public class EscaladaManager : MonoBehaviour
 
     private IEnumerator Start()
     {
-        RemoteConfigManager.Instance.OnConfigFetched += SetData;
-
+        //RemoteConfigManager.Instance.OnConfigFetched += SetData;
+        SetData();
 
         yield return new WaitForEndOfFrame();
         StartGame();
@@ -48,7 +48,7 @@ public class EscaladaManager : MonoBehaviour
 
     void SetData()
     {
-        _maxHeight = RemoteConfigService.Instance.appConfig.GetInt("Escalada_MaxHeight");
+        _maxHeight = RemoteConfigManager.Instance.Escalada_MaxHeight;
     }
 
     private void Update()

@@ -27,6 +27,8 @@ public class AttackSpawner : MonoBehaviour
     private void Start()
     {
         EscaladaManager.Instance.OnGameOver += GameOver;
+
+        SetData();
         //randomTimeLimits[0] = RemoteConfigManager.Instance.escaladaAtkTimeMin;
         //randomTimeLimits[1] = RemoteConfigManager.Instance.escaladaAtkTimeMax;
     }
@@ -38,8 +40,8 @@ public class AttackSpawner : MonoBehaviour
 
     void SetData()
     {
-        randomTimeLimits[0] = RemoteConfigService.Instance.appConfig.GetFloat("Escalada_MinTimeAtk");
-        randomTimeLimits[1] = RemoteConfigService.Instance.appConfig.GetFloat("Escalada_MaxTimeAtk");
+        randomTimeLimits[0] = RemoteConfigManager.Instance.Escalada_randomTimeRange[0];
+        randomTimeLimits[1] = RemoteConfigManager.Instance.Escalada_randomTimeRange[1];
     }
 
 

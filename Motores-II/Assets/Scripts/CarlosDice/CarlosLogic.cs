@@ -54,14 +54,15 @@ namespace CarlosDice
                 button.Initialize(this);
             }
 
-            RemoteConfigManager.Instance.OnConfigFetched += SetData;
+            //RemoteConfigManager.Instance.OnConfigFetched += SetData;
+            SetData();
         }
 
         void SetData()
         {
-            _maxRound = RemoteConfigService.Instance.appConfig.GetInt("Carlos_MaxRounds");
-            _initialButtonsCount = RemoteConfigService.Instance.appConfig.GetInt("Carlos_InitialRoundButtons");
-            _endless = RemoteConfigService.Instance.appConfig.GetBool("Carlos_Endless");
+            _maxRound = RemoteConfigManager.Instance.Carlos_MaxRound;
+            _initialButtonsCount = RemoteConfigManager.Instance.Carlos_InitialButtonsCount;
+            _endless = RemoteConfigManager.Instance.Carlos_Endless;
         }
 
         private void Update()
