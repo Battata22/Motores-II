@@ -28,6 +28,8 @@ public class ArrowBehaviour : MonoBehaviour
         _puntMulti = RemoteConfigManager.Instance._puntMulti;
 
         ShootArrow(InputManager.lastCarga);
+
+        Destroy(gameObject, 3);
     }
 
     private void Update()
@@ -42,7 +44,7 @@ public class ArrowBehaviour : MonoBehaviour
 
     void BecomeTiny()
     {
-        transform.localScale -= transform.localScale * Time.deltaTime * _speedTiny;
+        transform.localScale -= transform.localScale * Time.deltaTime * -transform.position.z * 0.1f /*_speedTiny*/;
     }
 
     float CalcularPuntos(float z)

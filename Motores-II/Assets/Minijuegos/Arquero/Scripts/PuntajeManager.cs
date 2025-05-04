@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PuntajeManager : MonoBehaviour
 {
@@ -10,6 +12,14 @@ public class PuntajeManager : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI textPuntaje;
     [SerializeField] float totalPoints;
+
+    [SerializeField] GameObject victoriaPNG;
+    [SerializeField] Toggle checkVictoriaBox;
+    [SerializeField] float puntosNecesariosVictoria;
+    [SerializeField] float _tiempoDeVictoria;
+    float waitvictoria;
+    [SerializeField] bool checkVictoria = true;
+    [SerializeField] SpawnerDianas spawnerScript;
 
     private void Awake()
     {
@@ -20,12 +30,26 @@ public class PuntajeManager : MonoBehaviour
     {
         textPuntaje.text = ("Puntaje: 0");
         totalPoints = 0;
+
+        spawnerScript = GetComponent<SpawnerDianas>();
     }
 
 
     void Update()
     {
-        
+        checkVictoria = checkVictoriaBox.isOn;
+
+        if (totalPoints >= puntosNecesariosVictoria && checkVictoria == true)
+        {
+            spawnerScript.enabled = false;
+            checkVictoriaBox.gameObject.SetActive(false);
+            victoriaPNG.SetActive(true);
+            waitvictoria += Time.deltaTime;
+            if (waitvictoria >= _tiempoDeVictoria)
+            {
+                SceneManager.LoadScene("Menu");
+            }
+        }
     }
 
     public void AddPoints(float points)

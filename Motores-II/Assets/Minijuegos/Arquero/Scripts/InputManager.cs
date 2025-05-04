@@ -89,6 +89,6 @@ public class InputManager : MonoBehaviour
 
     void ShootArrow(Vector3 shootPos)
     {
-        Instantiate(arrow, shootPos, Quaternion.identity);
+        Instantiate(arrow, new Vector3(shootPos.x, shootPos.y, 0), Quaternion.identity);
     }
 }

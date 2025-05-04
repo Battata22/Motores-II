@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
-using static UnityEngine.RuleTile.TilingRuleOutput;
+using UnityEngine.SceneManagement;
 
 public class Movimiento : MonoBehaviour
 {
+    [SerializeField] TextMeshProUGUI _textDistancia;
+    [SerializeField] float _metrosParaVictoria;
+
     [SerializeField] Rigidbody _rb;
     [SerializeField] float _speed;
 
@@ -13,6 +17,13 @@ public class Movimiento : MonoBehaviour
     [SerializeField] float _jumpForce;
     bool tengoGyro = false;
     bool _onFloor = false;
+
+    [SerializeField] Renderer _render;
+
+    [SerializeField] GameObject _imagenDer1, _imagenDer2, _imagenDer3;
+    [SerializeField] GameObject _botonreiniciar, _botonVolver;
+    [SerializeField] SpawnerPlataformas _spawnScript;
+    [SerializeField] bool yaSalioVictoria = false;
 
     private void Start()
     {
@@ -28,21 +39,52 @@ public class Movimiento : MonoBehaviour
         else
         {
             Debug.LogError("No hay giroscopio");
-        } 
+        }
         #endregion
 
+        _render = GetComponent<Renderer>();
+
+        _speed = RemoteConfigManager.Instance.runner_speed;
+
+        yaSalioVictoria = false;
     }
 
     private void Update()
     {
+        _textDistancia.text = ((int)transform.position.z).ToString() + " M";
+
+        if (transform.position.z >= _metrosParaVictoria && yaSalioVictoria == false && _onFloor == true)
+        {
+            Victoria();
+        }
+
         //Jump();
         JumpAcelerometro();
+        JumpAcelerometroPC();
+
+        //MovementPC();
+
+        if (_onFloor == true)
+        {
+            _render.material.color = Color.blue;
+        }
+        else
+        {
+            _render.material.color = Color.red;
+        }
+
+        if (transform.position.y <= -0.5f)
+        {
+            Perdida();
+        }
+
     }
 
     private void FixedUpdate()
     {
         Foward();
         GyroMovement();
+        MovementPC();
     }
 
 
@@ -56,7 +98,17 @@ public class Movimiento : MonoBehaviour
     {
         if (tengoGyro)
         {
-            transform.position += new Vector3(_gyro.gravity.x, 0, 0) * _gyroSpeed * Time.fixedDeltaTime;
+            transform.position += new Vector3(_gyro.gravity.x, 0, 0) * _gyroSpeed * Time.deltaTime;
+        }
+    }
+
+    void MovementPC()
+    {
+        var xAxis = Input.GetAxisRaw("Horizontal");
+
+        if (xAxis != 0)
+        {
+            transform.position += new Vector3(xAxis, 0, 0) * Time.deltaTime * 7;
         }
     }
 
@@ -73,11 +125,51 @@ public class Movimiento : MonoBehaviour
     {
         //Vector3 accelerometerFixed = Quaternion.Euler(90, 0, 0) * Input.acceleration;
         //rb.AddForce(accelerometerFixed * force);
-        if(Input.acceleration.y <= -1.2)
+        if(Input.acceleration.y <= -1.2 && _onFloor == true)
         {
             _rb.AddForce(transform.up * _jumpForce * Time.deltaTime, ForceMode.Impulse);
             _onFloor = false;
         }
+    }
+
+    void JumpAcelerometroPC()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && _onFloor == true)
+        {
+            _rb.AddForce(transform.up * _jumpForce * Time.deltaTime, ForceMode.Impulse);
+            _onFloor = false;
+        }
+    }
+
+    void Perdida()
+    {
+        _imagenDer1.SetActive(true);
+        _imagenDer2.SetActive(true);
+        _imagenDer3.SetActive(true);
+        _botonreiniciar.SetActive(true);
+        _botonVolver.SetActive(true);
+
+        gameObject.SetActive(false);
+        _spawnScript.enabled = false;
+    }
+
+    [SerializeField] GameObject victoria;
+    [SerializeField] GameObject boton1, boton2, boton3;
+    void Victoria()
+    {
+        victoria.SetActive(true);
+        boton1.SetActive(true);
+        boton2.SetActive(true);
+        boton3.SetActive(true);
+        yaSalioVictoria = true;
+
+        gameObject.SetActive(false);
+        _spawnScript.enabled = false;
+    }
+
+    public void ResetScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
 
