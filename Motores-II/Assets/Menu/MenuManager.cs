@@ -1,10 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
+    [SerializeField] TextMeshProUGUI _titulo;
+    bool titulocambiado = false;
+
+    [SerializeField] GameObject _xTienda;
     
     void Start()
     {
@@ -16,6 +21,14 @@ public class MenuManager : MonoBehaviour
 
         QualitySettings.vSyncCount = 1;
 
+        if (RemoteConfigManager.Instance._tiendaState == true)
+        {
+            _xTienda.SetActive(false);
+        }
+        else
+        {
+            _xTienda.SetActive(true);
+        }
     }
 
     
@@ -24,6 +37,12 @@ public class MenuManager : MonoBehaviour
         if (Input.GetKey(KeyCode.Escape))
         {
             Application.Quit();
+        }
+
+        if(titulocambiado == false)
+        {
+            _titulo.text = RemoteConfigManager.Instance._titulo;
+            titulocambiado = true;
         }
     }
 }
