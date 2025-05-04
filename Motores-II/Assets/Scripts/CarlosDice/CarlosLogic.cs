@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.Services.RemoteConfig;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -26,9 +27,11 @@ namespace CarlosDice
         [SerializeField] bool _detectPlayerInput = false;
 
         [SerializeField] int _currentButtonIndex = 0;
+        [SerializeField] TMP_Text _roundText;
         [SerializeField] int _maxRound;
         [SerializeField] int _currentRound = 0;
 
+        bool _endless = false;
         bool _gameStarted = false;
 
         private void Awake()
@@ -58,6 +61,7 @@ namespace CarlosDice
         {
             _maxRound = RemoteConfigService.Instance.appConfig.GetInt("Carlos_MaxRounds");
             _initialButtonsCount = RemoteConfigService.Instance.appConfig.GetInt("Carlos_InitialRoundButtons");
+            _endless = RemoteConfigService.Instance.appConfig.GetBool("Carlos_Endless");
         }
 
         private void Update()
@@ -116,7 +120,7 @@ namespace CarlosDice
                 button.SetActive(false);
             }
 
-            if (_currentRound > _maxRound)
+            if (!_endless && _currentRound > _maxRound)
                 Win();
             else
             {
@@ -157,7 +161,9 @@ namespace CarlosDice
             }
 
             _buttonsList.Clear();
-             
+
+            if (_roundText != null)
+                _roundText.text = $"YOU LOSE";
         }
 
         void Win()
@@ -173,10 +179,21 @@ namespace CarlosDice
             _currentButtonIndex = 0;
 
             _buttonsList.Clear();
+
+            if (_roundText != null)
+                _roundText.text = $"YOU WIN";
+        }
+
+        void UpdateCanvasText()
+        {
+            if (!_endless && _roundText != null)
+                _roundText.text = $"{_currentRound} / {_maxRound}";
         }
 
         IEnumerator ShowButtonsOrder(float initialDelay)
         {
+            UpdateCanvasText();
+
             _center.color = Color.yellow;
 
             yield return new WaitForSeconds(initialDelay);
