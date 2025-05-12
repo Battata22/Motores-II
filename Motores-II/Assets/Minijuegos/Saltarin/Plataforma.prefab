@@ -12,13 +12,14 @@ GameObject:
   - component: {fileID: 7331762338724915727}
   - component: {fileID: 5916808438024209403}
   - component: {fileID: 1587037220855825503}
+  - component: {fileID: 8876375912335732082}
   m_Layer: 0
   m_Name: Plataforma
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7055655244358572684
 Transform:
   m_ObjectHideFlags: 0
@@ -105,3 +106,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8876375912335732082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 730836325606713201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c51bb831a6a2f254f93bf9dfb0221b68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 0}
+  _avisoPrefab: {fileID: 0}
+  aviso: {fileID: 0}
+  _canvas: {fileID: 0}
+  _playerTouchThis: 0

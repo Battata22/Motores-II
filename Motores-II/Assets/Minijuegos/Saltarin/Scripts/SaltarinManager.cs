@@ -42,5 +42,7 @@ public class SaltarinManager : MonoBehaviour
             SceneManager.LoadScene(0);
         }
 
+       
+
     }
 }

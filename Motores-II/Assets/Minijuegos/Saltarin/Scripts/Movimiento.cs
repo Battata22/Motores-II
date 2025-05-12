@@ -179,7 +179,14 @@ public class Movimiento : MonoBehaviour
         {
             _onFloor = true;
         }
+
+        if(collision.gameObject.GetComponent<PlataformaScript>() != null)
+        {
+            collision.gameObject.GetComponent<PlataformaScript>()._playerTouchThis = true;
+        }
     }
+
+
 
 
 
