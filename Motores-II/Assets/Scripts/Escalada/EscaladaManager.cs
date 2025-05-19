@@ -58,7 +58,7 @@ public class EscaladaManager : MonoBehaviour
         //back to menu input
         if (Input.GetKey(KeyCode.Escape))
         {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene("Menu");
         }
 
 

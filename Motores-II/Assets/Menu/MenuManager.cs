@@ -44,5 +44,6 @@ public class MenuManager : MonoBehaviour
             _titulo.text = RemoteConfigManager.Instance._titulo;
             titulocambiado = true;
         }
+
     }
 }

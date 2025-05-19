@@ -20,7 +20,7 @@ public class ArqueroManager : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Escape))
         {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene("Menu");
         }
     }
 

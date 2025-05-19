@@ -74,6 +74,8 @@ public class RemoteConfigManager : MonoBehaviour
     public int Escalada_MaxHeight { get { return _maxHeight; } }
 
 
+    [SerializeField] LoadMenu loadScript;
+
 
     void ApplyRemoteSettings(ConfigResponse configResponse)
     {
@@ -99,6 +101,7 @@ public class RemoteConfigManager : MonoBehaviour
         //CONSULTAR AL PROFE POR COMO HACER QUE SE ACTUALICE CUANDO CAMBIE, CON EL EVENTO?
         //Aun asi el evento queda configurado y funcional supuestamente
         OnConfigFetched?.Invoke();
+        loadScript.chargeDone = true;
 
         //Te dejo aca lo que tendrias que poner en tus scripts para adaptarlos con el evento
 

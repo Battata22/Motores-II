@@ -69,7 +69,7 @@ namespace CarlosDice
         {
             if (Input.GetKey(KeyCode.Escape))
             {
-                SceneManager.LoadScene(0);
+                SceneManager.LoadScene("Menu");
             }
 
 
