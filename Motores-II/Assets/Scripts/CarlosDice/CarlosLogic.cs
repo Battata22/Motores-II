@@ -34,6 +34,14 @@ namespace CarlosDice
         bool _endless = false;
         bool _gameStarted = false;
 
+        //ads
+        [SerializeField] GameObject _rewardButton;
+        [SerializeField] TMP_Text _pointsText;
+        [SerializeField] TMP_Text _multText;
+        [SerializeField] float _adMult;
+        bool _doAddPoints;
+        int _pointsToAdd;
+
         private void Awake()
         {
             _detectPlayerInput = false;
@@ -56,6 +64,8 @@ namespace CarlosDice
 
             //RemoteConfigManager.Instance.OnConfigFetched += SetData;
             SetData();
+
+            AdsManager.Instance.rewardedAds.OnRewardAddComplete += AdReward;
         }
 
         void SetData()
@@ -82,6 +92,10 @@ namespace CarlosDice
             if (_gameStarted) return;
             _gameStarted = true;
 
+            AddPoints(_pointsToAdd);
+            _rewardButton.SetActive(false);
+
+
             _currentRound = 1;
 
             AdButtonToList(_initialButtonsCount);
@@ -101,7 +115,8 @@ namespace CarlosDice
         {
             if (button != _buttonsList[_currentButtonIndex])
             {
-                Lose();
+                //Lose();
+                GameOver(true);
                 return;
             }
 
@@ -122,7 +137,10 @@ namespace CarlosDice
             }
 
             if (!_endless && _currentRound > _maxRound)
-                Win();
+            {
+                //Win();
+                GameOver(false);
+            }
             else
             {
                 AdButtonToList(1);
@@ -132,7 +150,12 @@ namespace CarlosDice
 
         void GameOver(bool lose)
         {
+            //add point to json
+            //pointToAdd = _currentRound;
+            //if rewardAd
+            //pointToAdd = poinToAdd * rewardMul
 
+            CalculatePoints(_currentRound);
 
             if (lose)
             {
@@ -142,6 +165,36 @@ namespace CarlosDice
             {
                 Win();
             }
+
+            _multText.text = "x " + _adMult;
+            _rewardButton.SetActive(true);
+        }
+
+        void AddPoints(int amount)
+        {
+            if (!_doAddPoints) return;
+
+            _pointsText.enabled = false;
+
+            PointsManager.Instance.AddPoints(amount);
+        }
+
+        void CalculatePoints(int amount)
+        {
+            _doAddPoints = true;
+
+            _pointsToAdd = amount;
+
+            _pointsText.text = "your points: " + _pointsToAdd;
+            _pointsText.enabled = true;
+        }
+
+        void AdReward()
+        {
+            float points = _pointsToAdd * _adMult;
+
+            CalculatePoints((int)points);
+            _rewardButton.SetActive(false);
         }
 
         void Lose()
@@ -214,6 +267,12 @@ namespace CarlosDice
             }
 
             _center.color = Color.black;
+        }
+
+        private void OnDestroy()
+        {
+            AdsManager.Instance.rewardedAds.OnRewardAddComplete -= AdReward;
+            AddPoints(_pointsToAdd);
         }
     }
 }

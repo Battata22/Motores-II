@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,9 @@ public class RewardedAds : MonoBehaviour ,IUnityAdsLoadListener ,IUnityAdsShowLi
     [SerializeField] private string iosAdUnitId;
 
     private string adUnitId;
+
+    //esto lo agrege
+    public event Action OnRewardAddComplete = delegate { };
 
     private void Awake()
     {
@@ -56,6 +60,8 @@ public class RewardedAds : MonoBehaviour ,IUnityAdsLoadListener ,IUnityAdsShowLi
             showCompletionState.Equals(UnityAdsShowCompletionState.COMPLETED))
         {
             Debug.Log("Ads Fully Watched .....");
+
+            OnRewardAddComplete();
         }
     }
     #endregion

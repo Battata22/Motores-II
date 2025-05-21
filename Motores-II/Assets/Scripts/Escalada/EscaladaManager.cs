@@ -42,6 +42,9 @@ public class EscaladaManager : MonoBehaviour
         //RemoteConfigManager.Instance.OnConfigFetched += SetData;
         SetData();
 
+        AdsManager.Instance.rewardedAds.OnRewardAddComplete += AdReward;
+
+
         yield return new WaitForEndOfFrame();
         StartGame();
     }
@@ -89,6 +92,9 @@ public class EscaladaManager : MonoBehaviour
         {
             StepRock(0);
         }
+
+        AddPoints(_pointsToAdd);
+        _rewardButton.SetActive(false);
 
         _currentHeight = 0;
     }
@@ -186,5 +192,52 @@ public class EscaladaManager : MonoBehaviour
                 _gameOverText.color = Color.green;
             }
         }
+
+        CalculatePoints(_currentHeight);
+
+        _multText.text = "x " + _adMult;
+        _rewardButton.SetActive(true);
+    }
+
+
+    [SerializeField] GameObject _rewardButton;
+    [SerializeField] TMP_Text _pointsText;
+    [SerializeField] TMP_Text _multText;
+    [SerializeField] float _adMult;
+    [SerializeField] int _heightToPoint;
+    bool _doAddPoints;
+    int _pointsToAdd;
+
+    void AddPoints(int amount)
+    {
+        if (!_doAddPoints) return;
+
+        //_pointsText.enabled = false;
+
+        PointsManager.Instance.AddPoints(amount);
+    }
+
+    void CalculatePoints(int amount)
+    {
+        _doAddPoints = true;
+
+        _pointsToAdd = amount / _heightToPoint;
+
+        _pointsText.text = "your points: " + _pointsToAdd;
+        _pointsText.enabled = true;
+    }
+
+    void AdReward()
+    {
+        float points = _currentHeight * _adMult;
+
+        CalculatePoints((int)points);
+        _rewardButton.SetActive(false);
+    }
+
+    private void OnDestroy()
+    {
+        AdsManager.Instance.rewardedAds.OnRewardAddComplete -= AdReward;
+        AddPoints(_pointsToAdd);
     }
 }

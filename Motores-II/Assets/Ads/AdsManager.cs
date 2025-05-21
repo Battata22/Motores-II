@@ -11,6 +11,8 @@ public class AdsManager : MonoBehaviour
 
     public static AdsManager Instance { get; private set; }
 
+    public AdButton adButtonScript;
+
     private void Awake()
     {
         if(Instance == null)
@@ -23,6 +25,7 @@ public class AdsManager : MonoBehaviour
         rewardedAds.LoadRewardedAd();
         StartCoroutine(BannerAd());
         interstitialAds.LoadInterstitialAd();
+        adButtonScript = GetComponent<AdButton>();
 
     }
 
