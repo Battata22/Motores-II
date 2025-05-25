@@ -96,6 +96,7 @@ public class EscaladaManager : MonoBehaviour
         AddPoints(_pointsToAdd);
         _rewardButton.SetActive(false);
 
+        _player.canSound = true;
         _currentHeight = 0;
     }
 

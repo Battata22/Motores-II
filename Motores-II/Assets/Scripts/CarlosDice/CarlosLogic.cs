@@ -111,18 +111,25 @@ namespace CarlosDice
             StartCoroutine(ShowButtonsOrder(1f));
         }
 
-        public void CheckButton(CarlosButtons button)
+        public bool CheckButton(CarlosButtons button)
         {
             if (button != _buttonsList[_currentButtonIndex])
             {
                 //Lose();
+                Debug.Log("Miss Button Press");
+
                 GameOver(true);
-                return;
+                return false;
             }
 
+            Debug.Log("Correct Button Press");
+
             _currentButtonIndex++;
+
             if (_currentButtonIndex >= _buttonsList.Count)
                 CompleteRound();
+
+            return true;
         }
 
         void CompleteRound()
@@ -252,16 +259,19 @@ namespace CarlosDice
 
             yield return new WaitForSeconds(initialDelay);
 
-            foreach(var button in _buttonsList)
+            for(int i = 0; i< _buttonsList.Count; i ++)/*(var button in _buttonsList)*/
             {
-                button.CallLightUp();
+                //button.CallLightUp();
+                _buttonsList[i].PlaySound();
+                _buttonsList[i].CallLightUp();
 
                 yield return new WaitForSeconds(_timeBtwButtons);
             }
 
-            foreach(var button in _posibleButtons)
+            for(int i = 0; i < _posibleButtons.Length; i++) /*(var button in _posibleButtons)*/
             {
-                button.SetActive(true);
+                //button.SetActive(true);
+                _posibleButtons[i].SetActive(true);
 
                 yield return null;
             }

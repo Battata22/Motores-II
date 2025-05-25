@@ -11,6 +11,9 @@ namespace CarlosDice
         [Space]
         [SerializeField] Color _onColor;
         [SerializeField] Color _offColor;
+        [Space]
+        [SerializeField] AudioSource _source;
+        [SerializeField] AudioClip _lightOn;
 
         Image _myImage;
 
@@ -46,9 +49,10 @@ namespace CarlosDice
             if (!_active) return;
 
             CallLightUp();
-            if(_myLogic != null)
-            _myLogic.CheckButton(this);
-            
+            //if (_myLogic != null)
+                if (_myLogic.CheckButton(this))
+                    PlaySound();
+           
         }
 
         public void CallLightUp()
@@ -59,12 +63,17 @@ namespace CarlosDice
         IEnumerator LightUp()
         {
             _myImage.color = _onColor;
+            
 
             yield return new WaitForSeconds(_lightTime);
 
             _myImage.color = _offColor;
         }
 
+        public void PlaySound()
+        {
+            _source.PlayOneShot(_lightOn);
+        }
 
     }
 }
