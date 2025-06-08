@@ -14,6 +14,9 @@ public class EscaladaManager : MonoBehaviour
     [SerializeField] RocaSpawner[] _spawners;
     [SerializeField] PlayerEscalada _player;
 
+    [SerializeField] AudioSource _audioSource;
+    [SerializeField] AudioClip _hitClip;
+
     public event Action StepTrigger;
     int _maxHeight = 100000000;
     int _currentHeight;
@@ -170,6 +173,7 @@ public class EscaladaManager : MonoBehaviour
         //desactivar rocas
         OnGameOver();
 
+        //_player.canSound = false;
         _player.gameObject.SetActive(false);
         _heightText.gameObject.SetActive(false);
 
@@ -234,6 +238,13 @@ public class EscaladaManager : MonoBehaviour
 
         CalculatePoints((int)points);
         _rewardButton.SetActive(false);
+    }
+
+    public void PlayHitSound()
+    {
+        if(_audioSource == null || _hitClip == null) return;
+
+        _audioSource.PlayOneShot(_hitClip);
     }
 
     private void OnDestroy()

@@ -35,6 +35,8 @@ public class Attack : MonoBehaviour
     void AttackHit(PlayerEscalada gil)
     {
         Debug.Log($"<color=red>Le pegue al gil {gil.name}</color>");
+
+        EscaladaManager.Instance.PlayHitSound();
         EscaladaManager.Instance.EndGame(true);
     }
 

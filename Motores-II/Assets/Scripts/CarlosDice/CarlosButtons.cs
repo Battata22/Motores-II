@@ -63,7 +63,7 @@ namespace CarlosDice
         IEnumerator LightUp()
         {
             _myImage.color = _onColor;
-            
+
 
             yield return new WaitForSeconds(_lightTime);
 
@@ -72,6 +72,7 @@ namespace CarlosDice
 
         public void PlaySound()
         {
+            Debug.Log("Sonido de boton");
             _source.PlayOneShot(_lightOn);
         }
 

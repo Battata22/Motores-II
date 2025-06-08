@@ -7,6 +7,7 @@ public class PlayerEscalada : MonoBehaviour
     //a
     [SerializeField] AudioSource _source;
     [SerializeField] AudioClip[] _moveClip;
+    //[SerializeField] AudioClip _hitClip;
     public bool canSound;
 
     public void SetPos(float x)
@@ -23,4 +24,7 @@ public class PlayerEscalada : MonoBehaviour
 
         _source.PlayOneShot(clip);
     }
+
+    //public void PlayHitSound() => PlaySound(_hitClip);
+
 }
