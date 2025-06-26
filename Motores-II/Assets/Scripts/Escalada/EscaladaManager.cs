@@ -64,7 +64,8 @@ public class EscaladaManager : MonoBehaviour
         //back to menu input
         if (Input.GetKey(KeyCode.Escape))
         {
-            SceneManager.LoadScene("Menu");
+            //SceneManager.LoadScene("Menu");
+            OpenPause();
         }
 
 
@@ -84,6 +85,16 @@ public class EscaladaManager : MonoBehaviour
     {
         if (_timeBar != null)
             UpdateTimeBar();
+    }
+
+    [SerializeField] public Canvas pauseMenu;
+    public bool paused;
+    void OpenPause()
+    {
+        if (paused) return;
+
+        pauseMenu.gameObject.SetActive(true);
+        Time.timeScale = 0;
     }
 
     void StartGame()
