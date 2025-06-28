@@ -1684,6 +1684,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1975477213}
     m_Modifications:
+    - target: {fileID: 1327465677913861349, guid: a4566278ce5fc2a4c9e76f6f556de0ac, type: 3}
+      propertyPath: m_Color.b
+      value: 0.07013172
+      objectReference: {fileID: 0}
+    - target: {fileID: 1327465677913861349, guid: a4566278ce5fc2a4c9e76f6f556de0ac, type: 3}
+      propertyPath: m_Color.g
+      value: 0.07013172
+      objectReference: {fileID: 0}
+    - target: {fileID: 1327465677913861349, guid: a4566278ce5fc2a4c9e76f6f556de0ac, type: 3}
+      propertyPath: m_Color.r
+      value: 0.0754717
+      objectReference: {fileID: 0}
     - target: {fileID: 1533406321261383233, guid: a4566278ce5fc2a4c9e76f6f556de0ac, type: 3}
       propertyPath: m_Name
       value: Canvas Volver
@@ -1779,6 +1791,74 @@ PrefabInstance:
     - target: {fileID: 1828544179800985404, guid: a4566278ce5fc2a4c9e76f6f556de0ac, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8043920111134065837, guid: a4566278ce5fc2a4c9e76f6f556de0ac, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.9764151
+      objectReference: {fileID: 0}
+    - target: {fileID: 8043920111134065837, guid: a4566278ce5fc2a4c9e76f6f556de0ac, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.9764151
+      objectReference: {fileID: 0}
+    - target: {fileID: 8043920111134065837, guid: a4566278ce5fc2a4c9e76f6f556de0ac, type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8043920111134065837, guid: a4566278ce5fc2a4c9e76f6f556de0ac, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294572543
+      objectReference: {fileID: 0}
+    - target: {fileID: 8043920111134065837, guid: a4566278ce5fc2a4c9e76f6f556de0ac, type: 3}
+      propertyPath: m_enableVertexGradient
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8043920111134065837, guid: a4566278ce5fc2a4c9e76f6f556de0ac, type: 3}
+      propertyPath: m_fontColorGradient.topLeft.b
+      value: 0.11739149
+      objectReference: {fileID: 0}
+    - target: {fileID: 8043920111134065837, guid: a4566278ce5fc2a4c9e76f6f556de0ac, type: 3}
+      propertyPath: m_fontColorGradient.topLeft.g
+      value: 0.10933607
+      objectReference: {fileID: 0}
+    - target: {fileID: 8043920111134065837, guid: a4566278ce5fc2a4c9e76f6f556de0ac, type: 3}
+      propertyPath: m_fontColorGradient.topLeft.r
+      value: 0.8584906
+      objectReference: {fileID: 0}
+    - target: {fileID: 8043920111134065837, guid: a4566278ce5fc2a4c9e76f6f556de0ac, type: 3}
+      propertyPath: m_fontColorGradient.topRight.b
+      value: 0.086908154
+      objectReference: {fileID: 0}
+    - target: {fileID: 8043920111134065837, guid: a4566278ce5fc2a4c9e76f6f556de0ac, type: 3}
+      propertyPath: m_fontColorGradient.topRight.g
+      value: 0.8773585
+      objectReference: {fileID: 0}
+    - target: {fileID: 8043920111134065837, guid: a4566278ce5fc2a4c9e76f6f556de0ac, type: 3}
+      propertyPath: m_fontColorGradient.topRight.r
+      value: 0.47354153
+      objectReference: {fileID: 0}
+    - target: {fileID: 8043920111134065837, guid: a4566278ce5fc2a4c9e76f6f556de0ac, type: 3}
+      propertyPath: m_fontColorGradient.bottomLeft.b
+      value: 0.76581496
+      objectReference: {fileID: 0}
+    - target: {fileID: 8043920111134065837, guid: a4566278ce5fc2a4c9e76f6f556de0ac, type: 3}
+      propertyPath: m_fontColorGradient.bottomLeft.g
+      value: 0.7830189
+      objectReference: {fileID: 0}
+    - target: {fileID: 8043920111134065837, guid: a4566278ce5fc2a4c9e76f6f556de0ac, type: 3}
+      propertyPath: m_fontColorGradient.bottomLeft.r
+      value: 0.12927197
+      objectReference: {fileID: 0}
+    - target: {fileID: 8043920111134065837, guid: a4566278ce5fc2a4c9e76f6f556de0ac, type: 3}
+      propertyPath: m_fontColorGradient.bottomRight.b
+      value: 0.8301887
+      objectReference: {fileID: 0}
+    - target: {fileID: 8043920111134065837, guid: a4566278ce5fc2a4c9e76f6f556de0ac, type: 3}
+      propertyPath: m_fontColorGradient.bottomRight.g
+      value: 0.121395506
+      objectReference: {fileID: 0}
+    - target: {fileID: 8043920111134065837, guid: a4566278ce5fc2a4c9e76f6f556de0ac, type: 3}
+      propertyPath: m_fontColorGradient.bottomRight.r
+      value: 0.4886015
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
