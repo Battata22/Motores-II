@@ -77,10 +77,10 @@ namespace CarlosDice
 
         private void Update()
         {
-            if (Input.GetKey(KeyCode.Escape))
-            {
-                SceneManager.LoadScene("Menu");
-            }
+            //if (Input.GetKey(KeyCode.Escape))
+            //{
+            //    SceneManager.LoadScene("Menu");
+            //}
 
 
             if (Input.GetKeyDown(KeyCode.Space))
