@@ -1659,6 +1659,8 @@ MonoBehaviour:
   _roundText: {fileID: 1836078213}
   _maxRound: 10
   _currentRound: 0
+  _audioSource: {fileID: 1741408560}
+  _errorSound: {fileID: 8300000, guid: 1dca30ac87a62a3448cb173a2cb74122, type: 3}
   _rewardButton: {fileID: 1365934084}
   _pointsText: {fileID: 279827353}
   _multText: {fileID: 1858289342}

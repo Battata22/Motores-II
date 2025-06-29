@@ -11,6 +11,8 @@ public class EscaladaMenu : MonoBehaviour
     [SerializeField] Canvas _pauseCanvas;
     [SerializeField] Canvas _optionCanvas;
 
+    [SerializeField] AudioSource _audioSource;
+    [SerializeField] AudioClip _errorSound;
 
     private void Update()
     {
@@ -33,6 +35,8 @@ public class EscaladaMenu : MonoBehaviour
     {
         if (!StaminaSystem.Instance.HasEnoughStamina(StaminaSystem.Instance.gameStaminaCost))
         {
+            _audioSource.PlayOneShot(_errorSound);
+
             Debug.Log($"ESTAMINA INSUFICIENTE {StaminaSystem.Instance.CurrentStamina} \n" +
                 $"Estamina Necesaria {StaminaSystem.Instance.gameStaminaCost}");
             return;

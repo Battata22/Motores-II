@@ -447,6 +447,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _pauseCanvas: {fileID: 0}
   _optionCanvas: {fileID: 0}
+  _audioSource: {fileID: 0}
+  _errorSound: {fileID: 0}
 --- !u!114 &91724742
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3778,6 +3780,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _pauseCanvas: {fileID: 1176683075}
   _optionCanvas: {fileID: 1982537697}
+  _audioSource: {fileID: 1577372508}
+  _errorSound: {fileID: 8300000, guid: 1dca30ac87a62a3448cb173a2cb74122, type: 3}
 --- !u!1 &1200898948
 GameObject:
   m_ObjectHideFlags: 0
@@ -4828,6 +4832,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _pauseCanvas: {fileID: 0}
   _optionCanvas: {fileID: 0}
+  _audioSource: {fileID: 1577372508}
+  _errorSound: {fileID: 8300000, guid: 1dca30ac87a62a3448cb173a2cb74122, type: 3}
 --- !u!114 &1536732319
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6248,6 +6254,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _pauseCanvas: {fileID: 0}
   _optionCanvas: {fileID: 0}
+  _audioSource: {fileID: 0}
+  _errorSound: {fileID: 0}
 --- !u!114 &2111131182
 MonoBehaviour:
   m_ObjectHideFlags: 0

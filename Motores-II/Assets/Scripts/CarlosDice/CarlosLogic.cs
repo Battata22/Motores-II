@@ -34,6 +34,9 @@ namespace CarlosDice
         bool _endless = false;
         bool _gameStarted = false;
 
+        [SerializeField] AudioSource _audioSource;
+        [SerializeField] AudioClip _errorSound;
+
         //ads
         [SerializeField] GameObject _rewardButton;
         [SerializeField] TMP_Text _pointsText;
@@ -92,6 +95,8 @@ namespace CarlosDice
             if (_gameStarted) return;
             if(!StaminaSystem.Instance.HasEnoughStamina(StaminaSystem.Instance.gameStaminaCost))
             {
+                _audioSource.PlayOneShot(_errorSound);
+
                 Debug.Log($"ESTAMINA INSUFICIENTE {StaminaSystem.Instance.CurrentStamina} \n" +
                     $"Estamina Necesaria {StaminaSystem.Instance.gameStaminaCost}");
                 return;
