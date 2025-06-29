@@ -55,7 +55,6 @@ public class VolumeManager : MonoBehaviour
     {
         _audioSource.clip = _clickedButton;
         _audioSource.Play();
-        //_audioSource.clip = null;
     }
 
     public void PlaySound()
@@ -75,10 +74,7 @@ public class VolumeManager : MonoBehaviour
         float volumeMaster = _masterSlider.value;
 
         _textMaster.text = ((volumeMaster * 100).ToString("0") + "%");
-        if (_audioMixer.SetFloat("Master", Mathf.Log10(volumeMaster) * 20) == false)
-        {
-            print("nmo");
-        }
+
         _audioMixer.SetFloat("Master", Mathf.Log10(volumeMaster) * 20);
 
         waitSonido = 0;
@@ -103,27 +99,6 @@ public class VolumeManager : MonoBehaviour
 
         _masterSlider.value = data.Master;
     }
-
-    //public void MasterOutput()
-    //{
-    //    StartCoroutine(MasterOutputCoroutine());
-    //}
-
-
-    //public void SetVolume()
-    //{
-    //    StartCoroutine(SetVolumeCoroutine());
-    //}
-
-    //public void VolGuardarJSON()
-    //{
-    //    StartCoroutine(VolGuardarJSONCoroutine());
-    //}
-
-    //public void VolCargarJSON()
-    //{
-    //    StartCoroutine(VolCargarJSONCoroutine());
-    //}
 
 }
 

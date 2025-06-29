@@ -13,7 +13,23 @@ public class InputManager : MonoBehaviour
 
     void Start()
     {
+        PausaInGame.Instance.Paused += Pausar;
+        PausaInGame.Instance.Despaused += Despausar;
+    }
 
+    private void OnDestroy()
+    {
+        PausaInGame.Instance.Paused -= Pausar;
+        PausaInGame.Instance.Despaused -= Despausar;
+    }
+
+    void Pausar()
+    {
+        enabled = false;
+    }
+    void Despausar()
+    {
+        enabled = true;
     }
 
 

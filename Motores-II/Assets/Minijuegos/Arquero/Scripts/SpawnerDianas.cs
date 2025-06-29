@@ -29,21 +29,21 @@ public class SpawnerDianas : MonoBehaviour
                         //spawn corto
                         var c = Instantiate(_dianasPrefab, new Vector3(Random.Range(-_xLimite, _xLimite), Random.Range(-_yLimite, _yLimite), _zCerca), Quaternion.identity);
                         c.transform.localScale = Vector3.one * _sizecerca;
-                        Destroy(c, _destroyTime);
+                        //Destroy(c, _destroyTime);
                         break;
 
                     case 2:
                         //spawn medio
                         var m = Instantiate(_dianasPrefab, new Vector3(Random.Range(-_xLimite, _xLimite), Random.Range(-_yLimite, _yLimite), _zMedio), Quaternion.identity);
                         m.transform.localScale = Vector3.one * _sizeMedio;
-                        Destroy(m, _destroyTime);
+                        //Destroy(m, _destroyTime);
                         break;
 
                     case 3:
                         //spawn lejos
                         var l = Instantiate(_dianasPrefab, new Vector3(Random.Range(-_xLimite, _xLimite), Random.Range(-_yLimite, _yLimite), _zLejos), Quaternion.identity);
                         l.transform.localScale = Vector3.one * _sizeLejos;
-                        Destroy(l, _destroyTime);
+                        //Destroy(l, _destroyTime);
                         break;
 
                 }

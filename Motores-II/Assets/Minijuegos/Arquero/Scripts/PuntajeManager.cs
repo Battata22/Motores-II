@@ -72,4 +72,9 @@ public class PuntajeManager : MonoBehaviour
         }
     }
 
+    public void MeVoyPajarito()
+    {
+        PointsManager.Instance.AddPoints((totalPoints / 1000));
+    }
+
 }

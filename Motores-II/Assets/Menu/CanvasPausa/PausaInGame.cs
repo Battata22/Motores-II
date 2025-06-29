@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PausaInGame : MonoBehaviour
 {
@@ -16,7 +17,7 @@ public class PausaInGame : MonoBehaviour
     {
         if (Instance == null)
         {
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
             Instance = this;
         }
         else
@@ -54,6 +55,10 @@ public class PausaInGame : MonoBehaviour
         isPaused = false;
     }
 
+    public void VolverAlMenu()
+    {
+        SceneManager.LoadScene("Menu");
+    }
     void TestEventPaused()
     {
         print("Paused");

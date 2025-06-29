@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.Services.RemoteConfig;
 using UnityEngine;
 
 public class ArrowBehaviour : MonoBehaviour
@@ -10,6 +7,7 @@ public class ArrowBehaviour : MonoBehaviour
     [SerializeField] float fuerzaDisparo, fuerzaDisparoVert, ayuda;
     [SerializeField] float _speedTiny;
     [SerializeField] float _puntMulti;
+    float wait;
 
     //private void Awake()
     //{
@@ -29,12 +27,48 @@ public class ArrowBehaviour : MonoBehaviour
 
         ShootArrow(InputManager.lastCarga);
 
-        Destroy(gameObject, 3);
+        //Destroy(gameObject, 3);
+
+        PausaInGame.Instance.Paused += PauseRB;
+        PausaInGame.Instance.Despaused += DespauseRB;
+    }
+
+    void DestroyMe()
+    {
+        wait += Time.deltaTime;
+
+        if (wait >= 3)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void Update()
     {
-        BecomeTiny();
+        if (!PausaInGame.Instance.isPaused)
+        {
+            DestroyMe();
+            BecomeTiny();
+        }
+        //else if (PausaInGame.Instance.isPaused)
+        //{
+            
+        //}
+    }
+
+    Vector3 savedVelocity;
+    Vector3 savedAngularVelocity;
+    void PauseRB()
+    {
+        savedVelocity = rb.velocity;
+        savedAngularVelocity = rb.angularVelocity;
+        rb.isKinematic = true;
+    }
+    void DespauseRB()
+    {
+        rb.isKinematic = false;
+        rb.AddForce(savedVelocity, ForceMode.VelocityChange);
+        rb.AddTorque(savedAngularVelocity, ForceMode.VelocityChange);
     }
 
     public void ShootArrow(float fuerza)
@@ -67,6 +101,12 @@ public class ArrowBehaviour : MonoBehaviour
 
         Destroy(collision.gameObject);
         Destroy(gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        PausaInGame.Instance.Paused -= PauseRB;
+        PausaInGame.Instance.Despaused -= DespauseRB;
     }
 
 }
