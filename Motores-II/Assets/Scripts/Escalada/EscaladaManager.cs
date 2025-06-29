@@ -62,11 +62,11 @@ public class EscaladaManager : MonoBehaviour
         UpdatePlayerTime();
 
         //back to menu input
-        if (Input.GetKey(KeyCode.Escape))
-        {
-            //SceneManager.LoadScene("Menu");
-            OpenPause();
-        }
+        //if (Input.GetKey(KeyCode.Escape))
+        //{
+        //    //SceneManager.LoadScene("Menu");
+        //    OpenPause();
+        //}
 
 
         if (Input.GetKeyDown(KeyCode.Space))
@@ -87,18 +87,14 @@ public class EscaladaManager : MonoBehaviour
             UpdateTimeBar();
     }
 
-    [SerializeField] public Canvas pauseMenu;
-    public bool paused;
-    void OpenPause()
-    {
-        if (paused) return;
-
-        pauseMenu.gameObject.SetActive(true);
-        Time.timeScale = 0;
-    }
+    //[SerializeField] public Canvas pauseMenu;
+    //public bool paused;
+    
 
     void StartGame()
     {
+        
+
         _gameStarted = true;
         _time = _maxTime;
 
@@ -116,6 +112,8 @@ public class EscaladaManager : MonoBehaviour
 
     public void StepRock(float x)
     {
+        if (!_gameStarted) return;
+
         var num = UnityEngine.Random.Range(0, _spawners.Length+1);
         var num2 = UnityEngine.Random.Range(0, _spawners.Length+1);
 
@@ -213,6 +211,8 @@ public class EscaladaManager : MonoBehaviour
 
         _multText.text = "x " + _adMult;
         _rewardButton.SetActive(true);
+
+        StaminaSystem.Instance.UseStamina(StaminaSystem.Instance.gameStaminaCost);
     }
 
 

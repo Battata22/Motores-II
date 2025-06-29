@@ -1,22 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class EscaladaMenu : MonoBehaviour
+public class CarlosMenu : MonoBehaviour
 {
-    //a
     [SerializeField] Canvas _pauseCanvas;
     [SerializeField] Canvas _optionCanvas;
 
-
+    //a
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if(_pauseCanvas.enabled)
+            if (_pauseCanvas.enabled)
                 ClosePause();
             else
                 OpenPause();
@@ -29,25 +26,12 @@ public class EscaladaMenu : MonoBehaviour
             OpenPause();
     }
 
-    public void RefresScene()
-    {
-        if (!StaminaSystem.Instance.HasEnoughStamina(StaminaSystem.Instance.gameStaminaCost))
-        {
-            Debug.Log($"ESTAMINA INSUFICIENTE {StaminaSystem.Instance.CurrentStamina} \n" +
-                $"Estamina Necesaria {StaminaSystem.Instance.gameStaminaCost}");
-            return;
-        }
-
-        Time.timeScale = 1.0f;
-        SceneManager.LoadScene("Escalada");
-    }
 
     public void GoToMenu()
     {
         Time.timeScale = 1.0f;
         SceneManager.LoadScene("Menu");
     }
-
 
     public void ClosePause()
     {

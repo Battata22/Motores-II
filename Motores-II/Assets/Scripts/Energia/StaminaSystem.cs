@@ -8,7 +8,10 @@ public class StaminaSystem : MonoBehaviour
 {
     [SerializeField] int maxStamina = 10;
     [SerializeField] float timeToRecharge = 10f;
+    [SerializeField] public int gameStaminaCost;
     int currentStamina;
+    public int CurrentStamina {  get { return currentStamina; } }
+
 
     DateTime nextStaminaTime;
     DateTime lastStaminaTime;
@@ -25,6 +28,7 @@ public class StaminaSystem : MonoBehaviour
         if (Instance == null) 
         { 
             Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
         else
             Destroy(gameObject);
@@ -151,6 +155,12 @@ public class StaminaSystem : MonoBehaviour
         EventManager.Trigger("OnStaminaUpdate");
     }
 
+    public void AdStamina(int amount)
+    {
+        currentStamina += amount;
+
+        UpdateStamina();
+    }
 
 
     void Save()

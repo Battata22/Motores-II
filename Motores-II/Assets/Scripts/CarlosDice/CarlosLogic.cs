@@ -90,6 +90,12 @@ namespace CarlosDice
         public void StartGame()
         {
             if (_gameStarted) return;
+            if(!StaminaSystem.Instance.HasEnoughStamina(StaminaSystem.Instance.gameStaminaCost))
+            {
+                Debug.Log($"ESTAMINA INSUFICIENTE {StaminaSystem.Instance.CurrentStamina} \n" +
+                    $"Estamina Necesaria {StaminaSystem.Instance.gameStaminaCost}");
+                return;
+            }
             _gameStarted = true;
 
             AddPoints(_pointsToAdd);
@@ -175,6 +181,8 @@ namespace CarlosDice
 
             _multText.text = "x " + _adMult;
             _rewardButton.SetActive(true);
+
+            StaminaSystem.Instance.UseStamina(StaminaSystem.Instance.gameStaminaCost);
         }
 
         void AddPoints(int amount)
