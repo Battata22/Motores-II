@@ -41,14 +41,7 @@ public class PuntajeManager : MonoBehaviour
 
         if (totalPoints >= puntosNecesariosVictoria && checkVictoria == true)
         {
-            spawnerScript.enabled = false;
-            checkVictoriaBox.gameObject.SetActive(false);
-            victoriaPNG.SetActive(true);
-            waitvictoria += Time.deltaTime;
-            if (waitvictoria >= _tiempoDeVictoria)
-            {
-                SceneManager.LoadScene("Menu");
-            }
+            Victory();
         }
     }
 
@@ -64,6 +57,19 @@ public class PuntajeManager : MonoBehaviour
     void SetScore(float points)
     {
         textPuntaje.text = ("Puntaje: " + (int)points);
+    }
+
+    void Victory()
+    {
+        spawnerScript.enabled = false;
+        checkVictoriaBox.gameObject.SetActive(false);
+        victoriaPNG.SetActive(true);
+        waitvictoria += Time.deltaTime;        
+        if (waitvictoria >= _tiempoDeVictoria)
+        {
+            PointsManager.Instance.AddPoints((totalPoints / 1000));
+            SceneManager.LoadScene("Menu");
+        }
     }
 
 }

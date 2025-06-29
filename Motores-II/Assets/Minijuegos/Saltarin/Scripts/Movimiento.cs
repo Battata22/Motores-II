@@ -24,9 +24,12 @@ public class Movimiento : MonoBehaviour
     [SerializeField] GameObject _botonreiniciar, _botonVolver;
     [SerializeField] SpawnerPlataformas _spawnScript;
     [SerializeField] bool yaSalioVictoria = false;
+    [SerializeField] bool _yaSumePuntos;
 
     private void Start()
     {
+        _yaSumePuntos = false;
+
         _rb = GetComponent<Rigidbody>();
 
         #region Gyroscopio
@@ -151,6 +154,18 @@ public class Movimiento : MonoBehaviour
 
         gameObject.SetActive(false);
         _spawnScript.enabled = false;
+
+        SumarPoints();
+    }
+
+    void SumarPoints()
+    {
+        if (!_yaSumePuntos)
+        {
+            int puntos = (int)transform.position.z / 10;
+            PointsManager.Instance.AddPoints(puntos);
+            _yaSumePuntos = true;
+        }
     }
 
     [SerializeField] GameObject victoria;
@@ -165,6 +180,8 @@ public class Movimiento : MonoBehaviour
 
         gameObject.SetActive(false);
         _spawnScript.enabled = false;
+
+        SumarPoints();
     }
 
     public void ResetScene()

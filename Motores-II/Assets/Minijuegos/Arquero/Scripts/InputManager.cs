@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,45 +13,44 @@ public class InputManager : MonoBehaviour
 
     void Start()
     {
-        
+
     }
 
-    
+
     void Update()
     {
-        //if (Input.touchCount < 1) return;
-        //else
-        //{
-        //    var touch = Input.GetTouch(0);
-        //}
-
-        if (Input.GetMouseButton(0))
+        if (!PausaInGame.Instance.isPaused)
         {
-            if (imagen.active == false) imagen.SetActive(true);
+            //if (Input.touchCount < 1) return;
+            //else
+            //{
+            //    var touch = Input.GetTouch(0);
+            //}
 
-            var touch = Input.GetTouch(0);
+            if (Input.GetMouseButton(0))
+            {
+                if (imagen.active == false) imagen.SetActive(true);
 
-            imagen.transform.position = new Vector3(touch.position.x - offset, touch.position.y);
+                var touch = Input.GetTouch(0);
 
-            Cargador();
+                imagen.transform.position = new Vector3(touch.position.x - offset, touch.position.y);
 
-            lastCarga = carga;
+                Cargador();
+
+                lastCarga = carga;
+            }
+
+            if (Input.GetMouseButtonUp(0))
+            {
+                var touch = Input.GetTouch(0);
+
+                imagen.SetActive(false);
+
+                ResetCargador();
+
+                ShootArrow(Camera.main.ScreenToWorldPoint(touch.position));
+            }
         }
-
-        if (Input.GetMouseButtonUp(0))
-        {
-            var touch = Input.GetTouch(0);
-
-            imagen.SetActive(false);
-
-            ResetCargador();
-
-            ShootArrow(Camera.main.ScreenToWorldPoint(touch.position));
-
-        }
-
-
-
     }
 
     bool subiendo = true;

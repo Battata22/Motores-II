@@ -38,6 +38,12 @@ public class PointsManager : MonoBehaviour
         //Guardar datos
         SaveLastPoints();
     }
+    public void AddPoints(float points)
+    {
+        _points += Convert.ToInt32(points);
+        //Guardar datos
+        SaveLastPoints();
+    }
 
     public void SubstractPoints(int points)
     {
