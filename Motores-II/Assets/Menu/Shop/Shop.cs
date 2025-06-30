@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,11 +6,18 @@ using static UnityEditor.Progress;
 
 public class Shop : MonoBehaviour
 {
+    public static Shop instance;
 
     //[SerializeField] ItemSO[] items;
 
     [SerializeField] ItemButtonShop buttonShopPrefab;
     [SerializeField] Transform parent;
+    public static event Action ResetValues;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     void Start()
     {
@@ -21,5 +29,26 @@ public class Shop : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        
+    }
 
+    public void ResetData()
+    {
+        //resetear compras
+        ResetValues();
+
+        //resetear skin seleccionada a la basica
+        PlayerPrefs.SetInt("SelectedFondo", 0);
+        PlayerPrefs.SetInt("SelectedBall", 0);
+        PlayerPrefs.SetInt("SelectedDiana", 0);
+        PlayerPrefs.SetInt("SelectedGuantes", 0);
+
+        //resetear puntos
+        PointsManager.Instance.SubstractPoints(10000000);
+
+
+
+    }
 }

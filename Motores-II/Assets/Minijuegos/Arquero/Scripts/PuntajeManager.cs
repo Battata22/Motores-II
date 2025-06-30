@@ -64,7 +64,8 @@ public class PuntajeManager : MonoBehaviour
         spawnerScript.enabled = false;
         checkVictoriaBox.gameObject.SetActive(false);
         victoriaPNG.SetActive(true);
-        waitvictoria += Time.deltaTime;        
+        waitvictoria += Time.deltaTime;
+        StaminaSystem.Instance.UseStamina(StaminaSystem.Instance.gameStaminaCost);
         if (waitvictoria >= _tiempoDeVictoria)
         {
             PointsManager.Instance.AddPoints((totalPoints / 1000));
@@ -74,6 +75,7 @@ public class PuntajeManager : MonoBehaviour
 
     public void MeVoyPajarito()
     {
+        StaminaSystem.Instance.UseStamina(StaminaSystem.Instance.gameStaminaCost);
         PointsManager.Instance.AddPoints((totalPoints / 1000));
     }
 

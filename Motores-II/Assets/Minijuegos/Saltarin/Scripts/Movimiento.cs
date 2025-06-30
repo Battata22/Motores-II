@@ -156,6 +156,8 @@ public class Movimiento : MonoBehaviour
         _spawnScript.enabled = false;
 
         SumarPoints();
+
+        StaminaSystem.Instance.UseStamina(StaminaSystem.Instance.gameStaminaCost);
     }
 
     void SumarPoints()
@@ -182,11 +184,17 @@ public class Movimiento : MonoBehaviour
         _spawnScript.enabled = false;
 
         SumarPoints();
+
+        StaminaSystem.Instance.UseStamina(StaminaSystem.Instance.gameStaminaCost);
     }
 
     public void ResetScene()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        if (StaminaSystem.Instance.CurrentStamina >= StaminaSystem.Instance.gameStaminaCost)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+
     }
 
 

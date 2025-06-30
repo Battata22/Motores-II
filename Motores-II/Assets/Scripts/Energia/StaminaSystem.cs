@@ -6,10 +6,10 @@ using TMPro;
 
 public class StaminaSystem : MonoBehaviour
 {
-    [SerializeField] int maxStamina = 10;
+    public int maxStamina = 10;
     [SerializeField] float timeToRecharge = 10f;
     [SerializeField] public int gameStaminaCost;
-    int currentStamina;
+    [SerializeField] int currentStamina;
     public int CurrentStamina {  get { return currentStamina; } }
 
 
@@ -21,18 +21,20 @@ public class StaminaSystem : MonoBehaviour
     //[SerializeField] TextMeshProUGUI staminaText = null;
     //[SerializeField] TextMeshProUGUI timerText = null;
 
+    #region Singleton
     public static StaminaSystem Instance;
 
     private void Awake()
     {
-        if (Instance == null) 
-        { 
+        if (Instance == null)
+        {
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
         else
             Destroy(gameObject);
-    }
+    } 
+    #endregion
 
     private void Start()
     {

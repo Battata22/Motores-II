@@ -7,6 +7,14 @@ public class Estoestotalmentemomentaneo : MonoBehaviour
 
     public List<int> idsComprados;
 
+    ////----------------------------------
+    //public bool skinArcBall1, skinArcBall2;
+    //public bool skinArcDiana1, skinArcDiana2;
+    //public bool skinArcFondo1, skinArcFondo2;
+
+    //public bool skinEscGuantes1, skinEscGuantes2;
+    ////----------------------------------
+
     #region Singelton
     public static Estoestotalmentemomentaneo instance;
     private void Awake()
@@ -25,11 +33,20 @@ public class Estoestotalmentemomentaneo : MonoBehaviour
 
     void Start()
     {
-        LoadMomentaneo();
+        //LoadMomentaneo();
     }
 
 
     void Update()
+    {
+
+    }
+
+    public void SavePref()
+    {
+        //PlayerPrefs.
+    }
+    public void LoadPref()
     {
 
     }
@@ -64,4 +81,6 @@ public class InventoryMomentaneo
 {
     public List<int> idsComprados;
 }
+
+
 

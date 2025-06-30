@@ -7,6 +7,7 @@ public class InputManager : MonoBehaviour
     [SerializeField] float carga, speedCarga, offset;
     [SerializeField] Slider Slider;
     [SerializeField] GameObject arrow;
+    [SerializeField] Material _default, tennis, DB, selected;
 
     public static float lastCarga;
 
@@ -15,6 +16,19 @@ public class InputManager : MonoBehaviour
     {
         PausaInGame.Instance.Paused += Pausar;
         PausaInGame.Instance.Despaused += Despausar;
+
+        if (PlayerPrefs.GetInt("SelectedBall") == 3)
+        {
+            selected = tennis;
+        }
+        else if (PlayerPrefs.GetInt("SelectedBall") == 4)
+        {
+            selected = DB;
+        }
+        else if (PlayerPrefs.GetInt("SelectedBall") == 0)
+        {
+            selected = _default;
+        }
     }
 
     private void OnDestroy()
@@ -102,6 +116,8 @@ public class InputManager : MonoBehaviour
 
     void ShootArrow(Vector3 shootPos)
     {
-        Instantiate(arrow, new Vector3(shootPos.x, shootPos.y, 0), Quaternion.identity);
+        var spawn = Instantiate(arrow, new Vector3(shootPos.x, shootPos.y, 0), Quaternion.identity);
+
+        spawn.GetComponent<Renderer>().material = selected;
     }
 }

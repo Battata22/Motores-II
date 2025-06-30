@@ -10,10 +10,11 @@ public class ItemSO : ScriptableObject
     public string itemPrice;
     public Sprite itemImage;
     public Sprite Locked;
+    public Sprite check;
     public Minijuego minijuegoType;
     public int iD;
 
-    public ItemSO(string itemName, string itemPrice, Sprite itemImage, Sprite locked, Minijuego minijuegoType, int iD)
+    public ItemSO(string itemName, string itemPrice, Sprite itemImage, Sprite locked, Minijuego minijuegoType, int iD, Sprite check)
     {
         this.itemName = itemName;
         this.itemPrice = itemPrice;
@@ -21,9 +22,10 @@ public class ItemSO : ScriptableObject
         this.Locked = locked;
         this.minijuegoType = minijuegoType;
         this.iD = iD;
+        this.check = check;
     }
 
-    public void SetValues(string itemName, string itemPrice, Sprite itemImage, Sprite locked, Minijuego minijuegoType, int iD)
+    public void SetValues(string itemName, string itemPrice, Sprite itemImage, Sprite locked, Minijuego minijuegoType, int iD, Sprite check)
     {
         this.itemName = itemName;
         this.itemPrice = itemPrice;
@@ -31,5 +33,6 @@ public class ItemSO : ScriptableObject
         this.Locked = locked;
         this.minijuegoType = minijuegoType;
         this.iD = iD;
+        this.check = check;
     }
 }

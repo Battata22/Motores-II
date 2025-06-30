@@ -785,6 +785,10 @@ MonoBehaviour:
   offset: 100
   Slider: {fileID: 479707858}
   arrow: {fileID: 2257555190812650542, guid: e4e532614995ff74088510f57e3729f1, type: 3}
+  _default: {fileID: 2100000, guid: 6ec46e2fa85398f4489c749d42c663dc, type: 2}
+  tennis: {fileID: 2100000, guid: a932f80350f141649879fddbd56529ae, type: 2}
+  DB: {fileID: 2100000, guid: e0e47d088478df248bccc6a1f32e5381, type: 2}
+  selected: {fileID: 0}
 --- !u!4 &563927911
 Transform:
   m_ObjectHideFlags: 0
