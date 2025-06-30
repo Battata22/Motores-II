@@ -1,18 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
+using System.Net.Sockets;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CompraItem : MonoBehaviour
 {
     [SerializeField] ItemButtonShop itemScript;
     [SerializeField] bool bloqueado = true;
     //[SerializeField] bool _1, _2, _3, _4, _5, _6, _7, _8;
+    [SerializeField] AudioSource AudioSource;
+    [SerializeField] AudioClip purchase, selected, error;
+    [SerializeField] Image test;
 
     void Start()
     {
         itemScript = GetComponent<ItemButtonShop>();
+
+        AudioSource = GetComponentInChildren<AudioSource>();
 
         //LoadBool();
 
@@ -224,17 +230,23 @@ public class CompraItem : MonoBehaviour
         if (bloqueado && PointsManager.Instance._points >= int.Parse(itemScript.itemPrice.text))
         {
             bloqueado = false;
+            //PointsManager.Instance.SubstractPoints(int.Parse(itemScript.itemPrice.text));
             PointsManager.Instance.SubstractPoints(int.Parse(itemScript.itemPrice.text));
             //print(itemScript.iD);
             //Estoestotalmentemomentaneo.instance.SaveMomentaneo(itemScript.iD);
-            itemScript.Comprado();
+            //itemScript.Comprado();
+            itemScript.locked.enabled = false;
             PlayerPrefs.SetInt(itemScript.iD.ToString(), 1);
             PlayerPrefs.Save();
+            AudioSource.clip = purchase;
+            AudioSource.Play();
             //print("comprado");
         }
         else if (bloqueado && PointsManager.Instance._points < int.Parse(itemScript.itemPrice.text))
         {
             print("no tenes guita");
+            AudioSource.clip = error;
+            AudioSource.Play();
         }
 
         if (!bloqueado)
@@ -271,12 +283,15 @@ public class CompraItem : MonoBehaviour
             {
                 PlayerPrefs.SetInt("SelectedGuantes", 8);
             }
+            AudioSource.clip = selected;
+            AudioSource.Play();
         }
     }
 
     void ResetMe()
     {
         PlayerPrefs.SetInt(itemScript.iD.ToString(), 0);
+        StaminaSystem.Instance.ResetStamina();
     }
 
     #region CuidadoConLosOjos

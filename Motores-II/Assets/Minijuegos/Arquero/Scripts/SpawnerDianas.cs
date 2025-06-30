@@ -9,11 +9,26 @@ public class SpawnerDianas : MonoBehaviour
     [SerializeField] float _sizecerca, _sizeMedio, _sizeLejos;
     [SerializeField] float _spawnCooldown;
     [SerializeField] GameObject _dianasPrefab;
-
-    [SerializeField] float _destroyTime;
+    [SerializeField] Material _default, dianaPapel, dianaDiana, selected;
 
     float waitSpawn;
-    
+
+    private void Start()
+    {
+        if (PlayerPrefs.GetInt("SelectedDiana") == 5)
+        {
+            selected = dianaPapel;
+        }
+        else if (PlayerPrefs.GetInt("SelectedDiana") == 6)
+        {
+            selected = dianaDiana;
+        }
+        else if (PlayerPrefs.GetInt("SelectedBall") == 0)
+        {
+            selected = _default;
+        }
+    }
+
     void Update()
     {
         if (!PausaInGame.Instance.isPaused)
@@ -30,6 +45,7 @@ public class SpawnerDianas : MonoBehaviour
                         var c = Instantiate(_dianasPrefab, new Vector3(Random.Range(-_xLimite, _xLimite), Random.Range(-_yLimite, _yLimite), _zCerca), Quaternion.identity);
                         c.transform.localScale = Vector3.one * _sizecerca;
                         //Destroy(c, _destroyTime);
+                        c.GetComponent<Renderer>().material = selected;
                         break;
 
                     case 2:
@@ -37,6 +53,7 @@ public class SpawnerDianas : MonoBehaviour
                         var m = Instantiate(_dianasPrefab, new Vector3(Random.Range(-_xLimite, _xLimite), Random.Range(-_yLimite, _yLimite), _zMedio), Quaternion.identity);
                         m.transform.localScale = Vector3.one * _sizeMedio;
                         //Destroy(m, _destroyTime);
+                        m.GetComponent<Renderer>().material = selected;
                         break;
 
                     case 3:
@@ -44,6 +61,7 @@ public class SpawnerDianas : MonoBehaviour
                         var l = Instantiate(_dianasPrefab, new Vector3(Random.Range(-_xLimite, _xLimite), Random.Range(-_yLimite, _yLimite), _zLejos), Quaternion.identity);
                         l.transform.localScale = Vector3.one * _sizeLejos;
                         //Destroy(l, _destroyTime);
+                        l.GetComponent<Renderer>().material = selected;
                         break;
 
                 }
@@ -51,4 +69,5 @@ public class SpawnerDianas : MonoBehaviour
             }
         }
     }
+
 }

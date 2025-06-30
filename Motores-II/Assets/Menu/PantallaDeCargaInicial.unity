@@ -302,7 +302,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxStamina: 100
   timeToRecharge: 10
-  gameStaminaCost: 60
+  gameStaminaCost: 20
+  currentStamina: 0
 --- !u!4 &1670467193
 Transform:
   m_ObjectHideFlags: 0

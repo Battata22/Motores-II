@@ -46,4 +46,9 @@ public class MenuManager : MonoBehaviour
         }
 
     }
+
+    public void SumarPuntos()
+    {
+        PointsManager.Instance.AddPoints(100);
+    }
 }

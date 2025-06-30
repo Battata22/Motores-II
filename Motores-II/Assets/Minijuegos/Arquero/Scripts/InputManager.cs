@@ -8,6 +8,8 @@ public class InputManager : MonoBehaviour
     [SerializeField] Slider Slider;
     [SerializeField] GameObject arrow;
     [SerializeField] Material _default, tennis, DB, selected;
+    [SerializeField] AudioSource _audioSourceShoot;
+    [SerializeField] AudioClip _shootClip;
 
     public static float lastCarga;
 
@@ -79,8 +81,11 @@ public class InputManager : MonoBehaviour
                 ResetCargador();
 
                 ShootArrow(Camera.main.ScreenToWorldPoint(touch.position));
+                _audioSourceShoot.clip = _shootClip;
+                _audioSourceShoot.Play();
             }
         }
+
     }
 
     bool subiendo = true;

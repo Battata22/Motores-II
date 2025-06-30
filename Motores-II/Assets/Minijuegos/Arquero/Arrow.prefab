@@ -152,3 +152,4 @@ MonoBehaviour:
   ayuda: 10
   _speedTiny: 1
   _puntMulti: 10
+  _velGiro: 2

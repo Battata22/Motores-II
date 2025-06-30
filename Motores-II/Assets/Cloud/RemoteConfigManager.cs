@@ -4,7 +4,6 @@ using Unity.Services.Authentication;
 using Unity.Services.Core;
 using UnityEngine;
 using System;
-using System.IO;
 
 public class RemoteConfigManager : MonoBehaviour
 {
@@ -120,31 +119,69 @@ public class RemoteConfigManager : MonoBehaviour
 
     public void SaveLastInfo()
     {
-        LastCloudInfo data = new();
-        //data.runner_speed = RemoteConfigService.Instance.appConfig.GetFloat("Running_Speed");
-        //data._puntMulti = RemoteConfigService.Instance.appConfig.GetFloat("Archer_PuntMultiply");
-        //data._titulo = RemoteConfigService.Instance.appConfig.GetString("TituloText");
-        //data._tiendaState = RemoteConfigService.Instance.appConfig.GetBool("ShopActive");
-        data.runner_speed = runner_speed;
-        data._puntMulti = _puntMulti;
-        data._titulo = _titulo;
-        data._tiendaState = _tiendaState;
+        //LastCloudInfo data = new();
+        ////data.runner_speed = RemoteConfigService.Instance.appConfig.GetFloat("Running_Speed");
+        ////data._puntMulti = RemoteConfigService.Instance.appConfig.GetFloat("Archer_PuntMultiply");
+        ////data._titulo = RemoteConfigService.Instance.appConfig.GetString("TituloText");
+        ////data._tiendaState = RemoteConfigService.Instance.appConfig.GetBool("ShopActive");
+        //data.runner_speed = runner_speed;
+        //data._puntMulti = _puntMulti;
+        //data._titulo = _titulo;
+        //data._tiendaState = _tiendaState;
 
-        string json = JsonUtility.ToJson(data, true);
-        File.WriteAllText(Application.dataPath + "/Cloud/LastCloudInfo.json", json);
+        //string json = JsonUtility.ToJson(data, true);
+        //File.WriteAllText(Application.dataPath + "/Cloud/LastCloudInfo.json", json);
+
+        PlayerPrefs.SetFloat("runner_speed", runner_speed);
+        PlayerPrefs.SetFloat("puntMulti", _puntMulti);
+        PlayerPrefs.SetString("titulo", _titulo);
+        PlayerPrefs.SetInt("tiendaStateBool", BoolToInt(_tiendaState));
+        PlayerPrefs.Save();
+    }
+
+    bool IntToBool(int i)
+    {
+        if (i == 0)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+
+    int BoolToInt(bool i)
+    {
+        if (i == false)
+        {
+            return 0;
+        }
+        else
+        {
+            return 1;
+        }
     }
 
     public void LoadLastInfo()
     {
-        if (File.Exists(Application.dataPath + "/Cloud/LastCloudInfo.json") == true)
-        {
-            string json = File.ReadAllText(Application.dataPath + "/Cloud/LastCloudInfo.json");
-            LastCloudInfo data = JsonUtility.FromJson<LastCloudInfo>(json);
+        //if (File.Exists(Application.dataPath + "/Cloud/LastCloudInfo.json") == true)
+        //{
+        //    string json = File.ReadAllText(Application.dataPath + "/Cloud/LastCloudInfo.json");
+        //    LastCloudInfo data = JsonUtility.FromJson<LastCloudInfo>(json);
 
-            runner_speed = data.runner_speed;
-            _puntMulti = data._puntMulti;
-            _titulo = data._titulo;
-            _tiendaState = data._tiendaState;
+        //    runner_speed = data.runner_speed;
+        //    _puntMulti = data._puntMulti;
+        //    _titulo = data._titulo;
+        //    _tiendaState = data._tiendaState;
+        //}
+
+        if (PlayerPrefs.HasKey("runner_speed"))
+        {
+            runner_speed = PlayerPrefs.GetFloat("runner_speed");
+            _puntMulti = PlayerPrefs.GetFloat("puntMulti");
+            _titulo = PlayerPrefs.GetString("titulo");
+            _tiendaState = IntToBool(PlayerPrefs.GetInt("tiendaStateBool"));
         }
     }
 

@@ -7,6 +7,7 @@ public class ArrowBehaviour : MonoBehaviour
     [SerializeField] float fuerzaDisparo, fuerzaDisparoVert, ayuda;
     [SerializeField] float _speedTiny;
     [SerializeField] float _puntMulti;
+    [SerializeField] float _velGiro;
     float wait;
 
     //private void Awake()
@@ -49,6 +50,7 @@ public class ArrowBehaviour : MonoBehaviour
         {
             DestroyMe();
             BecomeTiny();
+            Girar();
         }
         //else if (PausaInGame.Instance.isPaused)
         //{
@@ -69,6 +71,11 @@ public class ArrowBehaviour : MonoBehaviour
         rb.isKinematic = false;
         rb.AddForce(savedVelocity, ForceMode.VelocityChange);
         rb.AddTorque(savedAngularVelocity, ForceMode.VelocityChange);
+    }
+
+    void Girar()
+    {
+        transform.Rotate(new Vector3(0, 0, _velGiro));
     }
 
     public void ShootArrow(float fuerza)
@@ -99,6 +106,7 @@ public class ArrowBehaviour : MonoBehaviour
     {
         PuntajeManager.instance.AddPoints(CalcularPuntos(transform.position.z));
 
+        ArqueroManager.instance.Hit();
         Destroy(collision.gameObject);
         Destroy(gameObject);
     }

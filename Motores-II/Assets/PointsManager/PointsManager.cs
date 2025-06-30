@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-using System.IO;
 
 public class PointsManager : MonoBehaviour
 {
@@ -57,26 +56,38 @@ public class PointsManager : MonoBehaviour
 
     public void SaveLastPoints()
     {
-        LastPointsData data = new();
-        data.Points = _points;
+        //LastPointsData data = new();
+        //data.Points = _points;
 
-        string json = JsonUtility.ToJson(data, true);
-        File.WriteAllText(Application.dataPath + "/PointsManager/LastPointsInfo.json", json);
+        PlayerPrefs.SetInt("Points", _points);
+        PlayerPrefs.Save();
+
+        //string json = JsonUtility.ToJson(data, true);
+        //File.WriteAllText(Application.dataPath + "/PointsManager/LastPointsInfo.json", json);
     }
 
     public void LoadLastPoints()
     {
-        if (File.Exists(Application.dataPath + "/PointsManager/LastPointsInfo.json") == true)
+        if (PlayerPrefs.HasKey("Points"))
         {
-            string json = File.ReadAllText(Application.dataPath + "/PointsManager/LastPointsInfo.json");
-            LastPointsData data = JsonUtility.FromJson<LastPointsData>(json);
-
-            _points = data.Points;
+            _points = PlayerPrefs.GetInt("Points");
         }
         else
         {
             _points = 0;
         }
+
+        //if (File.Exists(Application.dataPath + "/PointsManager/LastPointsInfo.json") == true)
+        //{
+        //    string json = File.ReadAllText(Application.dataPath + "/PointsManager/LastPointsInfo.json");
+        //    LastPointsData data = JsonUtility.FromJson<LastPointsData>(json);
+
+        //    _points = data.Points;
+        //}
+        //else
+        //{
+        //    _points = 0;
+        //}
     }
 }
 

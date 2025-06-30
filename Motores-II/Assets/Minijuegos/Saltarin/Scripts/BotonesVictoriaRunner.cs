@@ -10,6 +10,8 @@ public class BotonesVictoriaRunner : MonoBehaviour
     [SerializeField] SpawnerPlataformas _spawnerScript;
     [SerializeField] GameObject _victoria;
     [SerializeField] GameObject boton1, boton2, boton3;
+    [SerializeField] AudioSource _audioSource;
+    [SerializeField] AudioClip _errorClip;
 
     public void GoMenu()
     {
@@ -18,7 +20,16 @@ public class BotonesVictoriaRunner : MonoBehaviour
 
     public void Retry()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        if (StaminaSystem.Instance.CurrentStamina >= StaminaSystem.Instance.gameStaminaCost)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+        else
+        {
+            //que suene el error
+            _audioSource.clip = _errorClip;
+            _audioSource.Play();
+        }
     }
 
     public void Continuar()

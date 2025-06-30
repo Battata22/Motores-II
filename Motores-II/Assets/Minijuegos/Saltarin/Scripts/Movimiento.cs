@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -25,6 +23,8 @@ public class Movimiento : MonoBehaviour
     [SerializeField] SpawnerPlataformas _spawnScript;
     [SerializeField] bool yaSalioVictoria = false;
     [SerializeField] bool _yaSumePuntos;
+    [SerializeField] AudioSource _audioSource;
+    [SerializeField] AudioClip _errorClip, jumpClip;
 
     private void Start()
     {
@@ -50,44 +50,77 @@ public class Movimiento : MonoBehaviour
         _speed = RemoteConfigManager.Instance.runner_speed;
 
         yaSalioVictoria = false;
+
+        PausaInGame.Instance.Paused += PausaRB;
+        PausaInGame.Instance.Despaused += DespausaRB;
+    }
+
+
+    Vector3 savedVelocity;
+    Vector3 savedAngularVelocity;
+    void PausaRB()
+    {
+        savedVelocity = _rb.velocity;
+        savedAngularVelocity = _rb.angularVelocity;
+        _rb.isKinematic = true;
+    }
+    void DespausaRB()
+    {
+        _rb.isKinematic = false;
+        _rb.AddForce(savedVelocity, ForceMode.VelocityChange);
+        _rb.AddTorque(savedAngularVelocity, ForceMode.VelocityChange);
     }
 
     private void Update()
     {
-        _textDistancia.text = ((int)transform.position.z).ToString() + " M";
-
-        if (transform.position.z >= _metrosParaVictoria && yaSalioVictoria == false && _onFloor == true)
+        if (!PausaInGame.Instance.isPaused)
         {
-            Victoria();
-        }
+            _textDistancia.text = ((int)transform.position.z).ToString() + " M";
 
-        //Jump();
-        JumpAcelerometro();
-        JumpAcelerometroPC();
+            if (transform.position.z >= _metrosParaVictoria && yaSalioVictoria == false && _onFloor == true)
+            {
+                Victoria();
+            }
 
-        //MovementPC();
+            //Jump();
+            JumpAcelerometro();
+            JumpAcelerometroPC();
 
-        if (_onFloor == true)
-        {
-            _render.material.color = Color.blue;
+            //MovementPC();
+
+            if (_onFloor == true)
+            {
+                _render.material.color = Color.blue;
+            }
+            else
+            {
+                _render.material.color = Color.red;
+            }
+
+            if (transform.position.y <= -0.5f)
+            {
+                Perdida();
+            }
         }
         else
         {
-            _render.material.color = Color.red;
-        }
 
-        if (transform.position.y <= -0.5f)
-        {
-            Perdida();
-        }
+        }       
 
     }
 
     private void FixedUpdate()
     {
-        Foward();
-        GyroMovement();
-        MovementPC();
+        if (!PausaInGame.Instance.isPaused)
+        {
+            Foward();
+            GyroMovement();
+            MovementPC();
+        }
+        else
+        {
+
+        }
     }
 
 
@@ -128,10 +161,12 @@ public class Movimiento : MonoBehaviour
     {
         //Vector3 accelerometerFixed = Quaternion.Euler(90, 0, 0) * Input.acceleration;
         //rb.AddForce(accelerometerFixed * force);
-        if(Input.acceleration.y <= -1.2 && _onFloor == true)
+        if (Input.acceleration.y <= -1.2 && _onFloor == true)
         {
             _rb.AddForce(transform.up * _jumpForce * Time.deltaTime, ForceMode.Impulse);
             _onFloor = false;
+            _audioSource.clip = jumpClip;
+            _audioSource.Play();
         }
     }
 
@@ -141,6 +176,8 @@ public class Movimiento : MonoBehaviour
         {
             _rb.AddForce(transform.up * _jumpForce * Time.deltaTime, ForceMode.Impulse);
             _onFloor = false;
+            _audioSource.clip = jumpClip;
+            _audioSource.Play();
         }
     }
 
@@ -194,21 +231,32 @@ public class Movimiento : MonoBehaviour
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
+        else
+        {
+            _audioSource.clip = _errorClip;
+            _audioSource.Play();
+        }
 
     }
 
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision != null)
+        if (collision != null)
         {
             _onFloor = true;
         }
 
-        if(collision.gameObject.GetComponent<PlataformaScript>() != null)
+        if (collision.gameObject.GetComponent<PlataformaScript>() != null)
         {
             collision.gameObject.GetComponent<PlataformaScript>()._playerTouchThis = true;
         }
+    }
+
+    private void OnDestroy()
+    {
+        PausaInGame.Instance.Paused -= PausaRB;
+        PausaInGame.Instance.Despaused -= DespausaRB;
     }
 
 

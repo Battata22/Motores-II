@@ -164,6 +164,11 @@ public class StaminaSystem : MonoBehaviour
         UpdateStamina();
     }
 
+    public void ResetStamina()
+    {
+        currentStamina = maxStamina;
+    }
+
 
     void Save()
     {

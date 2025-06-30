@@ -20,29 +20,29 @@ public class PlataformaScript : MonoBehaviour
 
     void Update()
     {
-        if (cam.WorldToViewportPoint(transform.position).x > 0 && cam.WorldToViewportPoint(transform.position).x < 1 &&
-      cam.WorldToViewportPoint(transform.position).y > 0 && cam.WorldToViewportPoint(transform.position).y < 1 &&
-      cam.WorldToViewportPoint(transform.position).z > 0)
-        {
-            //print("estoy en camara");
-            if (aviso.enabled == true)
-            {
-                aviso.enabled = false;
-            }
-        }
-        else
-        {
-            //print("no estoy en camara :(");
-            if (aviso.enabled == false)
-            {
-                aviso.enabled = true;
-            }
-            aviso.rectTransform.position = cam.WorldToViewportPoint(transform.position);
-        }
+      //  if (cam.WorldToViewportPoint(transform.position).x > 0 && cam.WorldToViewportPoint(transform.position).x < 1 &&
+      //cam.WorldToViewportPoint(transform.position).y > 0 && cam.WorldToViewportPoint(transform.position).y < 1 &&
+      //cam.WorldToViewportPoint(transform.position).z > 0)
+      //  {
+      //      //print("estoy en camara");
+      //      if (aviso.enabled == true)
+      //      {
+      //          aviso.enabled = false;
+      //      }
+      //  }
+      //  else
+      //  {
+      //      //print("no estoy en camara :(");
+      //      if (aviso.enabled == false)
+      //      {
+      //          aviso.enabled = true;
+      //      }
+      //      aviso.rectTransform.position = cam.WorldToViewportPoint(transform.position);
+      //  }
 
         if (_playerTouchThis == true)
         {
-            Destroy(aviso.gameObject);
+            //Destroy(aviso.gameObject);
             Destroy(gameObject, 3);
         }
     }

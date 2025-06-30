@@ -1,75 +1,74 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.IO;
-using UnityEditor;
-using UnityEngine;
-using UnityEngine.UI;
+//using System.Collections;
+//using System.Collections.Generic;
+//using UnityEditor;
+//using UnityEngine;
+//using UnityEngine.UI;
 
-public class UnlockedItems : MonoBehaviour
-{
-    public Dictionary<Minijuego, int> unlokeds;
-    [SerializeField] bool isLocked = false;
-    [SerializeField] ItemButtonShop itemScript;
+//public class UnlockedItems : MonoBehaviour
+//{
+//    public Dictionary<Minijuego, int> unlokeds;
+//    [SerializeField] bool isLocked = false;
+//    [SerializeField] ItemButtonShop itemScript;
 
-    void Start()
-    {
-        itemScript = GetComponent<ItemButtonShop>();
-        LoadInventory();
-        if (unlokeds.TryGetValue(itemScript.minijuegoType, out int id))
-        {
-            if (id == itemScript.iD)
-            {
-                print("este esta en la lista " +  id);
-            }
-        }
-    }
+//    void Start()
+//    {
+//        itemScript = GetComponent<ItemButtonShop>();
+//        LoadInventory();
+//        if (unlokeds.TryGetValue(itemScript.minijuegoType, out int id))
+//        {
+//            if (id == itemScript.iD)
+//            {
+//                print("este esta en la lista " +  id);
+//            }
+//        }
+//    }
 
-    
-    void Update()
-    {
-        
-    }
 
-    public void UnlockItem(ItemButtonShop item)
-    {
-        //if (item.)
-    }
+//    void Update()
+//    {
 
-    public void RestartInventory()
-    {
+//    }
 
-    }
+//    public void UnlockItem(ItemButtonShop item)
+//    {
+//        //if (item.)
+//    }
 
-    public void SaveInventory(Minijuego minijuego, int ItemID)
-    {
-        Inventory data = new();
-        data.unlokeds.Add(minijuego, ItemID);
+//    public void RestartInventory()
+//    {
 
-        string json = JsonUtility.ToJson(data, true);
-        File.WriteAllText(Application.dataPath + "/Menu/Shop/InventoryInfo.json", json);
-    }
+//    }
 
-    public void LoadInventory()
-    {
-        if (File.Exists(Application.dataPath + "/Menu/Shop/InventoryInfo.json") == true)
-        {
-            string json = File.ReadAllText(Application.dataPath + "/Menu/Shop/InventoryInfo.json");
-            Inventory data = JsonUtility.FromJson<Inventory>(json);
+//    public void SaveInventory(Minijuego minijuego, int ItemID)
+//    {
+//        Inventory data = new();
+//        data.unlokeds.Add(minijuego, ItemID);
 
-            unlokeds = data.unlokeds;
-        }
-        else
-        {
-            unlokeds = new();
-        }
-    }
-}
+//        string json = JsonUtility.ToJson(data, true);
+//        File.WriteAllText(Application.dataPath + "/Menu/Shop/InventoryInfo.json", json);
+//    }
 
-[System.Serializable]
-public class Inventory
-{
-    public Dictionary<Minijuego, int> unlokeds;
-}
+//    public void LoadInventory()
+//    {
+//        if (File.Exists(Application.dataPath + "/Menu/Shop/InventoryInfo.json") == true)
+//        {
+//            string json = File.ReadAllText(Application.dataPath + "/Menu/Shop/InventoryInfo.json");
+//            Inventory data = JsonUtility.FromJson<Inventory>(json);
+
+//            unlokeds = data.unlokeds;
+//        }
+//        else
+//        {
+//            unlokeds = new();
+//        }
+//    }
+//}
+
+//[System.Serializable]
+//public class Inventory
+//{
+//    public Dictionary<Minijuego, int> unlokeds;
+//}
 
 public enum Minijuego
 {

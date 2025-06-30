@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -11,7 +10,7 @@ using UnityEngine.UI;
 public class VolumeManager : MonoBehaviour
 {
     [SerializeField] AudioMixer _audioMixer;
-    [SerializeField] AudioClip _setVolumeSound, _clickedButton;
+    [SerializeField] AudioClip _setVolumeSound, _clickedButton, _purchase;
     [SerializeField] Slider _masterSlider;
     [SerializeField] TextMeshProUGUI _textMaster;
     [SerializeField] AudioSource _audioSource;
@@ -57,6 +56,12 @@ public class VolumeManager : MonoBehaviour
         _audioSource.Play();
     }
 
+    public void PlayPurchaseSound()
+    {
+        _audioSource.clip = _purchase;
+        _audioSource.Play();
+    }
+
     public void PlaySound()
     {
         _audioSource.Play();
@@ -85,19 +90,31 @@ public class VolumeManager : MonoBehaviour
 
     public void VolGuardarJSON()
     {
-        VolumeData data = new VolumeData();
-        data.Master = _masterSlider.value;
+        //VolumeData data = new VolumeData();
+        //data.Master = _masterSlider.value;
 
-        string json = JsonUtility.ToJson(data, true);
-        File.WriteAllText(Application.dataPath + "/VolumenDataFile.json", json);
+        //string json = JsonUtility.ToJson(data, true);
+        //File.WriteAllText(Application.dataPath + "/VolumenDataFile.json", json);
+
+        PlayerPrefs.SetFloat("MasterVolume", _masterSlider.value);
+        PlayerPrefs.Save();
     }
 
     public void VolCargarJSON()
     {
-        string json = File.ReadAllText(Application.dataPath + "/VolumenDataFile.json");
-        VolumeData data = JsonUtility.FromJson<VolumeData>(json);
+        //string json = File.ReadAllText(Application.dataPath + "/VolumenDataFile.json");
+        //VolumeData data = JsonUtility.FromJson<VolumeData>(json);
 
-        _masterSlider.value = data.Master;
+        if (PlayerPrefs.HasKey("MasterVolume"))
+        {
+            _masterSlider.value = PlayerPrefs.GetFloat("MasterVolume");
+        }
+        else
+        {
+            _masterSlider.value = 1;
+        }
+
+        //_masterSlider.value = data.Master;
     }
 
 }
