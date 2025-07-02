@@ -51,6 +51,10 @@ public class PlataformaScript : MonoBehaviour
 
         if (este)
         {
+            //hacer que no empiecen a spawnear hasta que saltas por primera vez
+            //hacer que esta plataforma se destruya al toque
+
+            //apagar el script del spawner por defecto y prenderlo cuando apretes el espacio/saltes con el celu
             w += Time.deltaTime;
             if (w >= 3)
             {
@@ -66,11 +70,6 @@ public class PlataformaScript : MonoBehaviour
         if (_playerTouchThis == true)
         {
             waitReturn += Time.deltaTime;
-
-            if (SaltarinManager.instance.LastStep != this)
-            {
-            SaltarinManager.instance.LastStep = this;
-            }
 
             if (_pool != null)
             {
@@ -92,6 +91,14 @@ public class PlataformaScript : MonoBehaviour
             //    _pool.Return(this);
             //} 
             #endregion
+        }
+    }
+
+    public void LastStep()
+    {
+        if (SaltarinManager.instance.LastStep != this)
+        {
+            SaltarinManager.instance.LastStep = this;
         }
     }
 

@@ -77,6 +77,7 @@ public class Model_Player
         if (collision.gameObject.GetComponent<PlataformaScript>() != null)
         {
             collision.gameObject.GetComponent<PlataformaScript>()._playerTouchThis = true;
+            collision.gameObject.GetComponent<PlataformaScript>().LastStep();
         }
     }
 

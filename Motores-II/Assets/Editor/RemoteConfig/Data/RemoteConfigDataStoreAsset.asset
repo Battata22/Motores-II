@@ -12,58 +12,58 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 469c24fdb3bd6431b92cc1465bd9166b, type: 3}
   m_Name: RemoteConfigDataStoreAsset
   m_EditorClassIdentifier: 
-  _rsKeyList: "[\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"4e186211-6610-4a20-96b7-7109bc753338\"\r\n   
+  _rsKeyList: "[\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"da134699-0e02-47ff-abc2-758d3dacf89e\"\r\n   
     },\r\n    \"rs\": {\r\n      \"key\": \"Running_Speed\",\r\n      \"type\": \"float\",\r\n     
     \"value\": 10.0\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
-    \"52734d5b-3655-46e0-a742-f599fe6852e3\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"6978eed9-d603-4997-9cd0-e5dde25c69a7\"\r\n    },\r\n    \"rs\": {\r\n     
     \"key\": \"Archer_PuntMultiply\",\r\n      \"type\": \"float\",\r\n      \"value\":
-    10.0\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"d5643a15-71fb-402e-922b-3b105ecb0ccb\"\r\n   
+    10.0\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"b46855f5-c55c-44bb-86ae-8fc4cfd0e9ce\"\r\n   
     },\r\n    \"rs\": {\r\n      \"key\": \"Escalada_MaxHeight\",\r\n      \"type\":
     \"int\",\r\n      \"value\": 10\r\n    }\r\n  },\r\n  {\r\n    \"metadata\":
-    {\r\n      \"entityId\": \"544193f8-90ea-41c0-a0b8-9cea436d695f\"\r\n    },\r\n   
+    {\r\n      \"entityId\": \"4c4bcda1-0a8b-4afd-9586-5cfc0310c268\"\r\n    },\r\n   
     \"rs\": {\r\n      \"key\": \"Carlos_MaxRounds\",\r\n      \"type\": \"int\",\r\n     
     \"value\": 5\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
-    \"432160f7-1eb8-4440-9ecf-a4065a95f642\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"ca1dab6a-5039-4a58-97d6-b1e7b93571b5\"\r\n    },\r\n    \"rs\": {\r\n     
     \"key\": \"ShopActive\",\r\n      \"type\": \"bool\",\r\n      \"value\": true\r\n   
-    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"87e22de3-9d58-4d5d-89d2-7441fd9e4272\"\r\n   
+    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"99156b9d-1498-413d-bb2d-0bf3e28c588d\"\r\n   
     },\r\n    \"rs\": {\r\n      \"key\": \"Escalada_MinTimeAtk\",\r\n      \"type\":
     \"float\",\r\n      \"value\": 1.0\r\n    }\r\n  },\r\n  {\r\n    \"metadata\":
-    {\r\n      \"entityId\": \"22107118-b426-4ff7-95da-8a25895f71e0\"\r\n    },\r\n   
+    {\r\n      \"entityId\": \"ac9ff0fc-c412-49ea-a5c2-fc27878cf1b9\"\r\n    },\r\n   
     \"rs\": {\r\n      \"key\": \"Escalada_MaxTimeAtk\",\r\n      \"type\": \"float\",\r\n     
     \"value\": 3.0\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
-    \"93ad7c49-23c6-41c7-9ce8-f4e45a6f49a6\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"122e4fb9-ddee-4486-b675-4a1b654dedeb\"\r\n    },\r\n    \"rs\": {\r\n     
     \"key\": \"Carlos_InitialRoundButtons\",\r\n      \"type\": \"int\",\r\n     
     \"value\": 3\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
-    \"21fbc2ea-1f33-40ab-8408-123334d1368f\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"2c4a3fb9-e449-4469-8f6d-9080329da175\"\r\n    },\r\n    \"rs\": {\r\n     
     \"key\": \"TituloText\",\r\n      \"type\": \"string\",\r\n      \"value\": \"SampleText\\n\\nBottomText\"\r\n   
-    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"c9e08781-631f-4304-8088-cd30b7479696\"\r\n   
+    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"b01e8e84-7d67-414b-a9d9-dae0f8f2d70f\"\r\n   
     },\r\n    \"rs\": {\r\n      \"key\": \"Carlos_Endless\",\r\n      \"type\":
     \"bool\",\r\n      \"value\": false\r\n    }\r\n  }\r\n]"
-  _rsLastCachedKeyList: "[\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"4e186211-6610-4a20-96b7-7109bc753338\"\r\n   
+  _rsLastCachedKeyList: "[\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"da134699-0e02-47ff-abc2-758d3dacf89e\"\r\n   
     },\r\n    \"rs\": {\r\n      \"key\": \"Running_Speed\",\r\n      \"type\": \"float\",\r\n     
     \"value\": 10.0\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
-    \"52734d5b-3655-46e0-a742-f599fe6852e3\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"6978eed9-d603-4997-9cd0-e5dde25c69a7\"\r\n    },\r\n    \"rs\": {\r\n     
     \"key\": \"Archer_PuntMultiply\",\r\n      \"type\": \"float\",\r\n      \"value\":
-    10.0\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"d5643a15-71fb-402e-922b-3b105ecb0ccb\"\r\n   
+    10.0\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"b46855f5-c55c-44bb-86ae-8fc4cfd0e9ce\"\r\n   
     },\r\n    \"rs\": {\r\n      \"key\": \"Escalada_MaxHeight\",\r\n      \"type\":
     \"int\",\r\n      \"value\": 10\r\n    }\r\n  },\r\n  {\r\n    \"metadata\":
-    {\r\n      \"entityId\": \"544193f8-90ea-41c0-a0b8-9cea436d695f\"\r\n    },\r\n   
+    {\r\n      \"entityId\": \"4c4bcda1-0a8b-4afd-9586-5cfc0310c268\"\r\n    },\r\n   
     \"rs\": {\r\n      \"key\": \"Carlos_MaxRounds\",\r\n      \"type\": \"int\",\r\n     
     \"value\": 5\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
-    \"432160f7-1eb8-4440-9ecf-a4065a95f642\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"ca1dab6a-5039-4a58-97d6-b1e7b93571b5\"\r\n    },\r\n    \"rs\": {\r\n     
     \"key\": \"ShopActive\",\r\n      \"type\": \"bool\",\r\n      \"value\": true\r\n   
-    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"87e22de3-9d58-4d5d-89d2-7441fd9e4272\"\r\n   
+    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"99156b9d-1498-413d-bb2d-0bf3e28c588d\"\r\n   
     },\r\n    \"rs\": {\r\n      \"key\": \"Escalada_MinTimeAtk\",\r\n      \"type\":
     \"float\",\r\n      \"value\": 1.0\r\n    }\r\n  },\r\n  {\r\n    \"metadata\":
-    {\r\n      \"entityId\": \"22107118-b426-4ff7-95da-8a25895f71e0\"\r\n    },\r\n   
+    {\r\n      \"entityId\": \"ac9ff0fc-c412-49ea-a5c2-fc27878cf1b9\"\r\n    },\r\n   
     \"rs\": {\r\n      \"key\": \"Escalada_MaxTimeAtk\",\r\n      \"type\": \"float\",\r\n     
     \"value\": 3.0\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
-    \"93ad7c49-23c6-41c7-9ce8-f4e45a6f49a6\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"122e4fb9-ddee-4486-b675-4a1b654dedeb\"\r\n    },\r\n    \"rs\": {\r\n     
     \"key\": \"Carlos_InitialRoundButtons\",\r\n      \"type\": \"int\",\r\n     
     \"value\": 3\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
-    \"21fbc2ea-1f33-40ab-8408-123334d1368f\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"2c4a3fb9-e449-4469-8f6d-9080329da175\"\r\n    },\r\n    \"rs\": {\r\n     
     \"key\": \"TituloText\",\r\n      \"type\": \"string\",\r\n      \"value\": \"SampleText\\n\\nBottomText\"\r\n   
-    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"c9e08781-631f-4304-8088-cd30b7479696\"\r\n   
+    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"b01e8e84-7d67-414b-a9d9-dae0f8f2d70f\"\r\n   
     },\r\n    \"rs\": {\r\n      \"key\": \"Carlos_Endless\",\r\n      \"type\":
     \"bool\",\r\n      \"value\": false\r\n    }\r\n  }\r\n]"
   _environments: "[\r\n  {\r\n    \"projectId\": \"068f7f49-605a-438c-918c-5caf7c7d68ae\",\r\n   
