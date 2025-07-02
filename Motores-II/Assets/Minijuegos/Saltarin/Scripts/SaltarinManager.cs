@@ -11,18 +11,19 @@ public class SaltarinManager : MonoBehaviour
 
     public event Action TriggerStep;
 
+    private PlataformaScript _lastStep;
+
     public PlataformaScript LastStep
     {
         get
         {
-            return LastStep;
+            return _lastStep;
         }
         set
         {
             TriggerStep();
-            LastStep = value;
-        }
-        
+            _lastStep = value;
+        }        
     }
 
     //Gyroscope _gyro;
@@ -38,6 +39,8 @@ public class SaltarinManager : MonoBehaviour
 
     void Start()
     {
+        TriggerStep += TestEvento;
+
         Screen.orientation = ScreenOrientation.Portrait;
         Screen.autorotateToPortrait = false;
         Screen.autorotateToLandscapeLeft = false;
@@ -52,11 +55,6 @@ public class SaltarinManager : MonoBehaviour
     
     void Update()
     {
-        //if (Input.GetMouseButtonDown(0) /*Input.GetTouch(0).phase == 0*/)
-        //{
-        //    SceneManager.LoadScene("Saltarin");
-        //}
-
         if (Input.GetKeyDown(KeyCode.F1))
         {
             SceneManager.LoadScene("Saltarin");
@@ -66,8 +64,10 @@ public class SaltarinManager : MonoBehaviour
         {
             SceneManager.LoadScene("Menu");
         }
+    }
 
-       
-
+    void TestEvento()
+    {
+        print("TestEvento");
     }
 }

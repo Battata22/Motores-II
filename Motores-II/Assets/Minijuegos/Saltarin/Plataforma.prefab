@@ -19,7 +19,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7055655244358572684
 Transform:
   m_ObjectHideFlags: 0
@@ -118,8 +118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c51bb831a6a2f254f93bf9dfb0221b68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 0}
-  _avisoPrefab: {fileID: 0}
-  aviso: {fileID: 0}
-  _canvas: {fileID: 0}
+  _speed: 15
+  _returnTime: 3
   _playerTouchThis: 0
+  este: 0

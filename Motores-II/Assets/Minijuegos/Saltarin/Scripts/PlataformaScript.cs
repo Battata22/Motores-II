@@ -8,7 +8,9 @@ public class PlataformaScript : MonoBehaviour
     //public Canvas _canvas; 
     #endregion
 
-    float waitDeath = 0;
+    [SerializeField] float _speed;
+    [SerializeField] float _returnTime;
+    float waitReturn = 0;
 
     public bool _playerTouchThis = false;
     void Start()
@@ -21,7 +23,8 @@ public class PlataformaScript : MonoBehaviour
         #endregion
     }
 
-
+    public bool este;
+    float w;
     void Update()
     {
         #region Intento de aviso
@@ -46,24 +49,62 @@ public class PlataformaScript : MonoBehaviour
         //  } 
         #endregion
 
+        if (este)
+        {
+            w += Time.deltaTime;
+            if (w >= 3)
+            {
+                Destroy(gameObject);
+            }
+        }
+        else
+        {
+            Movement();
+        }
+
+
         if (_playerTouchThis == true)
         {
-            //Destroy(gameObject, 3);
+            waitReturn += Time.deltaTime;
 
-            waitDeath += Time.deltaTime;
+            if (SaltarinManager.instance.LastStep != this)
+            {
+            SaltarinManager.instance.LastStep = this;
+            }
 
             if (_pool != null)
             {
-                _pool.Return(this);
+                if (waitReturn >= _returnTime)
+                {
+                    _pool.Return(this);
+                }
             }
+            else
+            {
+                Destroy(gameObject);
+            }
+
+            #region Old
+            //waitReturn += Time.deltaTime;
+
+            //if (_pool != null && waitReturn >= _returnTime)
+            //{
+            //    _pool.Return(this);
+            //} 
+            #endregion
         }
+    }
+
+    void Movement()
+    {
+        transform.position -= (new Vector3(0, 0, _speed) * Time.deltaTime);
     }
 
     public ObjectPool<PlataformaScript> _pool;
     public virtual void Recicle(ObjectPool<PlataformaScript> pool)
     {
         _pool = pool;
-        waitDeath = 0;
+        waitReturn = 0;
         _playerTouchThis = false;
     }
 }

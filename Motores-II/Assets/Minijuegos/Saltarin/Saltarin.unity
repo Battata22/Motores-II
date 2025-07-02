@@ -1951,7 +1951,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1129195863}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 52ffb12744814cc4a82d8d98ef6a8fd6, type: 3}
   m_Name: 
@@ -1972,7 +1972,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1129195863}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7cb1bf474f180744194b6798340e5067, type: 3}
   m_Name: 
@@ -2653,8 +2653,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1763571446}
   - component: {fileID: 1763571447}
-  - component: {fileID: 1763571448}
   - component: {fileID: 1763571449}
+  - component: {fileID: 1763571448}
+  - component: {fileID: 1763571450}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -2697,7 +2698,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1763571444}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9158ec67af8b7b94e8b722992a9c29e0, type: 3}
   m_Name: 
@@ -2731,6 +2732,23 @@ MonoBehaviour:
   boton3: {fileID: 16095266}
   _audioSource: {fileID: 855632290}
   _errorClip: {fileID: 8300000, guid: 1dca30ac87a62a3448cb173a2cb74122, type: 3}
+--- !u!114 &1763571450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1763571444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57328de559a165149b93a262e09fb3bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _plataforma: {fileID: 8876375912335732082, guid: 13199657f18f57847aca6963a20cd59c, type: 3}
+  _xIzqSpawn: -3.8
+  _xMedioSpawn: 0
+  _xDerSpawn: 3.8
+  _offsetDist: 17
 --- !u!1 &1803744158
 GameObject:
   m_ObjectHideFlags: 0
@@ -3608,6 +3626,10 @@ PrefabInstance:
       propertyPath: m_RenderMode
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6055254400801496146, guid: a4566278ce5fc2a4c9e76f6f556de0ac, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6602106058072545120, guid: a4566278ce5fc2a4c9e76f6f556de0ac, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0.26900002
@@ -3745,12 +3767,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8876375912335732082, guid: 13199657f18f57847aca6963a20cd59c, type: 3}
+      propertyPath: este
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8876375912335732082, guid: 13199657f18f57847aca6963a20cd59c, type: 3}
       propertyPath: _canvas
       value: 
       objectReference: {fileID: 1564867919}
     - target: {fileID: 8876375912335732082, guid: 13199657f18f57847aca6963a20cd59c, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8876375912335732082, guid: 13199657f18f57847aca6963a20cd59c, type: 3}
       propertyPath: _avisoPrefab

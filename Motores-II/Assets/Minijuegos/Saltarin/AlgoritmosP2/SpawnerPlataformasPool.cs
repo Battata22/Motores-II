@@ -2,16 +2,16 @@ using UnityEngine;
 
 public class SpawnerPlataformasPool : MonoBehaviour
 {
-    [SerializeField] float _spawnTime;
     [SerializeField] PlataformaScript _plataforma;
     ObjectPool<PlataformaScript> _poolPlataformas;
-    float waitSpawn;
 
     [SerializeField] float _xIzqSpawn, _xMedioSpawn, _xDerSpawn;
-    [SerializeField] float _offset, _offsetDist;
+    [SerializeField] float _offsetDist;
+    //float _offset;
 
     private void Awake()
     {
+        //_offset = _offsetDist;
         _poolPlataformas = new ObjectPool<PlataformaScript>(SpawnPlataforma, PlatformOn, PlatformOff, 5);
     }
 
@@ -20,8 +20,57 @@ public class SpawnerPlataformasPool : MonoBehaviour
         SaltarinManager.instance.TriggerStep += Spawn;
     }
 
-
+    float wait;
     void Update()
+    {
+        #region Spawn Por Tiempo
+        //wait += Time.deltaTime;
+        //if (wait >= 2)
+        //{
+        //    if (!PausaInGame.Instance.isPaused)
+        //    {
+        //        int choose = Random.Range(1, 3 + 1);
+        //        switch (choose)
+        //        {
+        //            case 1:
+        //                //-------------------------------------------Spawn Izquierda---------------------------------------------
+
+        //                //var izq = Instantiate(_plataforma, new Vector3(_xIzqSpawn, 0, _offset), Quaternion.identity);
+        //                //izq.SetActive(true);
+        //                //
+        //                var plataformaIzq = _poolPlataformas.Get();
+        //                plataformaIzq.transform.position = new Vector3(_xIzqSpawn, 0, _offsetDist);
+        //                break;
+
+        //            case 2:
+        //                //-------------------------------------------Spawn Medio---------------------------------------------
+
+        //                //var medio = Instantiate(_plataforma, new Vector3(_xMedioSpawn, 0, _offset), Quaternion.identity);
+        //                //medio.SetActive(true);
+
+        //                var plataformaMid = _poolPlataformas.Get();
+        //                plataformaMid.transform.position = new Vector3(_xMedioSpawn, 0, _offsetDist);
+        //                break;
+
+        //            case 3:
+        //                //-------------------------------------------Spawn Derecha---------------------------------------------
+
+        //                //var der = Instantiate(_plataforma, new Vector3(_xDerSpawn, 0, _offset), Quaternion.identity);
+        //                //der.SetActive(true);
+
+        //                var plataformaDer = _poolPlataformas.Get();
+        //                plataformaDer.transform.position = new Vector3(_xDerSpawn, 0, _offsetDist);
+        //                break;
+
+        //        }
+        //        //_offset += _offsetDist;
+        //    }
+        //    wait = 0;
+        //}         
+        #endregion
+    }
+
+    void Spawn()
     {
         if (!PausaInGame.Instance.isPaused)
         {
@@ -29,31 +78,38 @@ public class SpawnerPlataformasPool : MonoBehaviour
             switch (choose)
             {
                 case 1:
-                    //spawn corto
-                    var izq = Instantiate(_platPrefab, new Vector3(_xIzqSpawn, 0, _offset), Quaternion.identity);
-                    izq.SetActive(true);
+                    //-------------------------------------------Spawn Izquierda---------------------------------------------
+
+                    //var izq = Instantiate(_plataforma, new Vector3(_xIzqSpawn, 0, _offset), Quaternion.identity);
+                    //izq.SetActive(true);
+                    //
+                    var plataformaIzq = _poolPlataformas.Get();
+                    plataformaIzq.transform.position = new Vector3(_xIzqSpawn, 0, _offsetDist);
                     break;
 
                 case 2:
-                    //spawn medio
-                    var medio = Instantiate(_platPrefab, new Vector3(_xMedioSpawn, 0, _offset), Quaternion.identity);
-                    medio.SetActive(true);
+                    //-------------------------------------------Spawn Medio---------------------------------------------
+
+                    //var medio = Instantiate(_plataforma, new Vector3(_xMedioSpawn, 0, _offset), Quaternion.identity);
+                    //medio.SetActive(true);
+
+                    var plataformaMid = _poolPlataformas.Get();
+                    plataformaMid.transform.position = new Vector3(_xMedioSpawn, 0, _offsetDist);
                     break;
 
                 case 3:
-                    //spawn lejos
-                    var der = Instantiate(_platPrefab, new Vector3(_xDerSpawn, 0, _offset), Quaternion.identity);
-                    der.SetActive(true);
+                    //-------------------------------------------Spawn Derecha---------------------------------------------
+
+                    //var der = Instantiate(_plataforma, new Vector3(_xDerSpawn, 0, _offset), Quaternion.identity);
+                    //der.SetActive(true);
+
+                    var plataformaDer = _poolPlataformas.Get();
+                    plataformaDer.transform.position = new Vector3(_xDerSpawn, 0, _offsetDist);
                     break;
 
             }
-            _offset += _offsetDist;
+            //_offset += _offsetDist;
         }
-    }
-
-    void Spawn()
-    {
-        var enemy = _poolPlataformas.Get();
     }
 
     PlataformaScript SpawnPlataforma()

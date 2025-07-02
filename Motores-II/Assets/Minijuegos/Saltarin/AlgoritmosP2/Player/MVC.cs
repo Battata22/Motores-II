@@ -165,7 +165,7 @@ public class Controller_Player
     }
     public void FakeFixedUpdate()
     {
-        _model.Foward();
+        //_model.Foward();
 
         CheckGyro();
 
