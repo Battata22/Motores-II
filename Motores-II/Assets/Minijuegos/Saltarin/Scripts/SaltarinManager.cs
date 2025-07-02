@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -8,7 +9,32 @@ public class SaltarinManager : MonoBehaviour
 {
     [SerializeField] int lockFrames;
 
+    public event Action TriggerStep;
+
+    public PlataformaScript LastStep
+    {
+        get
+        {
+            return LastStep;
+        }
+        set
+        {
+            TriggerStep();
+            LastStep = value;
+        }
+        
+    }
+
     //Gyroscope _gyro;
+
+    #region Instance
+    public static SaltarinManager instance;
+
+    private void Awake()
+    {
+        instance = this;
+    } 
+    #endregion
 
     void Start()
     {
@@ -23,7 +49,6 @@ public class SaltarinManager : MonoBehaviour
         QualitySettings.vSyncCount = 0;
         Application.targetFrameRate = lockFrames;
     }
-
     
     void Update()
     {
