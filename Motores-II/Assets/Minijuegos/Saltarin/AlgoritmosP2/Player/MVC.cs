@@ -78,6 +78,8 @@ public class Model_Player
         {
             collision.gameObject.GetComponent<PlataformaScript>()._playerTouchThis = true;
             collision.gameObject.GetComponent<PlataformaScript>().LastStep();
+            PlayerBehaivour.Instance.Saltadas++;
+            PlayerBehaivour.Instance.NotifyObserver();
         }
     }
 

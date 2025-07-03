@@ -1,11 +1,13 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PlayerBehaivour : MonoBehaviour
+public class PlayerBehaivour : MonoBehaviour, IObservable_
 {
     public static PlayerBehaivour Instance;
 
+    #region Variables
     //----------------------MVC---------------------
     Model_Player _model;
     View_Player _view;
@@ -37,6 +39,12 @@ public class PlayerBehaivour : MonoBehaviour
     //[SerializeField] TextMeshProUGUI _textDistancia;
     //---------------modificar para que sea tiempo y no metros
 
+    public int Saltadas;
+    List<IObserver_> _observers = new();
+    public ScreenTest screenPaused;
+
+    #endregion
+
     private void Awake()
     {
         Instance = this;
@@ -55,6 +63,11 @@ public class PlayerBehaivour : MonoBehaviour
     void Start()
     {
         _model.FakeStart();
+
+        foreach (var observer in _observers)
+        {
+            observer.Notify(Saltadas);
+        }
 
         #region Old
         //_rb = GetComponent<Rigidbody>();
@@ -98,6 +111,15 @@ public class PlayerBehaivour : MonoBehaviour
 
             #endregion
         }
+
+        //---------------------------------------------------Screen Manager-----------------------------------------
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (ScreenManager.instance.IsPausedActive)
+                ScreenManager.instance.DesactiveScreen();
+            else
+                ScreenManager.instance.ActiveScreen(screenPaused);
+        }
     }
 
     private void FixedUpdate()
@@ -114,7 +136,6 @@ public class PlayerBehaivour : MonoBehaviour
             #endregion
         }
     }
-
 
     #region Old
     //void Foward()
@@ -213,6 +234,29 @@ public class PlayerBehaivour : MonoBehaviour
         //PausaInGame.Instance.Paused -= PausaRB;
         //PausaInGame.Instance.Despaused -= DespausaRB; 
         #endregion
+    }
+
+    public void NotifyObserver()
+    {
+        foreach (var observer in _observers)
+        {
+            observer.Notify(Saltadas);
+        }
+    }
+
+    public void Suscribe(IObserver_ observer)
+    {
+        if (_observers.Contains(observer)) return;
+
+        _observers.Add(observer);
+    }
+
+    public void Unsuscribe(IObserver_ observer)
+    {
+        if (_observers.Contains(observer))
+        {
+            _observers.Remove(observer);
+        }
     }
 }
 

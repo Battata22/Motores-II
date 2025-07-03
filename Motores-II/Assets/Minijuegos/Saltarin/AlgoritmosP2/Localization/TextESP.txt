@@ -1,0 +1,6 @@
+"BTN_Retry":  "Reintentar",
+"BTN_BackMenu":  "Volver al menu",
+"TXT_Tutorial": "Tutorial
+Mueve el dispositivo hacia arriba y adelante con fuerza",
+"BTN_BackGame" : "Volver al juego",
+"Volume" : "Volumen"

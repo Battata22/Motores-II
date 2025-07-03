@@ -5,7 +5,7 @@ public class WinLoseCondition : MonoBehaviour
 {
     [SerializeField] PlayerBehaivour _playerScript;
     [SerializeField] SpawnerPlataformas _plataformasSpawner;
-    [SerializeField] Canvas _canvasDerrota, _canvasVictoria;
+    [SerializeField] IScreen _canvasDerrota, _canvasVictoria;
     [SerializeField] AudioSource _audioSource;
     [SerializeField] AudioClip _errorClip;
     [SerializeField] float _metrosParaVictoria;
@@ -19,6 +19,9 @@ public class WinLoseCondition : MonoBehaviour
         _yaSumePuntos = false;
 
         yaSalioVictoria = false;
+
+        _canvasDerrota = ScreenManager.instance.CanvasDerrota;
+        _canvasVictoria = ScreenManager.instance.CanvasVictory;
     }
 
 
@@ -33,6 +36,11 @@ public class WinLoseCondition : MonoBehaviour
         if (transform.position.y <= -0.5f)
         {
             Perdida();
+        }
+
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            Victoria();
         }
     }
 
@@ -51,7 +59,9 @@ public class WinLoseCondition : MonoBehaviour
 
     void Perdida()
     {
-        _canvasDerrota.enabled = true;
+        //_canvasDerrota.enabled = true;
+        ScreenManager.instance.ActiveScreen(_canvasDerrota);
+
 
         gameObject.SetActive(false);
         //CAMBIAR A LAS PLATAFORMAS NUEVAS
@@ -64,7 +74,8 @@ public class WinLoseCondition : MonoBehaviour
 
     void Victoria()
     {
-        _canvasVictoria.enabled = true;
+        //_canvasVictoria.enabled = true;
+        ScreenManager.instance.ActiveScreen(_canvasVictoria);
         yaSalioVictoria = true;
 
         gameObject.SetActive(false);

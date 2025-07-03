@@ -10,6 +10,7 @@ public class PlataformaScript : MonoBehaviour
 
     [SerializeField] float _speed;
     [SerializeField] float _returnTime;
+    [SerializeField] SaltarinManager _spawnerScript;
     float waitReturn = 0;
 
     public bool _playerTouchThis = false;
@@ -23,8 +24,6 @@ public class PlataformaScript : MonoBehaviour
         #endregion
     }
 
-    public bool este;
-    float w;
     void Update()
     {
         #region Intento de aviso
@@ -49,23 +48,7 @@ public class PlataformaScript : MonoBehaviour
         //  } 
         #endregion
 
-        if (este)
-        {
-            //hacer que no empiecen a spawnear hasta que saltas por primera vez
-            //hacer que esta plataforma se destruya al toque
-
-            //apagar el script del spawner por defecto y prenderlo cuando apretes el espacio/saltes con el celu
-            w += Time.deltaTime;
-            if (w >= 3)
-            {
-                Destroy(gameObject);
-            }
-        }
-        else
-        {
-            Movement();
-        }
-
+        Movement();
 
         if (_playerTouchThis == true)
         {
@@ -82,16 +65,17 @@ public class PlataformaScript : MonoBehaviour
             {
                 Destroy(gameObject);
             }
-
-            #region Old
-            //waitReturn += Time.deltaTime;
-
-            //if (_pool != null && waitReturn >= _returnTime)
-            //{
-            //    _pool.Return(this);
-            //} 
-            #endregion
         }
+
+        #region Old
+        //waitReturn += Time.deltaTime;
+
+        //if (_pool != null && waitReturn >= _returnTime)
+        //{
+        //    _pool.Return(this);
+        //} 
+        #endregion
+
     }
 
     public void LastStep()

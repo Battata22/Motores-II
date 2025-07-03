@@ -1,0 +1,6 @@
+"BTN_Retry":  "Meow",
+"BTN_BackMenu":  "Meow Meow",
+"TXT_Tutorial": "Tutorial
+Meow meow meow gssss meowmeow meooooow",
+"BTN_BackGame" : "mEEeeOOeeoEOEWWwwww",
+"Volume" : "I'm a cat"

@@ -1,0 +1,6 @@
+﻿"BTN_Retry":  "Retry",
+"BTN_BackMenu":  "Back to menu",
+"TXT_Tutorial": "Tutorial
+Move fast the device foward and upwards",
+"BTN_BackGame" : "Back to game",
+"Volume" : "Volume"

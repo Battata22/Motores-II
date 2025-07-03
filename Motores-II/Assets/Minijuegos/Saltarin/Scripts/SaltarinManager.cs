@@ -9,6 +9,8 @@ public class SaltarinManager : MonoBehaviour
 {
     [SerializeField] int lockFrames;
 
+    public PlayerBehaivour Player;
+
     public event Action TriggerStep;
 
     private PlataformaScript _lastStep;
@@ -64,6 +66,11 @@ public class SaltarinManager : MonoBehaviour
         {
             SceneManager.LoadScene("Menu");
         }
+    }
+
+    public void ActivarTrigger()
+    {
+        TriggerStep();
     }
 
     void TestEvento()
