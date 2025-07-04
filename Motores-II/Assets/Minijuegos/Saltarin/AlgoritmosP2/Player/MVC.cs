@@ -43,6 +43,8 @@ public class Model_Player
         PausaInGame.Instance.Despaused += DespausaRB;
 
         #region Gyroscopio
+        //Para que SOLO se ejecute en android y no en unity
+#if UNITY_ANDROID && !UNITY_EDITOR
         if (SystemInfo.supportsGyroscope)
         {
             _tengoGyro = true;
@@ -53,12 +55,21 @@ public class Model_Player
         {
             Debug.LogError("No hay giroscopio");
         }
+#endif
         #endregion
     }
 
     public void FakeUpdate()
     {
-
+        //---------------------------------------------Memento-----------------------------------------------
+        if (MementoManager.instance.finishLoad)
+        {
+            DespausaRB();
+        }
+        else
+        {
+            PausaRB();
+        }
     }
 
     public void FakeFixedUpdate()
@@ -87,7 +98,7 @@ public class Model_Player
     {
         PausaInGame.Instance.Paused -= PausaRB;
         PausaInGame.Instance.Despaused -= DespausaRB;
-    }    
+    }
 
     public void Foward()
     {

@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PlayerBehaivour : MonoBehaviour, IObservable_
+public class PlayerBehaivour : Rewind, IObservable_
 {
     public static PlayerBehaivour Instance;
 
@@ -43,10 +43,15 @@ public class PlayerBehaivour : MonoBehaviour, IObservable_
     List<IObserver_> _observers = new();
     public ScreenTest screenPaused;
 
+    //-----------------Memento--------------------------
+
+
     #endregion
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
         Instance = this;
 
         //Primero consigo mis cosas antes de pasarlas
@@ -135,6 +140,28 @@ public class PlayerBehaivour : MonoBehaviour, IObservable_
             //MovementPC(); 
             #endregion
         }
+    }
+
+    public override void Save()
+    {
+        //parametros para pasar, pos, onfloor?
+        mementoState.Rec(transform.position, _onFloor, Saltadas);
+    }
+
+    public override void Load()
+    {
+        if (!mementoState.IsRemember()) return;
+
+        var remember = mementoState.Remember();
+
+        transform.position = (Vector3)remember.parameters[0];
+        _onFloor = (bool)remember.parameters[1];
+        Saltadas = (int)remember.parameters[2];
+    }
+
+    public override void RemoveMe()
+    {
+        //MementoManager.instance.QuitMeRewind(this);
     }
 
     #region Old

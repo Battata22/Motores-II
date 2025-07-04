@@ -9,6 +9,7 @@ public class WinLoseCondition : MonoBehaviour
     [SerializeField] AudioSource _audioSource;
     [SerializeField] AudioClip _errorClip;
     [SerializeField] float _metrosParaVictoria;
+    [SerializeField] float _distParaPerder;
     [SerializeField] bool yaSalioVictoria = false;
     [SerializeField] bool _yaSumePuntos;
 
@@ -33,7 +34,7 @@ public class WinLoseCondition : MonoBehaviour
             Victoria();
         }
 
-        if (transform.position.y <= -0.5f)
+        if (transform.position.y <= -_distParaPerder)
         {
             Perdida();
         }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlataformaScript : MonoBehaviour
+public class PlataformaScript : Rewind
 {
     #region Intento de aviso
     //[SerializeField] Camera cam;
@@ -48,6 +48,7 @@ public class PlataformaScript : MonoBehaviour
         //  } 
         #endregion
 
+
         Movement();
 
         if (_playerTouchThis == true)
@@ -66,6 +67,7 @@ public class PlataformaScript : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+
 
         #region Old
         //waitReturn += Time.deltaTime;
@@ -94,8 +96,32 @@ public class PlataformaScript : MonoBehaviour
     public ObjectPool<PlataformaScript> _pool;
     public virtual void Recicle(ObjectPool<PlataformaScript> pool)
     {
+        //RemoveMe();
+        //MementoManager.instance.AddMeRewind(this);
         _pool = pool;
         waitReturn = 0;
         _playerTouchThis = false;
+    }
+
+    public override void Save()
+    {
+        mementoState.Rec(transform.position, waitReturn, _playerTouchThis, gameObject.activeInHierarchy);
+    }
+
+    public override void Load()
+    {
+        if (!mementoState.IsRemember()) return;
+
+        var remember = mementoState.Remember();
+
+        transform.position = (Vector3)remember.parameters[0];
+        waitReturn = (float)remember.parameters[1];
+        _playerTouchThis = (bool)remember.parameters[2];
+        gameObject.SetActive((bool)remember.parameters[3]);
+    }
+
+    public override void RemoveMe()
+    {
+        MementoManager.instance.QuitMeRewind(this);
     }
 }

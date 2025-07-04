@@ -1002,6 +1002,103 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &345688928
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 345688929}
+  - component: {fileID: 345688931}
+  - component: {fileID: 345688930}
+  - component: {fileID: 345688932}
+  m_Layer: 5
+  m_Name: RelojArena
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &345688929
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 345688928}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.54924, y: 0.54924, z: 0.54924}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1564867920}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 586}
+  m_SizeDelta: {x: 720, y: 720}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &345688930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 345688928}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 54bfe16f7fdfeb241a2ce004546eab0c, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &345688931
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 345688928}
+  m_CullTransparentMesh: 1
+--- !u!95 &345688932
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 345688928}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 85ca2a50f7975c34fbe062d42d67e963, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &446629936
 GameObject:
   m_ObjectHideFlags: 0
@@ -1899,7 +1996,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1014866673}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -2409,6 +2506,7 @@ MonoBehaviour:
   _audioSource: {fileID: 855632290}
   _errorClip: {fileID: 8300000, guid: 1dca30ac87a62a3448cb173a2cb74122, type: 3}
   _metrosParaVictoria: 400
+  _distParaPerder: 0.5
   yaSalioVictoria: 0
   _yaSumePuntos: 0
 --- !u!114 &1129195871
@@ -2644,6 +2742,7 @@ RectTransform:
   - {fileID: 24238099}
   - {fileID: 1006818455}
   - {fileID: 506625724}
+  - {fileID: 345688929}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -3131,6 +3230,7 @@ GameObject:
   - component: {fileID: 1763571450}
   - component: {fileID: 1763571451}
   - component: {fileID: 1763571452}
+  - component: {fileID: 1763571453}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -3167,6 +3267,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lockFrames: 30
   Player: {fileID: 0}
+  _relojFoto: {fileID: 345688930}
+  _relojAnim: {fileID: 345688932}
 --- !u!114 &1763571448
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3264,6 +3366,20 @@ MonoBehaviour:
   - language: 3
     data:
     - {fileID: 4900000, guid: 329abd64ad4e3154dbd100d1310171c2, type: 3}
+--- !u!114 &1763571453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1763571444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 166a37c74ee720c4684f36fdeb6426e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rewinds: []
+  finishLoad: 0
 --- !u!1 &1803744158
 GameObject:
   m_ObjectHideFlags: 0
@@ -4621,6 +4737,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dc19ab8f66a63b429954696622f43be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _tutorialImagen: {fileID: 506625723}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

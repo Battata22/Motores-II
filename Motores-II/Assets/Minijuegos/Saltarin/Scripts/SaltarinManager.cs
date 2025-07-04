@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-public class SaltarinManager : MonoBehaviour
+public class SaltarinManager : Rewind
 {
     [SerializeField] int lockFrames;
 
@@ -28,15 +29,41 @@ public class SaltarinManager : MonoBehaviour
         }        
     }
 
+    [SerializeField] Image _relojFoto;
+    [SerializeField] Animator _relojAnim;
+
     //Gyroscope _gyro;
 
     #region Instance
     public static SaltarinManager instance;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
         instance = this;
-    } 
+    }
+    #endregion
+
+    #region Memento
+    public override void Save()
+    {
+        mementoState.Rec(_lastStep);
+    }
+
+    public override void Load()
+    {
+        if (!mementoState.IsRemember()) return;
+
+        var remember = mementoState.Remember();
+
+        _lastStep = (PlataformaScript)remember.parameters[0];
+    }
+
+    public override void RemoveMe()
+    {
+        //MementoManager.instance.QuitMeRewind(this);
+    }
     #endregion
 
     void Start()
@@ -66,6 +93,18 @@ public class SaltarinManager : MonoBehaviour
         {
             SceneManager.LoadScene("Menu");
         }
+
+        if (MementoManager.instance.finishLoad)
+        {
+            _relojFoto.enabled = false;
+            _relojAnim.SetBool("Active", false);            
+        }
+        else
+        {
+            _relojFoto.enabled = true;
+            _relojAnim.SetBool("Active", true);
+        }
+
     }
 
     public void ActivarTrigger()

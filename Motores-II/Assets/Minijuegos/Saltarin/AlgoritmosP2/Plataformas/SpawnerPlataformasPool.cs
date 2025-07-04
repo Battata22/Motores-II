@@ -12,7 +12,7 @@ public class SpawnerPlataformasPool : MonoBehaviour
     private void Awake()
     {
         //_offset = _offsetDist;
-        _poolPlataformas = new ObjectPool<PlataformaScript>(SpawnPlataforma, PlatformOn, PlatformOff, 5);
+        _poolPlataformas = new ObjectPool<PlataformaScript>(SpawnPlataforma, PlatformOn, PlatformOff, 10);
     }
 
     void Start()
