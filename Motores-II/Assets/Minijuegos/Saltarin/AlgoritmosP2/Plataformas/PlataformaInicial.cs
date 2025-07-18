@@ -4,18 +4,7 @@ using UnityEngine;
 
 public class PlataformaInicial : Rewind
 {
-    [SerializeField] GameObject _tutorialImagen;
-    
-    void Start()
-    {
-        
-    }
-
-    
-    void Update()
-    {
-        
-    }
+    [SerializeField] GameObject _tutorialImagen; 
 
     public override void Save()
     {
@@ -48,6 +37,5 @@ public class PlataformaInicial : Rewind
             gameObject.SetActive(false);
         }
     }
-
 
 }

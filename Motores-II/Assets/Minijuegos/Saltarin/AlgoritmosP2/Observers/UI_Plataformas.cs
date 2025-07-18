@@ -9,11 +9,11 @@ public class UI_Plataformas : MonoBehaviour, IObserver_
 
     [SerializeField] PlayerBehaivour _player;
 
-    [SerializeField] TextMeshProUGUI _saltosText;
+    [SerializeField] TextMeshProUGUI _jumpsText;
 
     private void Start()
     {
-        _saltosText = GetComponent<TextMeshProUGUI>();
+        _jumpsText = GetComponent<TextMeshProUGUI>();
 
         _player = PlayerBehaivour.Instance;
 
@@ -25,6 +25,6 @@ public class UI_Plataformas : MonoBehaviour, IObserver_
 
     public void Notify(int platNumber)
     {
-        _saltosText.text = platNumber + " Saltos";
+        _jumpsText.text = platNumber + " Saltos";
     }
 }

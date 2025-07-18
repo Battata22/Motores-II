@@ -14,8 +14,9 @@ public class PlataformaScript : Rewind
     float waitReturn = 0;
 
     public bool _playerTouchThis = false;
-    void Start()
+    protected override void Start()
     {
+        base.Start();
         #region Intento de aviso
         //cam = Camera.main;
         //aviso = Instantiate(_avisoPrefab, _canvas.transform);
@@ -48,8 +49,10 @@ public class PlataformaScript : Rewind
         //  } 
         #endregion
 
-
-        Movement();
+        if (!PausaInGame.Instance.isPaused)
+        {
+            Movement();
+        }
 
         if (_playerTouchThis == true)
         {
@@ -76,6 +79,7 @@ public class PlataformaScript : Rewind
         //{
         //    _pool.Return(this);
         //} 
+        _speed = SaltarinManager.instance.PlatSpeed;
         #endregion
 
     }
@@ -124,4 +128,5 @@ public class PlataformaScript : Rewind
     {
         MementoManager.instance.QuitMeRewind(this);
     }
+
 }

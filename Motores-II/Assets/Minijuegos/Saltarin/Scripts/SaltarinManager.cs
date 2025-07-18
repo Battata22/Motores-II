@@ -32,6 +32,8 @@ public class SaltarinManager : Rewind
     [SerializeField] Image _relojFoto;
     [SerializeField] Animator _relojAnim;
 
+    public float PlatSpeed;
+
     //Gyroscope _gyro;
 
     #region Instance
@@ -66,8 +68,10 @@ public class SaltarinManager : Rewind
     }
     #endregion
 
-    void Start()
+    protected override void Start()
     {
+        base.Start();
+
         TriggerStep += TestEvento;
 
         Screen.orientation = ScreenOrientation.Portrait;
@@ -114,6 +118,17 @@ public class SaltarinManager : Rewind
 
     void TestEvento()
     {
-        print("TestEvento");
+        //print("TestEvento");
     }
+
+    public IEnumerator SlowSpeed(float duration)
+    {
+        PlatSpeed = PlatSpeed * 0.5f;
+        Physics.gravity = Physics.gravity * 0.5f;
+        yield return new WaitForSeconds(duration);
+        Physics.gravity = Physics.gravity * 2;
+        PlatSpeed = PlatSpeed * 2;
+
+    }
+
 }

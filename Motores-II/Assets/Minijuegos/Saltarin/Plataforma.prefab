@@ -118,7 +118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c51bb831a6a2f254f93bf9dfb0221b68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 9.5
+  _speed: 9.6
   _returnTime: 3
   _spawnerScript: {fileID: 0}
   _playerTouchThis: 0

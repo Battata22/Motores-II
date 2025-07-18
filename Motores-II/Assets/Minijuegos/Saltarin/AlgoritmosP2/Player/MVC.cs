@@ -89,10 +89,20 @@ public class Model_Player
         {
             collision.gameObject.GetComponent<PlataformaScript>()._playerTouchThis = true;
             collision.gameObject.GetComponent<PlataformaScript>().LastStep();
-            PlayerBehaivour.Instance.Saltadas++;
+            if (PlayerBehaivour.Instance.activatedMultiply)
+            {
+                PlayerBehaivour.Instance.Saltadas++;
+                PlayerBehaivour.Instance.Saltadas++;
+            }
+            else
+            {
+                PlayerBehaivour.Instance.Saltadas++;
+            }
             PlayerBehaivour.Instance.NotifyObserver();
         }
     }
+
+
 
     public void FakeOnDestroy()
     {
@@ -110,11 +120,23 @@ public class Model_Player
         PlayerBehaivour.Instance.transform.position += new Vector3(_gyro.gravity.x, 0, 0) * _gyroSpeed * Time.deltaTime;
     }
 
+    public void HackedGyroMovement()
+    {
+        PlayerBehaivour.Instance.transform.position += new Vector3(-_gyro.gravity.x, 0, 0) * _gyroSpeed * Time.deltaTime;
+    }
+
     public void MovementPC()
     {
         var xAxis = Input.GetAxisRaw("Horizontal");
 
         PlayerBehaivour.Instance.transform.position += new Vector3(xAxis, 0, 0) * Time.deltaTime * 7;
+    }
+
+    public void HackedMovementPC()
+    {
+        var xAxis = Input.GetAxisRaw("Horizontal");
+
+        PlayerBehaivour.Instance.transform.position += new Vector3(-xAxis, 0, 0) * Time.deltaTime * 7;
     }
 
     public void JumpAcelerometro()
@@ -126,7 +148,8 @@ public class Model_Player
 
     public void JumpAcelerometroPC()
     {
-        _rb.AddForce(PlayerBehaivour.Instance.transform.up * _jumpForce * Time.deltaTime, ForceMode.Impulse);
+        //Debug.Log("jump");
+        _rb.AddForce(PlayerBehaivour.Instance.transform.up * _jumpForce * 1.1f * Time.deltaTime, ForceMode.Impulse);
         _onFloor = false;
         PlayerBehaivour.Instance._onFloor = _onFloor;
     }
@@ -181,9 +204,18 @@ public class Controller_Player
     {
         //_model.Foward();
 
-        CheckGyro();
+        if (!PlayerBehaivour.Instance.Hacked)
+        {
+            CheckGyro();
 
-        CheckMovementPC();
+            CheckMovementPC();
+        }
+        else
+        {
+            CheckHackedGyro();
+
+            CheckHackedMovementPC();
+        }
     }
 
     void CheckMovementPC()
@@ -193,6 +225,16 @@ public class Controller_Player
         if (xAxis != 0)
         {
             _model.MovementPC();
+        }
+    }
+
+    void CheckHackedMovementPC()
+    {
+        var xAxis = Input.GetAxisRaw("Horizontal");
+
+        if (xAxis != 0)
+        {
+            _model.HackedMovementPC();
         }
     }
 
@@ -217,6 +259,14 @@ public class Controller_Player
         if (_model._tengoGyro)
         {
             _model.GyroMovement();
+        }
+    }
+
+    void CheckHackedGyro()
+    {
+        if (_model._tengoGyro)
+        {
+            _model.HackedGyroMovement();
         }
     }
 }

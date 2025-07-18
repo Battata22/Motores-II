@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -16,6 +17,7 @@ public class PlayerBehaivour : Rewind, IObservable_
     //----------------------Movimiento---------------------
     [SerializeField] Rigidbody _rb;
     [SerializeField] float _speed = 10;
+    [SerializeField] bool Troncado = false;
 
     //----------------------Sonidos---------------------
     [SerializeField] AudioSource _audioSource;
@@ -35,6 +37,12 @@ public class PlayerBehaivour : Rewind, IObservable_
     bool _tengoGyro = false;
     public bool _onFloor = false;
 
+    //----------------------Obstaculos-------------------------
+    [SerializeField] float troncoTime;
+    public bool Hacked;
+    [SerializeField] float hackedTime;
+    float waitHacked;
+
     //----------------Hacer con observer-------------
     //[SerializeField] TextMeshProUGUI _textDistancia;
     //---------------modificar para que sea tiempo y no metros
@@ -42,6 +50,7 @@ public class PlayerBehaivour : Rewind, IObservable_
     public int Saltadas;
     List<IObserver_> _observers = new();
     public ScreenTest screenPaused;
+    public bool activatedMultiply;
 
     //-----------------Memento--------------------------
 
@@ -65,8 +74,10 @@ public class PlayerBehaivour : Rewind, IObservable_
         _view = new(_model);
     }
 
-    void Start()
+    protected override void Start()
     {
+        base.Start();
+
         _model.FakeStart();
 
         foreach (var observer in _observers)
@@ -99,10 +110,16 @@ public class PlayerBehaivour : Rewind, IObservable_
 
     private void Update()
     {
+        waitHacked += Time.deltaTime;
+        if (waitHacked > hackedTime && Hacked)
+        {
+            Hacked = false;
+        }
+
         //---------------------OBSERVER-------------------------------
         //_textDistancia.text = ((int)transform.position.z).ToString() + " M";
 
-        if (!PausaInGame.Instance.isPaused)
+        if (!PausaInGame.Instance.isPaused && !Troncado)
         {
             _model.FakeUpdate();
             _view.FakeUpdate();
@@ -129,7 +146,7 @@ public class PlayerBehaivour : Rewind, IObservable_
 
     private void FixedUpdate()
     {
-        if (!PausaInGame.Instance.isPaused)
+        if (!PausaInGame.Instance.isPaused && !Troncado)
         {
             _model.FakeFixedUpdate();
             _controller.FakeFixedUpdate();
@@ -142,6 +159,13 @@ public class PlayerBehaivour : Rewind, IObservable_
         }
     }
 
+    public void Hack()
+    {
+        waitHacked = 0;
+        Hacked = true;
+    }
+
+    #region Memento
     public override void Save()
     {
         //parametros para pasar, pos, onfloor?
@@ -163,6 +187,8 @@ public class PlayerBehaivour : Rewind, IObservable_
     {
         //MementoManager.instance.QuitMeRewind(this);
     }
+
+    #endregion
 
     #region Old
     //void Foward()
@@ -236,6 +262,13 @@ public class PlayerBehaivour : Rewind, IObservable_
     //} 
     #endregion
 
+    public IEnumerator Tronquear()
+    {
+        Troncado = true;
+        yield return new WaitForSeconds(troncoTime);
+        Troncado = false;
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         _model.FakeOnCollisionEnter(collision);
@@ -253,8 +286,9 @@ public class PlayerBehaivour : Rewind, IObservable_
         #endregion
     }
 
-    private void OnDestroy()
+    protected override void OnDestroy()
     {
+        base.OnDestroy();
         _model.FakeOnDestroy();
 
         #region Old

@@ -19,6 +19,11 @@ public class MementoState
         return _parameters.Count > 0;
     }
 
+    //public void DeleteMemories()
+    //{
+    //    _parameters = new List<ParamsMemento>();
+    //}
+
     public ParamsMemento Remember()
     {
         var x = _parameters[_parameters.Count - 1];

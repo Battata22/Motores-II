@@ -35,4 +35,5 @@ public class Coin : Rewind
             gameObject.SetActive(false);
         }
     }
+
 }

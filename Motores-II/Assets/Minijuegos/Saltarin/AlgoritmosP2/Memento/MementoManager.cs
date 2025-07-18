@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -31,11 +32,14 @@ public class MementoManager : MonoBehaviour
 
     private void Start()
     {
+        //-----------------Original-----------------------
         _CoroutineSaved = StartCoroutine(CoroutineSave());
     }
 
     void Update()
     {
+
+
         if (Input.GetKeyDown(KeyCode.Q))
         {
             if (_CoroutineSaved != null)
@@ -44,6 +48,7 @@ public class MementoManager : MonoBehaviour
             _CoroutineSaved = StartCoroutine(CoroutineLoad());
         }
     }
+
 
     IEnumerator CoroutineSave()
     {
@@ -68,8 +73,7 @@ public class MementoManager : MonoBehaviour
             foreach (var item in _rewinds)
             {
                 if (item.mementoState.IsRemember())
-                    finishLoad = false;
-
+                    finishLoad = false;                
                 item.Load();
             }
 
