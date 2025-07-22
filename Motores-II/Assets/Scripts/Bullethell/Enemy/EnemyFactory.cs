@@ -37,10 +37,11 @@ public class EnemyFactory : Factory<BaseEnemy>
             .SetBulletFactory(_bulletFactory)
             .SetLife(_maxLife)
             .SetLifeTime(_useLifeTime, _lifeTime)
-            .SetMovement(_enemyMovementType, _speed, _chaseTarget,_goToPos)
+            .SetMovement(_enemyMovementType, _speed, _chaseTarget, _goToPos)
             .SetOrbitData(_rad, _offset)
             .SetTarget(_target)
             .SetTeam(_team)
+            .SetDamage(_damage)
             .SetTracking(_trackingType, _trackingTarget)
             .gameObject.SetActive(true);
 
@@ -53,6 +54,7 @@ public class EnemyFactory : Factory<BaseEnemy>
         return this;
     }
 
+    int _damage;
     float _shootCD;
     float _bulletSpeed;
     float _maxLife;
@@ -132,6 +134,13 @@ public class EnemyFactory : Factory<BaseEnemy>
     public EnemyFactory SetTeam(Team team)
     {
         _team = team;
+
+        return this;
+    }
+    
+    public EnemyFactory SetDamage(int damage)
+    {
+        _damage = damage;
 
         return this;
     }

@@ -13,7 +13,16 @@ public class TouchInputs : MonoBehaviour
     private void Start()
     {
         //conseguir config de usario aca
+        _stickMode = PlayerPrefs.GetInt("StickMode") == 1 ? true : false;
         UseStick(_stickMode);
+
+        EventManager.Subscribe("ChangeToStick", UseStick);
+    }
+
+    private void OnDestroy()
+    {
+        EventManager.Unsubscribe("ChangeToStick", UseStick);
+        
     }
 
     private void Update()
@@ -34,8 +43,9 @@ public class TouchInputs : MonoBehaviour
         }
     }
 
-    public void UseStick(bool use)
+    public void UseStick(params object[] noUse)
     {
+        var use = PlayerPrefs.GetInt("StickMode") == 1 ? true : false;
         _stickMode = use;
 
         if (_stickMode)

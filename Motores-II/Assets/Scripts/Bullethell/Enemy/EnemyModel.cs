@@ -20,6 +20,7 @@ public class EnemyModel
     float _cd;
     float _bulletSpeed;
     float _lastShoot;
+    int _damage;
 
     EnemyMovement _myMovement;
     EnemyMovementType _myMovementType;
@@ -149,6 +150,13 @@ public class EnemyModel
 
         return this;
     }
+    
+    public EnemyModel SetDamage(int damage)
+    {
+        _damage = damage;
+
+        return this;
+    }
 
     public void GetDamage(int amount)
     {
@@ -200,6 +208,7 @@ public class EnemyModel
     {
         _bulletFactory.SetTeam(_team)
             .SetSpawnPos(transform)
+            .SetDamage(_damage)
             .SetLifeTime(6)
             .SetMovement(BulletMovementType.Linear, _bulletSpeed, dir).Pool.Get().SetPool(_bulletFactory.Pool);
     }

@@ -60,11 +60,11 @@ public class PatternSpawner : BulletSpawner
     //}
 
     //IEnumerator _currentRoutine;
-    public void ShootPattern(BulletPatternSO myPattern)
+    public void ShootPattern(BulletPatternSO myPattern, int dmg)
     {
         if (!_alreadyShooting)
         {
-            SetPattern(myPattern);
+            SetPattern(myPattern, dmg);
 
             //_currentRoutine = StartPattern(CurrentPattern, _patternDuration, _cd, _rotation);
             StartCoroutine(StartPattern(CurrentPattern, _patternDuration, _cd, _rotation));
@@ -111,7 +111,7 @@ public class PatternSpawner : BulletSpawner
     //    }
     //}
 
-    public void SetPattern(BulletPatternSO myPattern)
+    public void SetPattern(BulletPatternSO myPattern, int dmg)
     {
         _speed = myPattern.bulletData.bulletSpeed;
         _lifeTime = myPattern.bulletData.bulletLifeTime;
@@ -119,6 +119,7 @@ public class PatternSpawner : BulletSpawner
         _patternDuration = myPattern.duration;
         _rotation = myPattern.rotationPerShoot;
         _bulletsPerShoot = myPattern.bulletsPerShoot;
+        _damage = dmg;
 
         switch (myPattern.type)
         {
@@ -249,6 +250,7 @@ public class PatternSpawner : BulletSpawner
         _bulletFactory.SetTeam(_team)
                 .SetSpawnPos(transform)
                 .SetLifeTime(_lifeTime)
+                .SetDamage(_damage)
                 .SetMovement(BulletMovementType.Linear, _speed, dir.normalized).Pool.Get()
                 .SetPool(_bulletFactory.Pool);
     }

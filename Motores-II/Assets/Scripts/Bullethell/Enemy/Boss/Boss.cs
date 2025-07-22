@@ -24,6 +24,8 @@ public class Boss : MonoBehaviour, IDamageable, ILifeObservable, IMemento
     [SerializeField] float _maxLife;
     float _life;
 
+    [SerializeField] int _damage;
+
     [SerializeField] float _speed;
     [SerializeField] Vector3[] _positions;
     [SerializeField] Vector3 _orbitPosition;
@@ -59,6 +61,8 @@ public class Boss : MonoBehaviour, IDamageable, ILifeObservable, IMemento
 
     private void Awake()
     {
+        SetData();
+
         _mementoState = new MementoState();
         _myMovement = new BossMovement(transform, this)
             .SetPositions(_positions, _orbitPosition)
@@ -75,6 +79,12 @@ public class Boss : MonoBehaviour, IDamageable, ILifeObservable, IMemento
 
         Save();
         MementoSubscribe();
+    }
+
+    void SetData()
+    {
+        _maxLife = RemoteConfigManager.Instance.BossMaxHP;
+        _damage = RemoteConfigManager.Instance.BossDmg;
     }
 
 
@@ -256,6 +266,7 @@ public class Boss : MonoBehaviour, IDamageable, ILifeObservable, IMemento
         transform.up = dir;
         
         _patternSpawner.transform.position = transform.position;
+        _patternSpawner.SetDamage(_damage);
         _patternSpawner.ShootLinearBullet(transform.up);
         _patternSpawner.ShootLinearBullet(transform.right);
         _patternSpawner.ShootLinearBullet(transform.up + transform.right);
@@ -271,7 +282,7 @@ public class Boss : MonoBehaviour, IDamageable, ILifeObservable, IMemento
     {
         _lastShooting = Time.time;
         _patternSpawner.transform.position = transform.position;
-        _patternSpawner.ShootPattern(_patterns[index]);
+        _patternSpawner.ShootPattern(_patterns[index], _damage);
     }
 
     public Team GetTeam()

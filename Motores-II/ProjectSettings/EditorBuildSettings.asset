@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CarlosDice.unity
     guid: 4ac958daaedc0134b860fe0a12e01542
+  - enabled: 1
+    path: Assets/Scenes/BulletHell.unity
+    guid: fc07d932a715c2d4c9b93ef506ece090
   m_configObjects: {}

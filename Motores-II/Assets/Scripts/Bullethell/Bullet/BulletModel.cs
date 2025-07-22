@@ -43,12 +43,14 @@ public class BulletModel
         CheckDamageable(collision.transform);
     }
 
+    int _damage = 1;
+
     void CheckDamageable(Transform other)
     {
         if (other.TryGetComponent<IDamageable>(out var damageable) && damageable.GetTeam() != _myTeam)
         {
             TurnOffBullet();
-            damageable.GetDamage(1);
+            damageable.GetDamage(_damage);
         }
     }
 
@@ -94,6 +96,13 @@ public class BulletModel
     public BulletModel SetPool(ObjectPool<BaseBullet> pool)
     {
         _pool = pool;
+
+        return this;
+    }
+    
+    public BulletModel SetDamage(int damage)
+    {
+        _damage = damage;
 
         return this;
     }

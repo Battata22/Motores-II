@@ -9,15 +9,27 @@ public class GameOverScreen : BaseScreen
     [SerializeField] TMP_Text _text;
     [SerializeField] GameObject _retryButton;
 
+    [SerializeField] AudioClip _errorSound;
+    [SerializeField] AudioSource _audioSource;
+
     private void Awake()
     {
         EventManager.Subscribe("PlayerDeath", Lose);
         EventManager.Subscribe("BossDeath", Win);
         gameObject.SetActive(false);
+
     }
+
+    private void Start()
+    {
+        AdsManager.Instance.rewardedAds.OnRewardAddComplete += CallCheckpoint;
+        
+    }
+
 
     private void OnDestroy()
     {
+        AdsManager.Instance.rewardedAds.OnRewardAddComplete -= CallCheckpoint;
         EventManager.Unsubscribe("PlayerDeath", Lose);
         EventManager.Unsubscribe("BossDeath", Win);
     }
@@ -54,6 +66,15 @@ public class GameOverScreen : BaseScreen
 
     public void Restart()
     {
+        if (!StaminaSystem.Instance.HasEnoughStamina(StaminaSystem.Instance.gameStaminaCost))
+        {
+            _audioSource.PlayOneShot(_errorSound);
+
+            Debug.Log($"ESTAMINA INSUFICIENTE {StaminaSystem.Instance.CurrentStamina} \n" +
+                $"Estamina Necesaria {StaminaSystem.Instance.gameStaminaCost}");
+            return;
+        }
+
         BulletHell.ScreenManager.Instance.DeactivateScreen();
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
@@ -63,10 +84,10 @@ public class GameOverScreen : BaseScreen
     {
         BulletHell.ScreenManager.Instance.DeactivateScreen();
 
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 
-    public void CallCheckpoint()
+    void CallCheckpoint()
     {
         EventManager.Trigger("MementoLoad");
         BulletHell.ScreenManager.Instance.DeactivateScreen();

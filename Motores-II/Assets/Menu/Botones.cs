@@ -61,6 +61,19 @@ public class Botones : MonoBehaviour
             audioSource.Play();
         }
     }
+    
+    public void CargarBulletHell()
+    {
+        if (stamina.CurrentStamina >= stamina.gameStaminaCost)
+        {
+            SceneManager.LoadScene("BulletHell");
+        }
+        else
+        {
+            audioSource.clip = noStamina;
+            audioSource.Play();
+        }
+    }
 
     public void CargarSaltarin()
     {

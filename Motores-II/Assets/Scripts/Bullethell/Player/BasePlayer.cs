@@ -10,6 +10,7 @@ public class BasePlayer : MonoBehaviour, IDamageable, ITargeteable, ILifeObserva
 
     [SerializeField] float _speed;
     [SerializeField] int _maxLife;
+    [SerializeField] int _damage;
 
     [SerializeField] Team _myTeam;
 
@@ -35,6 +36,7 @@ public class BasePlayer : MonoBehaviour, IDamageable, ITargeteable, ILifeObserva
         _myModel.ShootingTypeChanged(duration);
         _mySpawner.SetCoolDown(cd)
             .SetSpeed(speed)
+            .SetDamage(_damage)
             .SetBulletType(type);
     }
 
@@ -74,13 +76,22 @@ public class BasePlayer : MonoBehaviour, IDamageable, ITargeteable, ILifeObserva
 
     private void Awake()
     {
+        SetData();
+
         _myModel = new PlayerModel(this,transform).SetSpeed(_speed).SetLife(_maxLife);
         _myView = new PlayerView();
         _myControl = new PlayerControl(this);
 
         MementoSubscribe();
+
     }
 
+    void SetData()
+    {
+        _speed = RemoteConfigManager.Instance.PlayerSpeed;
+        _damage = RemoteConfigManager.Instance.PlayerDmg;
+        _mySpawner.SetDamage(_damage);
+    }
     private void Update()
     {
         _myModel.FakeUpdate();

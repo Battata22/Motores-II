@@ -16,6 +16,7 @@ public class BulletFactory : Factory<BaseBullet>
     Vector3 _dir;
     Team _team;
     Transform _turnOnPos;
+    int _damage;
 
     private void Awake()
     {
@@ -37,14 +38,15 @@ public class BulletFactory : Factory<BaseBullet>
 
     public override void TurnOn(BaseBullet other)
     {
-        TurnOn(other, _type, _speed, _dir, _team, _lifeTime);
+        TurnOn(other, _type, _speed, _dir, _team, _lifeTime, _damage);
     }
 
-    void TurnOn(BaseBullet other, BulletMovementType type, float speed, Vector3 dir, Team team, float life)
+    void TurnOn(BaseBullet other, BulletMovementType type, float speed, Vector3 dir, Team team, float life, int damage)
     {
-        other.SetMovement(type, speed, dir);
-        other.SetTeam(team);
-        other.SetLifeTime(life);
+        other.SetMovement(type, speed, dir)
+            .SetTeam(team)
+            .SetLifeTime(life)
+            .SetDamage(damage);
         other.transform.position = _turnOnPos.position;
 
         other.gameObject.SetActive(true);
@@ -74,6 +76,13 @@ public class BulletFactory : Factory<BaseBullet>
     public BulletFactory SetSpawnPos(Transform pos)
     {
         _turnOnPos = pos;
+
+        return this;
+    }
+    
+    public BulletFactory SetDamage(int damage)
+    {
+        _damage = damage;
 
         return this;
     }

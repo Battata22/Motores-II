@@ -7,7 +7,7 @@ using BulletHell;
 
 public class PauseScreen : BaseScreen
 {
-
+    [SerializeField] BaseScreen _optionScreen;
 
 
     public override void Deactivate()
@@ -38,5 +38,11 @@ public class PauseScreen : BaseScreen
     {
         EventManager.Trigger("MementoLoad");
         BulletHell.ScreenManager.Instance.DeactivateScreen();
+    }
+
+    public void OpenOptions()
+    {
+        //Deactivate();
+        _optionScreen.Activate();
     }
 }

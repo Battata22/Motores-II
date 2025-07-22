@@ -13,6 +13,7 @@ public class BulletSpawner : MonoBehaviour
     [SerializeField] protected Team _team;
     [SerializeField] protected Vector3 dir;
     [SerializeField] protected float _bulletLifeTime;
+    [SerializeField] protected int _damage;
     protected float _lastSpawn;
 
     protected Action<Vector3> Spawn = delegate { };
@@ -40,9 +41,11 @@ public class BulletSpawner : MonoBehaviour
 
     protected void LinearBullet(Vector3 dir)
     {
+        Debug.Log($"Spawener lineal {_damage}");
         _bulletFactory.SetTeam(_team)
             .SetLifeTime(_bulletLifeTime)
             .SetSpawnPos(transform)
+            .SetDamage(_damage)
             .SetMovement(BulletMovementType.Linear, _speed, dir).Pool.Get().SetPool(_bulletFactory.Pool);
     }
 
@@ -51,9 +54,11 @@ public class BulletSpawner : MonoBehaviour
         _bulletFactory.SetTeam(_team);
         _bulletFactory.SetSpawnPos(transform)
             .SetLifeTime(_bulletLifeTime)
+            .SetDamage(_damage)
             .SetMovement(BulletMovementType.Sen, _speed, dir).Pool.Get().SetPool(_bulletFactory.Pool);  
         _bulletFactory.SetSpawnPos(transform)
             .SetLifeTime(_bulletLifeTime)
+            .SetDamage(_damage)
             .SetMovement(BulletMovementType.Cos, _speed, dir).Pool.Get().SetPool(_bulletFactory.Pool);
     }
 
@@ -67,11 +72,18 @@ public class BulletSpawner : MonoBehaviour
         _speed = speed;
         return this;
     }
+    
+    public BulletSpawner SetDamage(int damage)
+    {
+        _damage = damage;
+        return this;
+    }
 
     protected void StaticBullet(Vector3 dir)
     {
         _bulletFactory.SetTeam(_team);
-        _bulletFactory.SetSpawnPos(transform);
+        _bulletFactory.SetSpawnPos(transform)
+            .SetDamage(_damage);
         _bulletFactory.SetMovement(BulletMovementType.Static, _speed, dir).Pool.Get().SetPool(_bulletFactory.Pool);
     }
 

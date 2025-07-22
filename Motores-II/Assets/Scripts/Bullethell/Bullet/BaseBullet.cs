@@ -73,6 +73,14 @@ public class BaseBullet : MonoBehaviour
 
         return this;
     }
+    
+    public BaseBullet SetDamage(int damage)
+    {
+        Debug.Log($"damage {damage}");
+        _myModel.SetDamage(damage);
+
+        return this;
+    }
 
     public BaseBullet SetPool(ObjectPool<BaseBullet> pool)
     {

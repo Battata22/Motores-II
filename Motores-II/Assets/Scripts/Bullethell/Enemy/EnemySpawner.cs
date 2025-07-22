@@ -9,6 +9,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] float _maxLife;
     [SerializeField] float _lifeTime;
     [SerializeField] float _speed;
+    [SerializeField] int _damage;
     [SerializeField] float _rad;
     [SerializeField] float _offset;
     [SerializeField] bool _goToPos;
@@ -26,10 +27,10 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] bool _chasePlayer;
 
     [SerializeField] EnemySpawnData Dev_SpawnTest;
-    //private void Awake()
-    //{
-    //    _trackingTarget = _targetObject.GetComponent<ITargeteable>();
-    //}
+    private void Awake()
+    {
+        SetDamage(RemoteConfigManager.Instance.EnemyDmg);
+    }
 
     //private void Update()
     //{
@@ -71,6 +72,15 @@ public class EnemySpawner : MonoBehaviour
         _goToPos = goToPos;
         return this;
     }
+    
+    public EnemySpawner SetDamage(int damage)
+    {
+        _damage = damage;
+
+        return this;
+    }
+
+
 
     public void SpawnEnemy(/*EnemySpawnData data*/)
     {
@@ -101,6 +111,7 @@ public class EnemySpawner : MonoBehaviour
             .SetMovement(_enemyMovementType, _speed, _chasePlayer, _goToPos)
             .SetOrbitData(_rad, _offset)
             .SetTeam(_team)
+            .SetDamage(_damage)
             .SetTracking(_trackingType, _trackingTarget)
             .Pool.Get().SetPool(_enemyFactory.Pool);
 

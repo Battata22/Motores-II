@@ -71,9 +71,29 @@ public class RemoteConfigManager : MonoBehaviour
     [SerializeField] int _maxHeight;
     [SerializeField] public float[] Escalada_randomTimeRange = new float[2];
     public int Escalada_MaxHeight { get { return _maxHeight; } }
-
-
+    
     [SerializeField] LoadMenu loadScript;
+
+
+    [Header("BulletHell")]
+    [SerializeField] int _bossDmg;
+    [SerializeField] float _bossMaxHP;
+    [SerializeField] int _enemyDmg;
+    [SerializeField] int _playerDmg;
+    [SerializeField] float _playerSpeed;
+    [SerializeField] float _powerUpDuration;
+    [SerializeField] float _powerUpSpawnCD;
+
+    public int BossDmg {  get { return _bossDmg; } }
+    public float BossMaxHP { get { return _bossMaxHP; } }
+    public int EnemyDmg {  get { return _enemyDmg; } }
+    public int PlayerDmg {  get { return _playerDmg; } }
+    public float PlayerSpeed { get { return _playerSpeed; } }
+    public float PowerUpDuration { get { return _powerUpDuration; } }
+    public float PowerUpSpawnCD { get { return _powerUpSpawnCD; } }
+
+
+
 
 
     void ApplyRemoteSettings(ConfigResponse configResponse)
@@ -96,6 +116,15 @@ public class RemoteConfigManager : MonoBehaviour
         _maxHeight = RemoteConfigService.Instance.appConfig.GetInt("Escalada_MaxHeight");
         Escalada_randomTimeRange[0] = RemoteConfigService.Instance.appConfig.GetFloat("Escalada_MinTimeAtk");
         Escalada_randomTimeRange[1] = RemoteConfigService.Instance.appConfig.GetFloat("Escalada_MaxTimeAtk");
+
+        //Bullethell
+        _bossDmg = RemoteConfigService.Instance.appConfig.GetInt("BulletHell_BossDamage");
+        _enemyDmg = RemoteConfigService.Instance.appConfig.GetInt("BulletHell_EnemyDamage");
+        _playerDmg = RemoteConfigService.Instance.appConfig.GetInt("BulletHell_PlayerDamage");
+        _bossMaxHP = RemoteConfigService.Instance.appConfig.GetFloat("BulletHell_BossMaxHP");
+        _playerSpeed = RemoteConfigService.Instance.appConfig.GetFloat("BulletHell_PlayerSpeed");
+        _powerUpDuration = RemoteConfigService.Instance.appConfig.GetFloat("BulletHell_PowerUpDuration");
+        _powerUpSpawnCD = RemoteConfigService.Instance.appConfig.GetFloat("BulletHell_PowerUpSpawnCD");
 
         //CONSULTAR AL PROFE POR COMO HACER QUE SE ACTUALICE CUANDO CAMBIE, CON EL EVENTO?
         //Aun asi el evento queda configurado y funcional supuestamente

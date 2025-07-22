@@ -8,6 +8,7 @@ public class BaseEnemy : MonoBehaviour, IDamageable
     EnemyModel _myModel;
     EnemyView _myView;
 
+    [SerializeField] int _damage;
     [SerializeField] float _speed;
     [SerializeField] float _offset;
     [SerializeField] float _orbitRadius;
@@ -43,6 +44,7 @@ public class BaseEnemy : MonoBehaviour, IDamageable
     protected virtual void Awake()
     {
         //_target = Dev_Target.GetComponent<ITargeteable>();
+        SetData();
 
         _myModel = new EnemyModel(this);
             //.SetBulletFactory(_bulletFactory)
@@ -60,6 +62,11 @@ public class BaseEnemy : MonoBehaviour, IDamageable
         //OnDeath += _myView.Death;
         EventManager.Subscribe("MementoLoad", TurnOff);
 
+    }
+
+    void SetData()
+    {
+        _damage = RemoteConfigManager.Instance.EnemyDmg;
     }
 
     void TurnOff(params object[] noUse)
@@ -110,6 +117,15 @@ public class BaseEnemy : MonoBehaviour, IDamageable
 
         return this;
     }
+    
+    public BaseEnemy SetDamage(int damage)
+    {
+        _damage = damage;
+
+        return this;
+    }
+
+
 
     public BaseEnemy SetMovement(EnemyMovementType type, float speed, bool chase,bool goToPosition = false)
     {
@@ -165,6 +181,8 @@ public class BaseEnemy : MonoBehaviour, IDamageable
 
         return this;
     }
+
+
 
     private void OnDestroy()
     {

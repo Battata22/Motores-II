@@ -15,7 +15,14 @@ public class PowerUpsSpawner : MonoBehaviour
 
     private void Awake()
     {
+        SetData();
+
         EventManager.Subscribe("MementoLoad", MementoLoad);
+    }
+
+    void SetData()
+    {
+        _cd = RemoteConfigManager.Instance.PowerUpSpawnCD;
     }
 
     private void Update()
