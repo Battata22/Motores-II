@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class TouchInputs : MonoBehaviour
@@ -42,7 +43,7 @@ public class TouchInputs : MonoBehaviour
             StickMovement();
         }
     }
-
+    [SerializeField] TMP_Text _buttonText; 
     public void UseStick(params object[] noUse)
     {
         var use = PlayerPrefs.GetInt("StickMode") == 1 ? true : false;
@@ -51,10 +52,13 @@ public class TouchInputs : MonoBehaviour
         if (_stickMode)
         {
             _stick.gameObject.SetActive(true);
+            _buttonText.text = "Input mode : Stick";
         }
         else
         {
             _stick.gameObject.SetActive(false);
+            _buttonText.text = "Input mode : Touch";
+
         }
 
     }

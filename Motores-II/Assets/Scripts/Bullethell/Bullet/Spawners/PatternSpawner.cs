@@ -17,6 +17,8 @@ public class PatternSpawner : BulletSpawner
 
     Action CurrentPattern = delegate { };
 
+    [SerializeField] Boss _boss;
+
     private void Start()
     {
         //Spawn = FlowerPattern;
@@ -152,6 +154,9 @@ public class PatternSpawner : BulletSpawner
             Rotate(rotation);
 
             timer += shootRate;
+
+            if (_boss)
+                _boss.PlayShoot();
             yield return new WaitForSeconds(shootRate);
         }
 

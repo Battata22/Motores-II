@@ -27,6 +27,9 @@ public class EscaladaManager : MonoBehaviour
 
     public static EscaladaManager Instance;
 
+
+    bool _needTutorial = true;
+
     private void Awake()
     {
         Instance = this;
@@ -44,6 +47,10 @@ public class EscaladaManager : MonoBehaviour
     {
         //RemoteConfigManager.Instance.OnConfigFetched += SetData;
         SetData();
+
+        if(PlayerPrefs.HasKey("Escalada_NeedTutorial"))
+        _needTutorial = PlayerPrefs.GetInt("Escalada_NeedTutorial") == 1 ? true :false;
+
 
         AdsManager.Instance.rewardedAds.OnRewardAddComplete += AdReward;
 
@@ -89,7 +96,31 @@ public class EscaladaManager : MonoBehaviour
 
     //[SerializeField] public Canvas pauseMenu;
     //public bool paused;
-    
+
+    [SerializeField] Canvas _tutorialCanvas;
+    bool _inTutorial = false;//a
+    void StartTutorial()
+    {
+        _inTutorial = true;
+
+        _tutorialCanvas.enabled = true;
+        Time.timeScale = 0;
+
+
+    }
+
+    void EndTutorial()
+    {
+        _tutorialCanvas.enabled=false;
+        Time.timeScale = 1;
+
+        _needTutorial=false;
+
+        _inTutorial = false;
+
+        PlayerPrefs.SetInt("Escalada_NeedTutorial", 0);
+    }
+
 
     void StartGame()
     {
@@ -108,11 +139,18 @@ public class EscaladaManager : MonoBehaviour
 
         _player.canSound = true;
         _currentHeight = 0;
+
+        if(_needTutorial)
+            StartTutorial();
     }
 
     public void StepRock(float x)
     {
         if (!_gameStarted) return;
+        if (_inTutorial)
+        {
+            EndTutorial();
+        } 
 
         var num = UnityEngine.Random.Range(0, _spawners.Length+1);
         var num2 = UnityEngine.Random.Range(0, _spawners.Length+1);
@@ -124,6 +162,10 @@ public class EscaladaManager : MonoBehaviour
             else
                 _spawners[i].canSpawn = true;
 
+            if (_needTutorial)
+                _spawners[1].canSpawn = true;
+
+            //Debug.Log($"{num} {num2}");
             _spawners[i].StepRock();
         }
 

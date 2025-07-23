@@ -76,7 +76,7 @@ public class BaseBullet : MonoBehaviour
     
     public BaseBullet SetDamage(int damage)
     {
-        Debug.Log($"damage {damage}");
+        //Debug.Log($"damage {damage}");
         _myModel.SetDamage(damage);
 
         return this;

@@ -54,7 +54,10 @@ using UnityEngine;
         }
 
         _life -= amount;
-
+        if (amount < 0)
+            _myBase.View.GetHeal();
+        else 
+            _myBase.View.GetDamage();
 
         if(_life > _maxLife) _life = _maxLife;
         if(_life <= 0)

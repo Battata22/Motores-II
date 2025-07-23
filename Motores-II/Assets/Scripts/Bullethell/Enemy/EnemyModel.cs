@@ -183,6 +183,7 @@ public class EnemyModel
         if (BorderManager.Instance.OutOfBounce(transform.position.x, transform.position.y)) 
             return;
         //Debug.Log("PEW");
+        _myBase.View.Shoot();
         _lastShoot = Time.time;
         LinearBullet(transform.up);
     }

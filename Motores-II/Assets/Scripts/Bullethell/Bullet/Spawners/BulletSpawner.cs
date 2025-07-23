@@ -18,6 +18,8 @@ public class BulletSpawner : MonoBehaviour
 
     protected Action<Vector3> Spawn = delegate { };
 
+    [SerializeField] BasePlayer _player;
+
     protected void Awake()
     {
         dir = Vector3.up;
@@ -31,6 +33,8 @@ public class BulletSpawner : MonoBehaviour
         {
             _lastSpawn = Time.time;
             Spawn(dir);
+            if(_player)
+                _player.View.Shoot();
         }
     }
 

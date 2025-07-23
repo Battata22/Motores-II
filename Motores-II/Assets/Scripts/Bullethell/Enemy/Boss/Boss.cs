@@ -59,6 +59,10 @@ public class Boss : MonoBehaviour, IDamageable, ILifeObservable, IMemento
 
     MementoState _mementoState;
 
+    [SerializeField] AudioSource _audioSource;
+    [SerializeField] AudioClip _hurtClip;
+    [SerializeField] AudioClip _shootClip;
+
     private void Awake()
     {
         SetData();
@@ -276,6 +280,7 @@ public class Boss : MonoBehaviour, IDamageable, ILifeObservable, IMemento
         _patternSpawner.ShootLinearBullet(transform.up * 2 - transform.right * 0.75f);
 
         transform.up = Vector3.up;
+        PlayShoot();
     } 
 
     void Shoot(int index)
@@ -318,8 +323,21 @@ public class Boss : MonoBehaviour, IDamageable, ILifeObservable, IMemento
             EventManager.Trigger("BossDeath");
             _myMovement = null;
         }
+
+        //if (!_audioSource.isPlaying)
+            PlaySound(_hurtClip);
     }
 
+    public void PlayShoot()
+    {
+        //if (!_audioSource.isPlaying)
+            PlaySound(_shootClip);
+    }
+
+    void PlaySound(AudioClip clip)
+    {
+        _audioSource.PlayOneShot(clip);
+    }
 
     void ChangePhase(int Phase)
     {

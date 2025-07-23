@@ -43,9 +43,10 @@ public class Shop : MonoBehaviour
         PlayerPrefs.SetInt("SelectedBall", 0);
         PlayerPrefs.SetInt("SelectedDiana", 0);
         PlayerPrefs.SetInt("SelectedGuantes", 0);
+        PlayerPrefs.SetInt("Escalada_NeedTutorial", 1);
 
         //resetear puntos
-        PointsManager.Instance.SubstractPoints(10000000);
+        PointsManager.Instance.SubstractPoints(PointsManager.Instance._points);
 
 
 

@@ -7,6 +7,7 @@ public class BaseEnemy : MonoBehaviour, IDamageable
 {
     EnemyModel _myModel;
     EnemyView _myView;
+    public EnemyView View { get { return _myView; } }
 
     [SerializeField] int _damage;
     [SerializeField] float _speed;
@@ -29,6 +30,8 @@ public class BaseEnemy : MonoBehaviour, IDamageable
     public Action OnDeath = delegate { };
     [Header("VIEW")]
     [SerializeField] ParticleSystem _deathParticles;
+    [SerializeField] AudioSource _audioSource;
+    [SerializeField] AudioClip _shootClip;
 
     public virtual void GetDamage(int amount)
     {
@@ -46,18 +49,19 @@ public class BaseEnemy : MonoBehaviour, IDamageable
         //_target = Dev_Target.GetComponent<ITargeteable>();
         SetData();
 
-        _myModel = new EnemyModel(this);
-            //.SetBulletFactory(_bulletFactory)
-            //.SetTeam(_myTeam)
-            //.SetBulletData(1, 2)
-            //.SetOrbitData(_orbitRadius, _offset)
-            //.SetMovement(_movementType, _speed, _goToPos)
-            //.SetTarget(_target)
-            //.SetTargetPos(_movementTarget)
-            //.SetTracking(_target, _trackingType)
-            //.SetLife(4);
+        _myModel = new EnemyModel(this).SetDamage(_damage);
+        //.SetBulletFactory(_bulletFactory)
+        //.SetTeam(_myTeam)
+        //.SetBulletData(1, 2)
+        //.SetOrbitData(_orbitRadius, _offset)
+        //.SetMovement(_movementType, _speed, _goToPos)
+        //.SetTarget(_target)
+        //.SetTargetPos(_movementTarget)
+        //.SetTracking(_target, _trackingType)
+        //.SetLife(4);
         _myView = new EnemyView()
-            .SetDeath(this, _deathParticles);
+            .SetDeath(this, _deathParticles)
+            .SetAudioData(_audioSource, _shootClip);
 
         //OnDeath += _myView.Death;
         EventManager.Subscribe("MementoLoad", TurnOff);

@@ -6,6 +6,7 @@ public class BasePlayer : MonoBehaviour, IDamageable, ITargeteable, ILifeObserva
 {
     [SerializeField] PlayerModel _myModel;
     [SerializeField] PlayerView _myView;
+    public PlayerView View {  get { return _myView; } }
     [SerializeField] PlayerControl _myControl;
 
     [SerializeField] float _speed;
@@ -20,6 +21,13 @@ public class BasePlayer : MonoBehaviour, IDamageable, ITargeteable, ILifeObserva
 
     [Header("View Refs")]
     [SerializeField] SpriteRenderer _shieldSprite;
+    [SerializeField] AudioSource _audioSource;
+    [SerializeField] AudioClip _shieldUpClip;
+    [SerializeField] AudioClip _shieldBreakClip;
+    [SerializeField] AudioClip _powerUpClip;
+    [SerializeField] AudioClip _healthUpClip;
+    [SerializeField] AudioClip _playerHurtClip;
+    [SerializeField] AudioClip _playerShootClip;
 
     public void GetDamage(int amount)
     {
@@ -38,6 +46,8 @@ public class BasePlayer : MonoBehaviour, IDamageable, ITargeteable, ILifeObserva
             .SetSpeed(speed)
             .SetDamage(_damage)
             .SetBulletType(type);
+
+        _myView.PowerUp();
     }
 
     public Vector3 GetPosition()
@@ -79,7 +89,8 @@ public class BasePlayer : MonoBehaviour, IDamageable, ITargeteable, ILifeObserva
         SetData();
 
         _myModel = new PlayerModel(this,transform).SetSpeed(_speed).SetLife(_maxLife);
-        _myView = new PlayerView();
+        _myView = new PlayerView()
+            .SetAudioData(_audioSource,_shieldUpClip,_shieldBreakClip,_powerUpClip,_healthUpClip,_playerHurtClip,_playerShootClip);
         _myControl = new PlayerControl(this);
 
         MementoSubscribe();
