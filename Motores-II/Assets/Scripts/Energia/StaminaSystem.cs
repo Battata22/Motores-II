@@ -18,6 +18,15 @@ public class StaminaSystem : MonoBehaviour
 
     bool recharging;
 
+
+    //notification
+    [SerializeField] string _titleNotif = "Energia al maximo";
+    [SerializeField] string _textNotif = "Estamina llena, no desperdicies energia";
+    [SerializeField] IconSelecter _smallIcon = IconSelecter.icon_reminder;
+    [SerializeField] IconSelecter _largeIcon = IconSelecter.icon_reminderbig;
+    TimeSpan timer;
+    int id;
+
     //[SerializeField] TextMeshProUGUI staminaText = null;
     //[SerializeField] TextMeshProUGUI timerText = null;
 
@@ -103,6 +112,9 @@ public class StaminaSystem : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
 
+        //Notificacion
+        NotificationManager.Instance.CancelNotification(id);
+
         recharging = false;
     }
 
@@ -119,6 +131,9 @@ public class StaminaSystem : MonoBehaviour
             //Resto y pregunto la cantiad de stamina usada en x nivel.
             currentStamina -= staminaToUse;
             UpdateStamina();
+
+            NotificationManager.Instance.CancelNotification(id);
+            DisplayNotif();
 
             //Si no estoy recargando stamina
             if (!recharging)
@@ -161,6 +176,9 @@ public class StaminaSystem : MonoBehaviour
     {
         currentStamina += amount;
 
+        NotificationManager.Instance.CancelNotification(id);
+        DisplayNotif();
+
         UpdateStamina();
     }
 
@@ -195,6 +213,12 @@ public class StaminaSystem : MonoBehaviour
             return DateTime.Now; //Este mismo momento > Today es hoy a las 000 > UtcNow, Tiempo universal coordinado (Argentina UTC-3)
         else
             return DateTime.Parse(date);
+    }
+
+    void DisplayNotif()
+    {
+        id = NotificationManager.Instance.DisplayNotification(_titleNotif, _textNotif, _smallIcon, _largeIcon,
+            AddDuration(DateTime.Now, ((maxStamina - (currentStamina) + 1) * timeToRecharge) + 1 + (float)timer.TotalSeconds));
     }
 
     void OnApplicationQuit()
