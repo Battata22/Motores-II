@@ -36,6 +36,8 @@ namespace CarlosDice
 
         [SerializeField] AudioSource _audioSource;
         [SerializeField] AudioClip _errorSound;
+        [SerializeField] AudioClip _winClip;
+        [SerializeField] AudioClip _loseClip;
 
         //ads
         [SerializeField] GameObject _rewardButton;
@@ -44,6 +46,9 @@ namespace CarlosDice
         [SerializeField] float _adMult;
         bool _doAddPoints;
         int _pointsToAdd;
+
+        bool _needTutorial = true;
+        [SerializeField] Canvas _tutorialCanvas;
 
         private void Awake()
         {
@@ -67,6 +72,11 @@ namespace CarlosDice
 
             //RemoteConfigManager.Instance.OnConfigFetched += SetData;
             SetData();
+
+            if (PlayerPrefs.HasKey("Carlos_NeedTutorial"))
+                _needTutorial = PlayerPrefs.GetInt("Carlos_NeedTutorial") == 1 ? true : false;
+            if (_needTutorial)
+                _tutorialCanvas.enabled = true;
 
             AdsManager.Instance.rewardedAds.OnRewardAddComplete += AdReward;
         }
@@ -101,6 +111,13 @@ namespace CarlosDice
                     $"Estamina Necesaria {StaminaSystem.Instance.gameStaminaCost}");
                 return;
             }
+
+            if (_tutorialCanvas.enabled)
+            {
+                _tutorialCanvas.enabled = false;
+                PlayerPrefs.SetInt("Carlos_NeedTutorial", 0);
+            }
+
             _gameStarted = true;
 
             AddPoints(_pointsToAdd);
@@ -238,6 +255,8 @@ namespace CarlosDice
 
             if (_roundText != null)
                 _roundText.text = $"YOU LOSE";
+
+            _audioSource.PlayOneShot(_loseClip);
         }
 
         void Win()
@@ -256,6 +275,8 @@ namespace CarlosDice
 
             if (_roundText != null)
                 _roundText.text = $"YOU WIN";
+
+            _audioSource.PlayOneShot(_winClip);
         }
 
         void UpdateCanvasText()

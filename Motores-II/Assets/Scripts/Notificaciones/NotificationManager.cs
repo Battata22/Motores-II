@@ -58,12 +58,19 @@ public class NotificationManager : MonoBehaviour
 
     public int DisplayNotification(string title, string text, IconSelecter iconSmall, IconSelecter iconLarge, DateTime fireTime, NotiChannel channel)
     {
-        var notification = new AndroidNotification();
-        notification.Title = title;
-        notification.Text = text;
-        notification.SmallIcon = iconSmall.ToString();
-        notification.LargeIcon = iconLarge.ToString();
-        notification.FireTime = fireTime;
+        var notification = new AndroidNotification()
+        {
+            Title = title,
+            Text = text,
+            SmallIcon = iconSmall.ToString(),
+            LargeIcon = iconLarge.ToString(),
+            FireTime = fireTime,
+        };
+        //notification.Title = title;
+        //notification.Text = text;
+        //notification.SmallIcon = iconSmall.ToString();
+        //notification.LargeIcon = iconLarge.ToString();
+        //notification.FireTime = fireTime;
 
         Debug.Log($"Notificacion Seteada: \n triger time{fireTime} \n {title} \n {text}\n {iconSmall}\n {iconLarge}");//a
         Debug.Log(notification);

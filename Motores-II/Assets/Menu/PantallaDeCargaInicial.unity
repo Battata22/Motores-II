@@ -345,7 +345,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxStamina: 100
-  timeToRecharge: 10
+  timeToRecharge: 1
   gameStaminaCost: 20
   currentStamina: 0
   _titleNotif: Energia al maximo

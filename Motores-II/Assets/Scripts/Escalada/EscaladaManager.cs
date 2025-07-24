@@ -16,6 +16,8 @@ public class EscaladaManager : MonoBehaviour
 
     [SerializeField] AudioSource _audioSource;
     [SerializeField] AudioClip _hitClip;
+    [SerializeField] AudioClip _winClip;
+    [SerializeField] AudioClip _loseClip;
 
     public event Action StepTrigger;
     int _maxHeight = 100000000;
@@ -240,12 +242,14 @@ public class EscaladaManager : MonoBehaviour
                 //Debug.Log("Sos un pete");
                 _gameOverText.text = "You Lose";
                 _gameOverText.color = Color.red;
+                _audioSource.PlayOneShot(_loseClip);
             }
             else
             {
                 //Debug.Log("Buena campeon");
                 _gameOverText.text = "You Win";
                 _gameOverText.color = Color.green;
+                _audioSource.PlayOneShot(_winClip);
             }
         }
 

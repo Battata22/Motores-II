@@ -10,6 +10,8 @@ public class GameOverScreen : BaseScreen
     [SerializeField] GameObject _retryButton;
 
     [SerializeField] AudioClip _errorSound;
+    [SerializeField] AudioClip _winClip;
+    [SerializeField] AudioClip _loseClip;
     //[SerializeField] AudioClip _clickSound;
     [SerializeField] AudioSource _audioSource;
 
@@ -41,6 +43,8 @@ public class GameOverScreen : BaseScreen
         _text.color = Color.green;
         _retryButton.SetActive(false);
 
+        _audioSource.PlayOneShot(_winClip);
+
         BulletHell.ScreenManager.Instance.ActivateScreen(this);
     }
 
@@ -49,6 +53,8 @@ public class GameOverScreen : BaseScreen
         _text.text = "YOU LOSE";
         _text.color = Color.red;
         _retryButton.SetActive(true);
+
+        _audioSource.PlayOneShot(_loseClip);
 
         BulletHell.ScreenManager.Instance.ActivateScreen(this);
     }

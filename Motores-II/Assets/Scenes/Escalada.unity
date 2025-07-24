@@ -1860,6 +1860,8 @@ MonoBehaviour:
   _player: {fileID: 873652661}
   _audioSource: {fileID: 362439321}
   _hitClip: {fileID: 8300000, guid: 4545f3d5775d7c848a0db9da43f9b1ae, type: 3}
+  _winClip: {fileID: 8300000, guid: efb28fe59d0ca9a4b80771337a8c247c, type: 3}
+  _loseClip: {fileID: 8300000, guid: 447af268ce547f941bcee1867d8c0294, type: 3}
   _tutorialCanvas: {fileID: 170120824}
   _gameOverCanvas: {fileID: 614947897}
   _gameOverText: {fileID: 1662296976}
@@ -1895,7 +1897,7 @@ AudioSource:
   m_GameObject: {fileID: 362439318}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 70a45adbab9031042a5c52a908fd02e2, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
