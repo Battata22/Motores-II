@@ -4831,6 +4831,8 @@ MonoBehaviour:
   _text: {fileID: 1043107166}
   _retryButton: {fileID: 1677722214}
   _errorSound: {fileID: 8300000, guid: 1dca30ac87a62a3448cb173a2cb74122, type: 3}
+  _winClip: {fileID: 8300000, guid: efb28fe59d0ca9a4b80771337a8c247c, type: 3}
+  _loseClip: {fileID: 8300000, guid: 447af268ce547f941bcee1867d8c0294, type: 3}
   _audioSource: {fileID: 677700455}
 --- !u!1001 &1413113764
 PrefabInstance:
