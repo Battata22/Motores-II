@@ -218,7 +218,7 @@ public class StaminaSystem : MonoBehaviour
     void DisplayNotif()
     {
         id = NotificationManager.Instance.DisplayNotification(_titleNotif, _textNotif, _smallIcon, _largeIcon,
-            AddDuration(DateTime.Now, ((maxStamina - (currentStamina) + 1) * timeToRecharge) + 1 + (float)timer.TotalSeconds));
+            AddDuration(DateTime.Now, ((maxStamina - (currentStamina) + 1) * timeToRecharge) + 1 + (float)timer.TotalSeconds), NotiChannel.energy);
     }
 
     void OnApplicationQuit()
