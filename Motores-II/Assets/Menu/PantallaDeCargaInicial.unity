@@ -350,8 +350,8 @@ MonoBehaviour:
   currentStamina: 0
   _titleNotif: Energia al maximo
   _textNotif: Estamina llena, no desperdicies energia
-  _smallIcon: 0
-  _largeIcon: 1
+  _smallIcon: 2
+  _largeIcon: 3
 --- !u!4 &1670467193
 Transform:
   m_ObjectHideFlags: 0

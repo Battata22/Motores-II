@@ -43,11 +43,38 @@
         },
         "DrawableResources": [
             {
-                "Id": "icon_0",
+                "Id": "icon_reminder",
                 "Type": 0,
                 "Asset": {
                     "fileID": 2800000,
-                    "guid": "d0203d98eb1f3c0469089e20b0f1b4d2",
+                    "guid": "550f80677db203b44b4f69b749e4b64d",
+                    "type": 3
+                }
+            },
+            {
+                "Id": "icon_reminderbig",
+                "Type": 1,
+                "Asset": {
+                    "fileID": 2800000,
+                    "guid": "550f80677db203b44b4f69b749e4b64d",
+                    "type": 3
+                }
+            },
+            {
+                "Id": "icon_energy",
+                "Type": 0,
+                "Asset": {
+                    "fileID": 2800000,
+                    "guid": "aeee6aef099f6114991bd47ee12c402b",
+                    "type": 3
+                }
+            },
+            {
+                "Id": "icon_energybig",
+                "Type": 1,
+                "Asset": {
+                    "fileID": 2800000,
+                    "guid": "aeee6aef099f6114991bd47ee12c402b",
                     "type": 3
                 }
             }

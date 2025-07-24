@@ -2213,6 +2213,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _stickMode: 0
   _volumeScreen: {fileID: 270318233}
+  _audioSource: {fileID: 677700455}
+  _clickClip: {fileID: 8300000, guid: 90c7b623b16cc224d8449639d3ebb4b9, type: 3}
 --- !u!114 &607803095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5972,6 +5974,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _optionScreen: {fileID: 607803094}
+  _audioSource: {fileID: 677700455}
+  _clickClip: {fileID: 8300000, guid: 90c7b623b16cc224d8449639d3ebb4b9, type: 3}
 --- !u!114 &1769029652
 MonoBehaviour:
   m_ObjectHideFlags: 0

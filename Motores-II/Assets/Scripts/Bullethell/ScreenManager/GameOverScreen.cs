@@ -10,6 +10,7 @@ public class GameOverScreen : BaseScreen
     [SerializeField] GameObject _retryButton;
 
     [SerializeField] AudioClip _errorSound;
+    //[SerializeField] AudioClip _clickSound;
     [SerializeField] AudioSource _audioSource;
 
     private void Awake()
@@ -91,6 +92,8 @@ public class GameOverScreen : BaseScreen
     {
         EventManager.Trigger("MementoLoad");
         BulletHell.ScreenManager.Instance.DeactivateScreen();
+
+        //_audioSource.PlayOneShot(_clickSound);
 
         //Deactivate();
     }

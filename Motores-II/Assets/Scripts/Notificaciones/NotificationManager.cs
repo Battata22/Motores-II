@@ -66,5 +66,7 @@ public class NotificationManager : MonoBehaviour
 public enum IconSelecter
 {
     icon_reminder,
-    icon_reminderbig
+    icon_reminderbig,
+    icon_energy,
+    icon_energybig
 }

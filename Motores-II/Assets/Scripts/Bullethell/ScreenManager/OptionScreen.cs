@@ -7,6 +7,9 @@ public class OptionScreen : BaseScreen
     [SerializeField] bool _stickMode;
     [SerializeField] Canvas _volumeScreen;
 
+    [SerializeField] AudioSource _audioSource;
+    [SerializeField] AudioClip _clickClip;
+
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.Escape))
@@ -27,11 +30,21 @@ public class OptionScreen : BaseScreen
         PlayerPrefs.Save();
 
         EventManager.Trigger("ChangeToStick", _stickMode);
+
+        PlaySound(_clickClip);
+
     }
 
     public void OpenVolumeScreen()
     {
         
         _volumeScreen.enabled = true;
+
+        PlaySound(_clickClip);
+    }
+
+    void PlaySound(AudioClip clip)
+    {
+        _audioSource.PlayOneShot(clip);
     }
 }
