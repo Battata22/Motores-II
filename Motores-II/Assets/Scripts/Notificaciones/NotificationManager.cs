@@ -27,8 +27,8 @@ public class NotificationManager : MonoBehaviour
     void Start()
     {
         //Opcional a usar
-        //AndroidNotificationCenter.CancelAllDisplayedNotifications();
-        //AndroidNotificationCenter.CancelAllScheduledNotifications();
+        AndroidNotificationCenter.CancelAllDisplayedNotifications();
+        AndroidNotificationCenter.CancelAllScheduledNotifications();
         if (PlayerPrefs.HasKey("Display_ComeBack")) CancelNotification(PlayerPrefs.GetInt("Display_ComeBack"));
 
         notifChannel = new AndroidNotificationChannel()
@@ -36,12 +36,13 @@ public class NotificationManager : MonoBehaviour
             Id = "reminder_notif_ch",
             Name = "Reminder Notification",
             Description = "Reminder to login",
-            Importance = Importance.High
+            Importance = Importance.High,
+            CanBypassDnd = true
         };
 
         AndroidNotificationCenter.RegisterNotificationChannel(notifChannel);
 
-        PlayerPrefs.SetInt("Display_ComeBack", DisplayNotification("ALVIDONAAA", "¿Hace cuanto que no jugamos?",
+        PlayerPrefs.SetInt("Display_ComeBack", DisplayNotification("OLVIDONAAA", "¿Hace cuanto que no jugamos?",
             IconSelecter.icon_reminder, IconSelecter.icon_reminderbig, DateTime.Now.AddMinutes(1)));
     }
 
@@ -53,6 +54,9 @@ public class NotificationManager : MonoBehaviour
         notification.SmallIcon = iconSmall.ToString();
         notification.LargeIcon = iconLarge.ToString();
         notification.FireTime = fireTime;
+        
+        Debug.Log($"Notificacion Seteada: \n triger time{fireTime} \n {title} \n {text}\n {iconSmall}\n {iconLarge}");//a
+        Debug.Log(notification);
 
         return AndroidNotificationCenter.SendNotification(notification, notifChannel.Id);
     }
@@ -60,6 +64,7 @@ public class NotificationManager : MonoBehaviour
     public void CancelNotification(int id)
     {
         AndroidNotificationCenter.CancelScheduledNotification(id);
+        Debug.Log($"Notificacion cancelada {id}");
     }
 }
 
