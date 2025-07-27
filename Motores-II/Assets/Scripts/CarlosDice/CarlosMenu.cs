@@ -30,7 +30,8 @@ public class CarlosMenu : MonoBehaviour
     public void GoToMenu()
     {
         Time.timeScale = 1.0f;
-        SceneManager.LoadScene("Menu");
+        //SceneManager.LoadScene("Menu");
+        SceneLoaderManager.instance.SceneToLoad = 2;
     }
 
     public void ClosePause()

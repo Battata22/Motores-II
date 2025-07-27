@@ -95,7 +95,8 @@ public class SaltarinManager : Rewind
 
         if (Input.GetKey(KeyCode.Escape))
         {
-            SceneManager.LoadScene("Menu");
+            //SceneManager.LoadScene("Menu");
+            SceneLoaderManager.instance.SceneToLoad = 2;
         }
 
         if (MementoManager.instance.finishLoad)

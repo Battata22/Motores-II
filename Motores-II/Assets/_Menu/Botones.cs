@@ -15,7 +15,8 @@ public class Botones : MonoBehaviour
     private void Start()
     {
         stamina = StaminaSystem.Instance;
-        AdsManager.Instance.rewardedAds.OnRewardAddComplete += Rewarded;
+        AdsManager.Instance.rewardedAds.OnRewardAddComplete += Rewarded;        
+
     }
 
     private void Update()
@@ -27,7 +28,8 @@ public class Botones : MonoBehaviour
     {
         if (stamina.CurrentStamina >= stamina.gameStaminaCost)
         {
-            SceneManager.LoadScene("Arquero");
+            //SceneManager.LoadScene("Arquero");
+            SceneLoaderManager.instance.SceneToLoad = 4;
         }
         else
         {
@@ -40,7 +42,8 @@ public class Botones : MonoBehaviour
     {
         if (stamina.CurrentStamina >= stamina.gameStaminaCost)
         {
-            SceneManager.LoadScene("CarlosDice");
+            //SceneManager.LoadScene("CarlosDice");
+            SceneLoaderManager.instance.SceneToLoad = 6;
         }
         else
         {
@@ -53,7 +56,8 @@ public class Botones : MonoBehaviour
     {
         if (stamina.CurrentStamina >= stamina.gameStaminaCost)
         {
-            SceneManager.LoadScene("Escalada");
+            //SceneManager.LoadScene("Escalada");
+            SceneLoaderManager.instance.SceneToLoad = 5;
         }
         else
         {
@@ -66,7 +70,8 @@ public class Botones : MonoBehaviour
     {
         if (stamina.CurrentStamina >= stamina.gameStaminaCost)
         {
-            SceneManager.LoadScene("BulletHell");
+            //SceneManager.LoadScene("BulletHell");
+            SceneLoaderManager.instance.SceneToLoad = 7;
         }
         else
         {
@@ -79,7 +84,11 @@ public class Botones : MonoBehaviour
     {
         if (stamina.CurrentStamina >= stamina.gameStaminaCost)
         {
-            SceneManager.LoadScene("Saltarin");
+            //SceneManager.LoadScene("Saltarin");
+
+            //Cualquiera de las dos funciona, una es sabiendo el numero de la escena (se caga si cambia el orden) y el otro es con el nombre (Mentira, el del nombre no funciona, da -1)
+            //SceneLoaderManager.instance.SceneToLoad = SceneManager.GetSceneByName("Saltarin").buildIndex;
+            SceneLoaderManager.instance.SceneToLoad = 3;
         }
         else
         {

@@ -6,10 +6,13 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Menu/PantallaDeCargaInicial.unity
+    path: Assets/_Menu/PantallaDeCargaInicial.unity
     guid: 0c755fd6bce51b34f9bcd474653e9d06
   - enabled: 1
-    path: Assets/Menu/Menu.unity
+    path: Assets/PantallaDeCarga/PantallaDeCarga.unity
+    guid: efda40d581323d64b81b5069ccb7812e
+  - enabled: 1
+    path: Assets/_Menu/Menu.unity
     guid: bcb9349d240239d4db65d7d1b320cdf3
   - enabled: 1
     path: Assets/Minijuegos/Saltarin/Saltarin.unity
@@ -18,12 +21,12 @@ EditorBuildSettings:
     path: Assets/Minijuegos/Arquero/Arquero.unity
     guid: e8932ca2242bd024ab1c7b1077f61526
   - enabled: 1
-    path: Assets/Scenes/Escalada.unity
+    path: Assets/_Scenes/Escalada.unity
     guid: ae933d8176a837547b9850e692f52223
   - enabled: 1
-    path: Assets/Scenes/CarlosDice.unity
+    path: Assets/_Scenes/CarlosDice.unity
     guid: 4ac958daaedc0134b860fe0a12e01542
   - enabled: 1
-    path: Assets/Scenes/BulletHell.unity
+    path: Assets/_Scenes/BulletHell.unity
     guid: fc07d932a715c2d4c9b93ef506ece090
   m_configObjects: {}

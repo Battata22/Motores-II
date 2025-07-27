@@ -3,13 +3,54 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LoadScreen : MonoBehaviour
+public class SceneLoaderManager : MonoBehaviour
 {
     public bool chargeDone = false;
-    public int sceneElegida;
 
-    void Start()
+    int _sceneToLoad;
+
+    public int SceneToLoad
     {
+        get 
+        {  
+            return _sceneToLoad; 
+        }
+
+        set 
+        {
+            _sceneToLoad = value; 
+            //LoadScene(value);
+            StartCoroutine(LoadScene(value));
+            print("Se acaba de setear la siguiente escena");
+        }
+    }
+
+    #region Singleton
+    public static SceneLoaderManager instance;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    } 
+    #endregion
+
+    //void Start()
+    //{
+    //    StartCoroutine(LoadAsyncSceneRoutine(sceneElegida));
+    //}
+
+    public IEnumerator LoadScene(int sceneElegida)
+    {
+        SceneManager.LoadScene(1);
+        yield return new WaitForSeconds(1);
         StartCoroutine(LoadAsyncSceneRoutine(sceneElegida));
     }
     private IEnumerator LoadAsyncSceneRoutine(int index)
@@ -33,11 +74,7 @@ public class LoadScreen : MonoBehaviour
                 else
                 {
                     //print("ya estamos cargados");
-                    //ChargeDone();
-
-                    //Chequear si ya cargaron los valores cloud
-
-                    yield return null;
+                    ChargeDone();
                 }
             }
             yield return null;

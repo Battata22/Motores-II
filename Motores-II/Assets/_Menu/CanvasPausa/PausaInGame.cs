@@ -57,7 +57,8 @@ public class PausaInGame : MonoBehaviour
 
     public void VolverAlMenu()
     {
-        SceneManager.LoadScene("Menu");
+        //SceneManager.LoadScene("Menu");
+        SceneLoaderManager.instance.SceneToLoad = 2;
     }
     void TestEventPaused()
     {

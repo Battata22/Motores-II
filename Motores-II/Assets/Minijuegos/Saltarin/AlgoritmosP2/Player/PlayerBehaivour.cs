@@ -26,6 +26,7 @@ public class PlayerBehaivour : Rewind, IObservable_
     //----------------------Animaciones---------------------
     [SerializeField] Animator _animController;
     [SerializeField] Renderer _render;
+    [SerializeField] Animator _animator;
 
     //----------------------Particulas---------------------
     [SerializeField] ParticleSystem _particleSystem;
@@ -65,11 +66,12 @@ public class PlayerBehaivour : Rewind, IObservable_
 
         //Primero consigo mis cosas antes de pasarlas
         _particleSystem = GetComponentInChildren<ParticleSystem>();
+        _animator = GetComponentInChildren<Animator>();
         _rb = GetComponent<Rigidbody>();
         _render = GetComponent<Renderer>();
         _speed = RemoteConfigManager.Instance.runner_speed;
 
-        _model = new(_speed, _jumpForce, _rb, _render, _audioSource, _jumpClip, _gyro, _gyroSpeed, _tengoGyro, _onFloor);
+        _model = new(_speed, _jumpForce, _rb, _render, _audioSource, _jumpClip, _gyro, _gyroSpeed, _tengoGyro, _onFloor, _animator);
         _controller = new(_model);
         _view = new(_model);
     }
@@ -284,6 +286,11 @@ public class PlayerBehaivour : Rewind, IObservable_
         //    collision.gameObject.GetComponent<PlataformaScript>()._playerTouchThis = true;
         //} 
         #endregion
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        _model.FakeOnTriggerEnter(other);
     }
 
     protected override void OnDestroy()

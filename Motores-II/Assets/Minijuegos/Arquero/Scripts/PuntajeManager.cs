@@ -21,6 +21,8 @@ public class PuntajeManager : MonoBehaviour
     [SerializeField] bool checkVictoria = true;
     [SerializeField] SpawnerDianas spawnerScript;
 
+    [SerializeField] AudioSource _audioSourceVictory;
+
     private void Awake()
     {
         instance = this;
@@ -61,6 +63,7 @@ public class PuntajeManager : MonoBehaviour
 
     void Victory()
     {
+        Sonido();
         spawnerScript.enabled = false;
         checkVictoriaBox.gameObject.SetActive(false);
         victoriaPNG.SetActive(true);
@@ -69,7 +72,8 @@ public class PuntajeManager : MonoBehaviour
         if (waitvictoria >= _tiempoDeVictoria)
         {
             PointsManager.Instance.AddPoints((totalPoints / 1000));
-            SceneManager.LoadScene("Menu");
+            //SceneManager.LoadScene("Menu");
+            SceneLoaderManager.instance.SceneToLoad = 2;
         }
     }
 
@@ -77,6 +81,16 @@ public class PuntajeManager : MonoBehaviour
     {
         StaminaSystem.Instance.UseStamina(StaminaSystem.Instance.gameStaminaCost);
         PointsManager.Instance.AddPoints((totalPoints / 1000));
+    }
+
+    bool _primerSonido = true;
+    public void Sonido()
+    {
+        if (_primerSonido)
+        {
+            _audioSourceVictory.Play();
+            _primerSonido = false;
+        }
     }
 
 }

@@ -42,25 +42,53 @@ public class SpawnerDianas : MonoBehaviour
                 {
                     case 1:
                         //spawn corto
-                        var c = Instantiate(_dianasPrefab, new Vector3(Random.Range(-_xLimite, _xLimite), Random.Range(-_yLimite, _yLimite), _zCerca), Quaternion.identity);
+                        //var c = Instantiate(_dianasPrefab, new Vector3(Random.Range(-_xLimite, _xLimite), Random.Range(-_yLimite, _yLimite), _zCerca), Quaternion.identity);
+                        var pos = Camera.main.ScreenToWorldPoint(new Vector3(Random.Range(Screen.safeArea.xMin, Screen.safeArea.xMax), Random.Range(Screen.safeArea.yMin, Screen.safeArea.yMax), 0));
+                        pos.z = _zCerca;
+
+                        var c = Instantiate(_dianasPrefab, pos, Quaternion.identity);
+                        //var c = Instantiate(_dianasPrefab, new Vector3(Random.Range(Screen.safeArea.xMin, Screen.safeArea.xMax), Random.Range(Screen.safeArea.yMin, Screen.safeArea.yMax), _zCerca), Quaternion.identity);
+                        
+                        //var c = Instantiate(_dianasPrefab, new Vector3(Random.Range(-Screen.safeArea.x, Screen.safeArea.x), Random.Range(-Screen.safeArea.y, Screen.safeArea.y), _zCerca), Quaternion.identity);
+
                         c.transform.localScale = Vector3.one * _sizecerca;
                         //Destroy(c, _destroyTime);
                         c.GetComponent<Renderer>().material = selected;
                         break;
 
                     case 2:
+                        #region Old
+                        ////spawn medio
+                        //var m = Instantiate(_dianasPrefab, new Vector3(Random.Range(-_xLimite, _xLimite), Random.Range(-_yLimite, _yLimite), _zMedio), Quaternion.identity);
+                        //m.transform.localScale = Vector3.one * _sizeMedio;
+                        ////Destroy(m, _destroyTime);
+                        //m.GetComponent<Renderer>().material = selected; 
+                        #endregion
                         //spawn medio
-                        var m = Instantiate(_dianasPrefab, new Vector3(Random.Range(-_xLimite, _xLimite), Random.Range(-_yLimite, _yLimite), _zMedio), Quaternion.identity);
+                        var pos2 = Camera.main.ScreenToWorldPoint(new Vector3(Random.Range(Screen.safeArea.xMin, Screen.safeArea.xMax), Random.Range(Screen.safeArea.yMin, Screen.safeArea.yMax), 0));
+                        pos2.z = _zMedio;
+
+                        var m = Instantiate(_dianasPrefab, pos2, Quaternion.identity);
+
                         m.transform.localScale = Vector3.one * _sizeMedio;
-                        //Destroy(m, _destroyTime);
                         m.GetComponent<Renderer>().material = selected;
                         break;
 
                     case 3:
-                        //spawn lejos
-                        var l = Instantiate(_dianasPrefab, new Vector3(Random.Range(-_xLimite, _xLimite), Random.Range(-_yLimite, _yLimite), _zLejos), Quaternion.identity);
+                        #region Old
+                        ////spawn lejos
+                        //var l = Instantiate(_dianasPrefab, new Vector3(Random.Range(-_xLimite, _xLimite), Random.Range(-_yLimite, _yLimite), _zLejos), Quaternion.identity);
+                        //l.transform.localScale = Vector3.one * _sizeLejos;
+                        ////Destroy(l, _destroyTime);
+                        //l.GetComponent<Renderer>().material = selected; 
+                        #endregion
+                        //spawn medio
+                        var pos3 = Camera.main.ScreenToWorldPoint(new Vector3(Random.Range(Screen.safeArea.xMin, Screen.safeArea.xMax), Random.Range(Screen.safeArea.yMin, Screen.safeArea.yMax), 0));
+                        pos3.z = _zLejos;
+
+                        var l = Instantiate(_dianasPrefab, pos3, Quaternion.identity);
+
                         l.transform.localScale = Vector3.one * _sizeLejos;
-                        //Destroy(l, _destroyTime);
                         l.GetComponent<Renderer>().material = selected;
                         break;
 

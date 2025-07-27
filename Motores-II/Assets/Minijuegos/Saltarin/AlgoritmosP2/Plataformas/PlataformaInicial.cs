@@ -27,6 +27,7 @@ public class PlataformaInicial : Rewind
 
     }
 
+    [SerializeField] GameObject[] paredes;
 
     private void OnCollisionExit(Collision collision)
     {
@@ -35,6 +36,10 @@ public class PlataformaInicial : Rewind
             _tutorialImagen.SetActive(false);
             SaltarinManager.instance.ActivarTrigger();
             gameObject.SetActive(false);
+            foreach (var p in paredes)
+            {
+                p.SetActive(false);
+            }
         }
     }
 

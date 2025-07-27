@@ -3630,7 +3630,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.00027150492}
+  m_AnchoredPosition: {x: 0, y: 20092.613}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &707997962
@@ -7378,6 +7378,10 @@ PrefabInstance:
     - target: {fileID: 7383033629782782362, guid: 8c3ee95d6f00b7049963a0e25ef3861e, type: 3}
       propertyPath: m_Name
       value: AdsManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 7647377633966052582, guid: 8c3ee95d6f00b7049963a0e25ef3861e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

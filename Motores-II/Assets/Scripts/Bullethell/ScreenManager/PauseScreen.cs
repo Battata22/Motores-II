@@ -39,7 +39,8 @@ public class PauseScreen : BaseScreen
 
         BulletHell.ScreenManager.Instance.DeactivateScreen();
 
-        SceneManager.LoadScene(0);
+        //SceneManager.LoadScene(0);
+        SceneLoaderManager.instance.SceneToLoad = 2;
     }
 
     public void CallCheckpoint()

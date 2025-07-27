@@ -21,9 +21,12 @@ public class Model_Player
     public float _gyroSpeed;
     public bool _tengoGyro = false;
     public bool _onFloor = false;
+    public Animator _animator;
+
+    public float _lastY, _actualY;
 
     public Model_Player(float Speed, float JumpForce, Rigidbody RB, Renderer Renderer, AudioSource AudioSource,
-        AudioClip JumpClip, Gyroscope Gyro, float GyroSpeed, bool TengoGyro, bool OnFloor)
+        AudioClip JumpClip, Gyroscope Gyro, float GyroSpeed, bool TengoGyro, bool OnFloor, Animator animator)
     {
         _speed = Speed;
         _jumpForce = JumpForce;
@@ -35,6 +38,7 @@ public class Model_Player
         _gyroSpeed = GyroSpeed;
         _tengoGyro = TengoGyro;
         _onFloor = OnFloor;
+        _animator = animator;
     }
 
     public void FakeStart()
@@ -100,6 +104,16 @@ public class Model_Player
             }
             PlayerBehaivour.Instance.NotifyObserver();
         }
+
+    }
+
+    public void FakeOnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.name == "TechoTrigger")
+        {
+            SaltarinManager.instance.TriggerStep += RunningAnimation;
+            other.gameObject.SetActive(false);
+        }
     }
 
 
@@ -144,6 +158,7 @@ public class Model_Player
         _rb.AddForce(PlayerBehaivour.Instance.transform.up * _jumpForce * Time.deltaTime, ForceMode.Impulse);
         _onFloor = false;
         PlayerBehaivour.Instance._onFloor = _onFloor;
+        _lastY = 1000;
     }
 
     public void JumpAcelerometroPC()
@@ -152,6 +167,7 @@ public class Model_Player
         _rb.AddForce(PlayerBehaivour.Instance.transform.up * _jumpForce * 1.1f * Time.deltaTime, ForceMode.Impulse);
         _onFloor = false;
         PlayerBehaivour.Instance._onFloor = _onFloor;
+        _lastY = 1000;
     }
 
     public void JumpSound()
@@ -160,9 +176,39 @@ public class Model_Player
         _audioSource.Play();
     }
 
+    public void JumpAnimation()
+    {
+        SetFalseAnims();
+        _animator.SetBool("Jumping", true);
+    }
+
+    public void FallingAnimation()
+    {
+        SetFalseAnims();
+        _animator.SetBool("Falling", true);
+    }
+
+    public void SetFalseFallingAnimation()
+    {
+        _animator.SetBool("Falling", false);
+    }
+
+    public void RunningAnimation()
+    {
+        SetFalseAnims();
+        _animator.SetBool("Running", true);
+    }
+
+    public void SetFalseAnims()
+    {
+        _animator.SetBool("Jumping", false);
+        _animator.SetBool("Falling", false);
+        _animator.SetBool("Running", false);
+    }
+
     public void ChangeColor(Color color)
     {
-        _renderer.material.color = color;
+        //_renderer.material.color = color;
     }
 
     //--------------------Rigidbody---------------------
@@ -199,6 +245,8 @@ public class Controller_Player
         CheckJumpAce();
 
         CheckJumpAcePC();
+
+        //CheckFalling();
     }
     public void FakeFixedUpdate()
     {
@@ -216,6 +264,21 @@ public class Controller_Player
 
             CheckHackedMovementPC();
         }
+    }
+
+    void CheckFalling()
+    {
+        _model._actualY = PlayerBehaivour.Instance.transform.position.y;
+
+        if (_model._actualY < _model._lastY && _model._animator.GetBool("Falling") == false)
+        {
+            _model._lastY = PlayerBehaivour.Instance.transform.position.y;
+            _model.FallingAnimation();
+        }
+        //else
+        //{
+        //    _model.SetFalseFallingAnimation();
+        //}
     }
 
     void CheckMovementPC()
@@ -290,7 +353,6 @@ public class View_Player
         CheckJumpPC();
     }
 
-
     public void Move()
     {
         //Debug.Log("Me muevo");
@@ -313,6 +375,7 @@ public class View_Player
         if (Input.acceleration.y <= -1.2 && _model._onFloor == true)
         {
             _model.JumpSound();
+            _model.JumpAnimation();
         }
     }
 
@@ -321,6 +384,7 @@ public class View_Player
         if (Input.GetKeyDown(KeyCode.Space) && _model._onFloor == true)
         {
             _model.JumpSound();
+            _model.JumpAnimation();
         }
     }
 

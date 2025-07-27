@@ -91,7 +91,8 @@ public class GameOverScreen : BaseScreen
     {
         BulletHell.ScreenManager.Instance.DeactivateScreen();
 
-        SceneManager.LoadScene(1);
+        //SceneManager.LoadScene(1);
+        SceneLoaderManager.instance.SceneToLoad = 2;
     }
 
     void CallCheckpoint()

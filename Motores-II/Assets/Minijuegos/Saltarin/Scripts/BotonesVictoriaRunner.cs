@@ -15,7 +15,8 @@ public class BotonesVictoriaRunner : MonoBehaviour
 
     public void GoMenu()
     {
-        SceneManager.LoadScene("Menu");
+        //SceneManager.LoadScene("Menu");
+        SceneLoaderManager.instance.SceneToLoad = 2;
     }
 
     public void Retry()

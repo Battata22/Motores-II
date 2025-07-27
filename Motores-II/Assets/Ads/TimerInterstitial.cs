@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TimerInterstitial : MonoBehaviour
 {
@@ -14,10 +15,13 @@ public class TimerInterstitial : MonoBehaviour
 
     void Update()
     {
-        if(Time.time > timer)
+        if (SceneManager.GetActiveScene().name == "Menu")
         {
-            AdsManager.Instance.ShowInterstitialAd();
-            timer = Time.time + timeToAd;
+            if (Time.time > timer)
+            {
+                AdsManager.Instance.ShowInterstitialAd();
+                timer = Time.time + timeToAd;
+            }
         }
     }
 }

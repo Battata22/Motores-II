@@ -4,15 +4,17 @@ using UnityEngine.SceneManagement;
 public class WinLoseCondition : MonoBehaviour
 {
     [SerializeField] PlayerBehaivour _playerScript;
-    [SerializeField] SpawnerPlataformas _plataformasSpawner;
+    [SerializeField] SpawnerPlataformasPool _plataformasSpawner;
     [SerializeField] IScreen _canvasDerrota, _canvasVictoria;
     [SerializeField] AudioSource _audioSource;
     [SerializeField] AudioClip _errorClip;
-    [SerializeField] float _metrosParaVictoria;
+    [SerializeField] float _puntosParaVictoria;
     [SerializeField] float _distParaPerder;
     [SerializeField] bool yaSalioVictoria = false;
     [SerializeField] bool _yaSumePuntos;
-
+    [SerializeField] AudioClip _winSound, _loseSound;
+    [SerializeField] AudioSource _audioSourceWinLose;
+ 
     void Start()
     {
         _playerScript = PlayerBehaivour.Instance;
@@ -23,13 +25,15 @@ public class WinLoseCondition : MonoBehaviour
 
         _canvasDerrota = ScreenManager.instance.CanvasDerrota;
         _canvasVictoria = ScreenManager.instance.CanvasVictory;
+
+        _audioSourceWinLose.clip = null;
     }
 
 
     void Update()
     {
         //---------------------CAMBIAR A SISTEMA DE TIEMPO--------------------------------
-        if (transform.position.z >= _metrosParaVictoria && yaSalioVictoria == false && _playerScript._onFloor == true)
+        if (PlayerBehaivour.Instance.Saltadas >= _puntosParaVictoria && yaSalioVictoria == false && _playerScript._onFloor == true)
         {
             Victoria();
         }
@@ -63,29 +67,30 @@ public class WinLoseCondition : MonoBehaviour
         //_canvasDerrota.enabled = true;
         ScreenManager.instance.ActiveScreen(_canvasDerrota);
 
-
-        gameObject.SetActive(false);
-        //CAMBIAR A LAS PLATAFORMAS NUEVAS
-        _plataformasSpawner.enabled = false;
+        _audioSourceWinLose.clip = _loseSound;
+        _audioSourceWinLose.Play();
 
         SumarPoints();
 
         StaminaSystem.Instance.UseStamina(StaminaSystem.Instance.gameStaminaCost);
+
+        gameObject.SetActive(false);
+
     }
 
     void Victoria()
     {
-        //_canvasVictoria.enabled = true;
         ScreenManager.instance.ActiveScreen(_canvasVictoria);
         yaSalioVictoria = true;
 
-        gameObject.SetActive(false);
-        //CAMBIAR A LAS PLATAFORMAS NUEVAS
-        _plataformasSpawner.enabled = false;
+        _audioSourceWinLose.clip = _winSound;
+        _audioSourceWinLose.Play();
 
         SumarPoints();
 
         StaminaSystem.Instance.UseStamina(StaminaSystem.Instance.gameStaminaCost);
+
+        gameObject.SetActive(false);
     }
 
     void SumarPoints()

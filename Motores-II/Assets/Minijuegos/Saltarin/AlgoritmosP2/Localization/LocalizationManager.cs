@@ -20,8 +20,6 @@ public class LocalizationManager : MonoBehaviour
         {
             instance = this;
             _translate = LanguageU.LoadTranslate(data);
-
-            DontDestroyOnLoad(this);
         }
         else
             Destroy(this);
