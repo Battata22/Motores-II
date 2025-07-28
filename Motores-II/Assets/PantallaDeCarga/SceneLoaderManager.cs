@@ -21,7 +21,7 @@ public class SceneLoaderManager : MonoBehaviour
             _sceneToLoad = value; 
             //LoadScene(value);
             StartCoroutine(LoadScene(value));
-            print("Se acaba de setear la siguiente escena");
+            //print("Se acaba de setear la siguiente escena");
         }
     }
 

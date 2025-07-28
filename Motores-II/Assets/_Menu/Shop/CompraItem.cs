@@ -3,19 +3,30 @@ using System.Collections.Generic;
 using System.Net.Sockets;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class CompraItem : MonoBehaviour
 {
-    [SerializeField] ItemButtonShop itemScript;
-    [SerializeField] bool bloqueado = true;
-    //[SerializeField] bool _1, _2, _3, _4, _5, _6, _7, _8;
-    [SerializeField] AudioSource AudioSource;
-    [SerializeField] AudioClip purchase, selected, error;
-    [SerializeField] Image test;
+    public ItemButtonShop itemScript;
+    public bool bloqueado = true;
+    public AudioSource AudioSource;
+    public AudioClip purchase, selected, error;
+    public Image test;
+    public CanvasConfirmacion _canvasScript;
 
     void Start()
     {
+        var e = FindObjectsOfType<CanvasConfirmacion>();
+
+        foreach (var c in e)
+        {
+            if(c.gameObject.name == "CanvasConfirmacionCompraItem")
+            {
+                _canvasScript = c;
+            }
+        }
+
         itemScript = GetComponent<ItemButtonShop>();
 
         AudioSource = GetComponentInChildren<AudioSource>();
@@ -225,6 +236,8 @@ public class CompraItem : MonoBehaviour
         }
     }
 
+    //bool bloqueado, ItemButtonShop itemScript, AudioSource AudioSource, AudioClip purchase, AudioClip error, AudioClip selected
+
     public void TouchItem()
     {
         if (bloqueado && PointsManager.Instance._points >= int.Parse(itemScript.itemPrice.text))
@@ -286,6 +299,12 @@ public class CompraItem : MonoBehaviour
             AudioSource.clip = selected;
             AudioSource.Play();
         }
+    }
+
+    public void Confirmacion()
+    {
+        _canvasScript.GetComponent<Canvas>().enabled = true;
+        _canvasScript.SetCompraItemScript(this);
     }
 
     void ResetMe()

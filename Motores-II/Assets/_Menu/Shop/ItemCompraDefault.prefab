@@ -242,7 +242,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 52.9
+  m_fontSize: 72
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -508,7 +508,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24.6
+  m_fontSize: 36.75
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -758,19 +758,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2199277006884174470}
         m_TargetAssemblyTypeName: CompraItem, Assembly-CSharp
-        m_MethodName: TouchItem
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: VolumeManager, Assembly-CSharp
-        m_MethodName: PlayPurchaseSound
+        m_MethodName: Confirmacion
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -818,6 +806,7 @@ MonoBehaviour:
   selected: {fileID: 8300000, guid: 631cc5680477af240aa2b730601442cc, type: 3}
   error: {fileID: 8300000, guid: 1dca30ac87a62a3448cb173a2cb74122, type: 3}
   test: {fileID: 0}
+  _canvasScript: {fileID: 0}
 --- !u!1 &5409495393607537606
 GameObject:
   m_ObjectHideFlags: 0

@@ -41,7 +41,7 @@ public class RewardedAds : MonoBehaviour ,IUnityAdsLoadListener ,IUnityAdsShowLi
     #region LoadCallbacks
     public void OnUnityAdsAdLoaded(string placementId)
     {
-        Debug.Log("Interstitial Ad Loaded");
+        //Debug.Log("Interstitial Ad Loaded");
     }
 
     public void OnUnityAdsFailedToLoad(string placementId, UnityAdsLoadError error, string message) { }

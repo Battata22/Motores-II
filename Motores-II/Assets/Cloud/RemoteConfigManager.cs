@@ -98,7 +98,7 @@ public class RemoteConfigManager : MonoBehaviour
 
     void ApplyRemoteSettings(ConfigResponse configResponse)
     {
-        Debug.Log("RemoteConfigService.Instance.appConfig fetched: " + RemoteConfigService.Instance.appConfig.config.ToString());
+        //Debug.Log("RemoteConfigService.Instance.appConfig fetched: " + RemoteConfigService.Instance.appConfig.config.ToString());
 
         //Yo voy a setear las variables aca y voy a acceder a este script para agarrarlas en vez de usar el evento por que por como funca lo mio no lo agarra
         runner_speed = RemoteConfigService.Instance.appConfig.GetFloat("Running_Speed");

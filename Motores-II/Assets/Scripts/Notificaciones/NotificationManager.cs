@@ -1,8 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using Unity.Notifications.Android;
-using System;
+using UnityEngine;
+using UnityEngine.Android;
 
 
 public class NotificationManager : MonoBehaviour
@@ -27,10 +28,14 @@ public class NotificationManager : MonoBehaviour
 
     void Start()
     {
+        //Permission.RequestUserPermission("android.permission.POST_NOTIFICATIONS");
+
         //Opcional a usar
         AndroidNotificationCenter.CancelAllDisplayedNotifications();
         AndroidNotificationCenter.CancelAllScheduledNotifications();
         if (PlayerPrefs.HasKey("Display_ComeBack")) CancelNotification(PlayerPrefs.GetInt("Display_ComeBack"));
+        //if (PlayerPrefs.HasKey("Display_ComeBack")) CancelNotification(1);
+
 
         ReminderChannel = new AndroidNotificationChannel()
         {
@@ -90,6 +95,8 @@ public class NotificationManager : MonoBehaviour
         }
 
         var id = AndroidNotificationCenter.SendNotification(notification, finalChannel.Id);
+        //var id = 1;
+
 
         Debug.Log($"Notification id: {id}");
 
