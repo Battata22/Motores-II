@@ -305,7 +305,7 @@ public class Controller_Player
 
     void CheckJumpTouch()
     {
-        if (Input.GetMouseButtonDown(0) && PlayerBehaivour.Instance.EasyMode == true && _model._onFloor == true)
+        if (Input.GetMouseButtonDown(0) && AAAAAAAAAA.instance.EasyMode == true && _model._onFloor == true)
         {
             _model.JumpAcelerometro();
         }
@@ -361,6 +361,8 @@ public class View_Player
         CheckJump();
 
         CheckJumpPC();
+
+        CheckJumpTouch();
     }
 
     public void Move()
@@ -377,6 +379,15 @@ public class View_Player
         else
         {
             _model.ChangeColor(Color.red);
+        }
+    }
+
+    void CheckJumpTouch()
+    {
+        if (Input.GetMouseButtonDown(0) && AAAAAAAAAA.instance.EasyMode == true && _model._onFloor == true)
+        {
+            _model.JumpSound();
+            _model.JumpAnimation();
         }
     }
 

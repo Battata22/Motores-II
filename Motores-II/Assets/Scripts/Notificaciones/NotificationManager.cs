@@ -77,8 +77,8 @@ public class NotificationManager : MonoBehaviour
         //notification.LargeIcon = iconLarge.ToString();
         //notification.FireTime = fireTime;
 
-        Debug.Log($"Notificacion Seteada: \n triger time{fireTime} \n {title} \n {text}\n {iconSmall}\n {iconLarge}");//a
-        Debug.Log(notification);
+        //Debug.Log($"Notificacion Seteada: \n triger time{fireTime} \n {title} \n {text}\n {iconSmall}\n {iconLarge}");//a
+        //Debug.Log(notification);
 
         var finalChannel = ReminderChannel;
         switch (channel)
@@ -98,7 +98,7 @@ public class NotificationManager : MonoBehaviour
         //var id = 1;
 
 
-        Debug.Log($"Notification id: {id}");
+        //Debug.Log($"Notification id: {id}");
 
         return id;
     }
@@ -106,7 +106,7 @@ public class NotificationManager : MonoBehaviour
     public void CancelNotification(int id)
     {
         AndroidNotificationCenter.CancelScheduledNotification(id);
-        Debug.Log($"Notificacion cancelada {id}");
+        //Debug.Log($"Notificacion cancelada {id}");
     }
 }
 
