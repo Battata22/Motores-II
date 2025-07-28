@@ -27,6 +27,11 @@ public class LifeBar : MonoBehaviour, ILifeObserver
         _bar.fillAmount = life/maxLife;
     }
 
+    public void Forget()
+    {
+        _observable = null;
+    }
+
     private void OnDestroy()
     {
         if (_observable.GetComponent<ILifeObservable>() != null)

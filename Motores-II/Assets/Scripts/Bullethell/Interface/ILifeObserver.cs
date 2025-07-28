@@ -5,4 +5,6 @@ using UnityEngine;
 public interface ILifeObserver
 {
     void Notify(float life, float maxLife);
+
+    void Forget();
 }

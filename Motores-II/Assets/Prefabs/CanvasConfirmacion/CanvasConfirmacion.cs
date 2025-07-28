@@ -14,6 +14,7 @@ public class CanvasConfirmacion : MonoBehaviour
 
     public void SiBoton()
     {
+        Time.timeScale = 1f;
         SceneLoaderManager.instance.SceneToLoad = 2;
     }
 

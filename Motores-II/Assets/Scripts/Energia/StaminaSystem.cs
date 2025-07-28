@@ -133,8 +133,8 @@ public class StaminaSystem : MonoBehaviour
             currentStamina -= staminaToUse;
             UpdateStamina();
 
-            NotificationManager.Instance.CancelNotification(id);
-            DisplayNotif();
+            //NotificationManager.Instance.CancelNotification(id);
+            //DisplayNotif();
 
             //Si no estoy recargando stamina
             if (!recharging)
@@ -177,8 +177,7 @@ public class StaminaSystem : MonoBehaviour
     {
         currentStamina += amount;
 
-        NotificationManager.Instance.CancelNotification(id);
-        DisplayNotif();
+        
 
         UpdateStamina();
     }
@@ -224,6 +223,9 @@ public class StaminaSystem : MonoBehaviour
 
     void OnApplicationQuit()
     {
+        NotificationManager.Instance.CancelNotification(id);
+        DisplayNotif();
+
         Save();
     }
 

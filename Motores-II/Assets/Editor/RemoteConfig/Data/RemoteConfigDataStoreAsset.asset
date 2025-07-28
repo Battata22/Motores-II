@@ -12,96 +12,96 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 469c24fdb3bd6431b92cc1465bd9166b, type: 3}
   m_Name: RemoteConfigDataStoreAsset
   m_EditorClassIdentifier: 
-  _rsKeyList: "[\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"bd88453c-dd1e-4f04-bdad-c2acbc028175\"\r\n   
+  _rsKeyList: "[\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"b77c2482-c4ee-4857-9434-48d1e28debc2\"\r\n   
     },\r\n    \"rs\": {\r\n      \"key\": \"Running_Speed\",\r\n      \"type\": \"float\",\r\n     
     \"value\": 10.0\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
-    \"909fe85a-d939-4088-997f-6a7a46019c00\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"72019676-9434-49c7-8859-0a3b66733faf\"\r\n    },\r\n    \"rs\": {\r\n     
     \"key\": \"Archer_PuntMultiply\",\r\n      \"type\": \"float\",\r\n      \"value\":
-    10.0\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"6ffa5edc-5cf5-460e-84c6-65a4ce6336cb\"\r\n   
+    10.0\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"61e815f2-a349-4266-8789-bff689cdc1a7\"\r\n   
     },\r\n    \"rs\": {\r\n      \"key\": \"Escalada_MaxHeight\",\r\n      \"type\":
     \"int\",\r\n      \"value\": 10\r\n    }\r\n  },\r\n  {\r\n    \"metadata\":
-    {\r\n      \"entityId\": \"6c8cec43-937c-409b-9c6e-4151db37762f\"\r\n    },\r\n   
+    {\r\n      \"entityId\": \"a81bd734-676e-420b-9f12-c77c23b0317e\"\r\n    },\r\n   
     \"rs\": {\r\n      \"key\": \"Carlos_MaxRounds\",\r\n      \"type\": \"int\",\r\n     
     \"value\": 5\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
-    \"157a6906-76c1-40e7-8404-be048c189541\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"9affbac3-0120-4b64-962d-bc4b6d7c2a39\"\r\n    },\r\n    \"rs\": {\r\n     
     \"key\": \"ShopActive\",\r\n      \"type\": \"bool\",\r\n      \"value\": true\r\n   
-    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"b77f1872-949a-41b0-bd1b-7b683789ffba\"\r\n   
+    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"b50a4d5a-636b-40ff-906b-be9e80a30357\"\r\n   
     },\r\n    \"rs\": {\r\n      \"key\": \"Escalada_MinTimeAtk\",\r\n      \"type\":
     \"float\",\r\n      \"value\": 1.0\r\n    }\r\n  },\r\n  {\r\n    \"metadata\":
-    {\r\n      \"entityId\": \"ff96e0c4-7b44-4cf4-b729-57bf2bc28c77\"\r\n    },\r\n   
+    {\r\n      \"entityId\": \"34ba0cf3-c391-4f38-b90a-fc006760758f\"\r\n    },\r\n   
     \"rs\": {\r\n      \"key\": \"Escalada_MaxTimeAtk\",\r\n      \"type\": \"float\",\r\n     
     \"value\": 3.0\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
-    \"d3c6dae4-14b1-4cb0-a7f1-01d3685f9964\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"7b92726f-ba92-42eb-9c55-ecbda89a38da\"\r\n    },\r\n    \"rs\": {\r\n     
     \"key\": \"Carlos_InitialRoundButtons\",\r\n      \"type\": \"int\",\r\n     
     \"value\": 3\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
-    \"1c40e0ad-5ca5-4a81-b67f-094d1df96768\"\r\n    },\r\n    \"rs\": {\r\n     
-    \"key\": \"TituloText\",\r\n      \"type\": \"string\",\r\n      \"value\": \"SampleText\\n\\nBottomText\"\r\n   
-    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"d2c9d7bc-b9db-42e3-be3a-bbf14dd8bc2a\"\r\n   
+    \"ffbabe69-4fad-4dab-96f2-76e393de0371\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"key\": \"TituloText\",\r\n      \"type\": \"string\",\r\n      \"value\": \"SampleGame\"\r\n   
+    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"95ec6f7a-7aa8-4b82-9ce3-ac819d519d2f\"\r\n   
     },\r\n    \"rs\": {\r\n      \"key\": \"Carlos_Endless\",\r\n      \"type\":
     \"bool\",\r\n      \"value\": false\r\n    }\r\n  },\r\n  {\r\n    \"metadata\":
-    {\r\n      \"entityId\": \"decadbb3-4b04-479c-9f84-7f1ecdfa455b\"\r\n    },\r\n   
+    {\r\n      \"entityId\": \"1a657249-fdc9-40ac-96ad-97fa2a1303ca\"\r\n    },\r\n   
     \"rs\": {\r\n      \"key\": \"BulletHell_PlayerSpeed\",\r\n      \"type\": \"float\",\r\n     
     \"value\": 5.0\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
-    \"fb571940-5fc1-4b61-bfae-4bfbce5ceb80\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"bcfc5915-b6e0-48d1-8bc4-06866e850b6a\"\r\n    },\r\n    \"rs\": {\r\n     
     \"key\": \"BulletHell_PlayerDamage\",\r\n      \"type\": \"int\",\r\n      \"value\":
-    1\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"b13ad6cf-81cd-4ffa-8289-144cd4d2796e\"\r\n   
+    1\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"8e7411a9-b4f3-4df5-8172-ee8f4fa0576a\"\r\n   
     },\r\n    \"rs\": {\r\n      \"key\": \"BulletHell_EnemyDamage\",\r\n      \"type\":
     \"int\",\r\n      \"value\": 1\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n     
-    \"entityId\": \"0075e107-46b1-416d-995d-6c41db056f8c\"\r\n    },\r\n    \"rs\":
+    \"entityId\": \"d2685261-167d-4dfb-bb0e-37c637c6c11d\"\r\n    },\r\n    \"rs\":
     {\r\n      \"key\": \"BulletHell_BossDamage\",\r\n      \"type\": \"int\",\r\n     
     \"value\": 1\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
-    \"75499b82-7a79-43bf-af76-165b66217e02\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"4da8f66b-3104-42dd-a425-4b826a86212e\"\r\n    },\r\n    \"rs\": {\r\n     
     \"key\": \"BulletHell_BossMaxHP\",\r\n      \"type\": \"float\",\r\n      \"value\":
-    500.0\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"ff2fd687-a2b6-4e6c-8516-e5bff9de85e9\"\r\n   
+    500.0\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"a53b1415-8f9c-49f0-82e5-2758b2de5720\"\r\n   
     },\r\n    \"rs\": {\r\n      \"key\": \"BulletHell_PowerUpDuration\",\r\n     
     \"type\": \"float\",\r\n      \"value\": 5.0\r\n    }\r\n  },\r\n  {\r\n    \"metadata\":
-    {\r\n      \"entityId\": \"774475b8-6196-4dd7-b066-7b4ca19cffef\"\r\n    },\r\n   
+    {\r\n      \"entityId\": \"f15ecf44-e424-465c-aab9-8643c97de77d\"\r\n    },\r\n   
     \"rs\": {\r\n      \"key\": \"BulletHell_PowerUpSpawnCD\",\r\n      \"type\":
     \"float\",\r\n      \"value\": 5.0\r\n    }\r\n  }\r\n]"
-  _rsLastCachedKeyList: "[\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"bd88453c-dd1e-4f04-bdad-c2acbc028175\"\r\n   
+  _rsLastCachedKeyList: "[\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"b77c2482-c4ee-4857-9434-48d1e28debc2\"\r\n   
     },\r\n    \"rs\": {\r\n      \"key\": \"Running_Speed\",\r\n      \"type\": \"float\",\r\n     
     \"value\": 10.0\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
-    \"909fe85a-d939-4088-997f-6a7a46019c00\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"72019676-9434-49c7-8859-0a3b66733faf\"\r\n    },\r\n    \"rs\": {\r\n     
     \"key\": \"Archer_PuntMultiply\",\r\n      \"type\": \"float\",\r\n      \"value\":
-    10.0\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"6ffa5edc-5cf5-460e-84c6-65a4ce6336cb\"\r\n   
+    10.0\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"61e815f2-a349-4266-8789-bff689cdc1a7\"\r\n   
     },\r\n    \"rs\": {\r\n      \"key\": \"Escalada_MaxHeight\",\r\n      \"type\":
     \"int\",\r\n      \"value\": 10\r\n    }\r\n  },\r\n  {\r\n    \"metadata\":
-    {\r\n      \"entityId\": \"6c8cec43-937c-409b-9c6e-4151db37762f\"\r\n    },\r\n   
+    {\r\n      \"entityId\": \"a81bd734-676e-420b-9f12-c77c23b0317e\"\r\n    },\r\n   
     \"rs\": {\r\n      \"key\": \"Carlos_MaxRounds\",\r\n      \"type\": \"int\",\r\n     
     \"value\": 5\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
-    \"157a6906-76c1-40e7-8404-be048c189541\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"9affbac3-0120-4b64-962d-bc4b6d7c2a39\"\r\n    },\r\n    \"rs\": {\r\n     
     \"key\": \"ShopActive\",\r\n      \"type\": \"bool\",\r\n      \"value\": true\r\n   
-    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"b77f1872-949a-41b0-bd1b-7b683789ffba\"\r\n   
+    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"b50a4d5a-636b-40ff-906b-be9e80a30357\"\r\n   
     },\r\n    \"rs\": {\r\n      \"key\": \"Escalada_MinTimeAtk\",\r\n      \"type\":
     \"float\",\r\n      \"value\": 1.0\r\n    }\r\n  },\r\n  {\r\n    \"metadata\":
-    {\r\n      \"entityId\": \"ff96e0c4-7b44-4cf4-b729-57bf2bc28c77\"\r\n    },\r\n   
+    {\r\n      \"entityId\": \"34ba0cf3-c391-4f38-b90a-fc006760758f\"\r\n    },\r\n   
     \"rs\": {\r\n      \"key\": \"Escalada_MaxTimeAtk\",\r\n      \"type\": \"float\",\r\n     
     \"value\": 3.0\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
-    \"d3c6dae4-14b1-4cb0-a7f1-01d3685f9964\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"7b92726f-ba92-42eb-9c55-ecbda89a38da\"\r\n    },\r\n    \"rs\": {\r\n     
     \"key\": \"Carlos_InitialRoundButtons\",\r\n      \"type\": \"int\",\r\n     
     \"value\": 3\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
-    \"1c40e0ad-5ca5-4a81-b67f-094d1df96768\"\r\n    },\r\n    \"rs\": {\r\n     
-    \"key\": \"TituloText\",\r\n      \"type\": \"string\",\r\n      \"value\": \"SampleText\\n\\nBottomText\"\r\n   
-    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"d2c9d7bc-b9db-42e3-be3a-bbf14dd8bc2a\"\r\n   
+    \"ffbabe69-4fad-4dab-96f2-76e393de0371\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"key\": \"TituloText\",\r\n      \"type\": \"string\",\r\n      \"value\": \"SampleGame\"\r\n   
+    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"95ec6f7a-7aa8-4b82-9ce3-ac819d519d2f\"\r\n   
     },\r\n    \"rs\": {\r\n      \"key\": \"Carlos_Endless\",\r\n      \"type\":
     \"bool\",\r\n      \"value\": false\r\n    }\r\n  },\r\n  {\r\n    \"metadata\":
-    {\r\n      \"entityId\": \"decadbb3-4b04-479c-9f84-7f1ecdfa455b\"\r\n    },\r\n   
+    {\r\n      \"entityId\": \"1a657249-fdc9-40ac-96ad-97fa2a1303ca\"\r\n    },\r\n   
     \"rs\": {\r\n      \"key\": \"BulletHell_PlayerSpeed\",\r\n      \"type\": \"float\",\r\n     
     \"value\": 5.0\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
-    \"fb571940-5fc1-4b61-bfae-4bfbce5ceb80\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"bcfc5915-b6e0-48d1-8bc4-06866e850b6a\"\r\n    },\r\n    \"rs\": {\r\n     
     \"key\": \"BulletHell_PlayerDamage\",\r\n      \"type\": \"int\",\r\n      \"value\":
-    1\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"b13ad6cf-81cd-4ffa-8289-144cd4d2796e\"\r\n   
+    1\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"8e7411a9-b4f3-4df5-8172-ee8f4fa0576a\"\r\n   
     },\r\n    \"rs\": {\r\n      \"key\": \"BulletHell_EnemyDamage\",\r\n      \"type\":
     \"int\",\r\n      \"value\": 1\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n     
-    \"entityId\": \"0075e107-46b1-416d-995d-6c41db056f8c\"\r\n    },\r\n    \"rs\":
+    \"entityId\": \"d2685261-167d-4dfb-bb0e-37c637c6c11d\"\r\n    },\r\n    \"rs\":
     {\r\n      \"key\": \"BulletHell_BossDamage\",\r\n      \"type\": \"int\",\r\n     
     \"value\": 1\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
-    \"75499b82-7a79-43bf-af76-165b66217e02\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"4da8f66b-3104-42dd-a425-4b826a86212e\"\r\n    },\r\n    \"rs\": {\r\n     
     \"key\": \"BulletHell_BossMaxHP\",\r\n      \"type\": \"float\",\r\n      \"value\":
-    500.0\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"ff2fd687-a2b6-4e6c-8516-e5bff9de85e9\"\r\n   
+    500.0\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"a53b1415-8f9c-49f0-82e5-2758b2de5720\"\r\n   
     },\r\n    \"rs\": {\r\n      \"key\": \"BulletHell_PowerUpDuration\",\r\n     
     \"type\": \"float\",\r\n      \"value\": 5.0\r\n    }\r\n  },\r\n  {\r\n    \"metadata\":
-    {\r\n      \"entityId\": \"774475b8-6196-4dd7-b066-7b4ca19cffef\"\r\n    },\r\n   
+    {\r\n      \"entityId\": \"f15ecf44-e424-465c-aab9-8643c97de77d\"\r\n    },\r\n   
     \"rs\": {\r\n      \"key\": \"BulletHell_PowerUpSpawnCD\",\r\n      \"type\":
     \"float\",\r\n      \"value\": 5.0\r\n    }\r\n  }\r\n]"
   _environments: "[\r\n  {\r\n    \"projectId\": \"068f7f49-605a-438c-918c-5caf7c7d68ae\",\r\n   

@@ -116,6 +116,12 @@ public class BasePlayer : MonoBehaviour, IDamageable, ITargeteable, ILifeObserva
     {
         MementoUnsubscribe();
         _myView.FakeOnDestroy();
+
+        for (int i = 0; i < _lifeObservers.Count; i++)
+        {
+            _lifeObservers[i].Forget();
+        }
+
     }
 
     public void GetShield()

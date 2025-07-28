@@ -28,6 +28,8 @@ namespace CarlosDice
 
         [SerializeField] int _currentButtonIndex = 0;
         [SerializeField] TMP_Text _roundText;
+        [SerializeField] RawImage _winImage;
+        [SerializeField] RawImage _loseImage;
         [SerializeField] int _maxRound;
         [SerializeField] int _currentRound = 0;
 
@@ -127,6 +129,11 @@ namespace CarlosDice
             _currentRound = 1;
 
             AdButtonToList(_initialButtonsCount);
+
+            if(_winImage)
+            _winImage.enabled = false;
+            if(_loseImage)
+            _loseImage.enabled = false;
         }
 
         void AdButtonToList(int amount)
@@ -253,8 +260,10 @@ namespace CarlosDice
 
             _buttonsList.Clear();
 
-            if (_roundText != null)
-                _roundText.text = $"YOU LOSE";
+            //if (_roundText != null)
+            //    _roundText.text = $"YOU LOSE";
+            if (_loseImage != null)
+                _loseImage.enabled = true;
 
             _audioSource.PlayOneShot(_loseClip);
         }
@@ -273,8 +282,10 @@ namespace CarlosDice
 
             _buttonsList.Clear();
 
-            if (_roundText != null)
-                _roundText.text = $"YOU WIN";
+            //if (_roundText != null)
+            //    _roundText.text = $"YOU WIN";
+            if (_winImage != null)
+                _winImage.enabled = true;
 
             _audioSource.PlayOneShot(_winClip);
         }

@@ -10,6 +10,7 @@ public class EscaladaMenu : MonoBehaviour
     //a
     [SerializeField] Canvas _pauseCanvas;
     [SerializeField] Canvas _optionCanvas;
+    [SerializeField] Canvas _confirmCanvas;
 
     [SerializeField] AudioSource _audioSource;
     [SerializeField] AudioClip _errorSound;
@@ -18,7 +19,7 @@ public class EscaladaMenu : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if(_pauseCanvas.enabled)
+            if (_pauseCanvas.enabled && !_confirmCanvas.enabled)
                 ClosePause();
             else
                 OpenPause();
@@ -48,9 +49,10 @@ public class EscaladaMenu : MonoBehaviour
 
     public void GoToMenu()
     {
-        Time.timeScale = 1.0f;
+        //Time.timeScale = 1.0f;
         //SceneManager.LoadScene("Menu");
-        SceneLoaderManager.instance.SceneToLoad = 2;
+        _confirmCanvas.enabled = true;
+        //SceneLoaderManager.instance.SceneToLoad = 2;
     }
 
 

@@ -467,6 +467,11 @@ public class Boss : MonoBehaviour, IDamageable, ILifeObservable, IMemento
     private void OnDestroy()
     {
         MementoUnsubscribe();
+
+        for (int i = 0; i < _lifeObservers.Count; i++)
+        {
+            _lifeObservers[i].Forget();
+        }
     }
 }
 

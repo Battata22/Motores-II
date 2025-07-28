@@ -83,4 +83,9 @@ public class PointAdder : MonoBehaviour, ILifeObserver
         _life = life;
         _maxLife = maxLife;
     }
+
+    public void Forget()
+    {
+        _observable = null;
+    }
 }

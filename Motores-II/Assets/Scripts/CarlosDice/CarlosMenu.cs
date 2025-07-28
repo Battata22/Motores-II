@@ -13,7 +13,7 @@ public class CarlosMenu : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (_pauseCanvas.enabled)
+            if (_pauseCanvas.enabled && !_confirmCanvas.enabled)
                 ClosePause();
             else
                 OpenPause();
@@ -26,12 +26,14 @@ public class CarlosMenu : MonoBehaviour
             OpenPause();
     }
 
+    [SerializeField] Canvas _confirmCanvas;
 
     public void GoToMenu()
     {
-        Time.timeScale = 1.0f;
+        //Time.timeScale = 1.0f;
         //SceneManager.LoadScene("Menu");
-        SceneLoaderManager.instance.SceneToLoad = 2;
+        _confirmCanvas.enabled = true;
+        //SceneLoaderManager.instance.SceneToLoad = 2;
     }
 
     public void ClosePause()

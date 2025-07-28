@@ -45,7 +45,8 @@ public class Shop : MonoBehaviour
         PlayerPrefs.SetInt("SelectedGuantes", 0);
         PlayerPrefs.SetInt("Escalada_NeedTutorial", 1);
         PlayerPrefs.SetInt("Carlos_NeedTutorial", 1);
-
+        PlayerPrefs.SetInt("BulletHell_NeedTutorial", 1);
+        PlayerPrefs.SetInt("StickMode", 0);
         //resetear puntos
         PointsManager.Instance.SubstractPoints(PointsManager.Instance._points);
 

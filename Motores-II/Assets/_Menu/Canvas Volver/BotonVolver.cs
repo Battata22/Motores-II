@@ -5,9 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class BotonVolver : MonoBehaviour
 {
+    [SerializeField] Canvas _confirmCanvas;
+
     public void VolverMenu()
     {
         //SceneManager.LoadScene("Menu");
-        SceneLoaderManager.instance.SceneToLoad = 2;
+        _confirmCanvas.enabled = true;
+        //SceneLoaderManager.instance.SceneToLoad = 2;
     }
 }

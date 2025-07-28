@@ -188,6 +188,8 @@ public class EscaladaManager : MonoBehaviour
     [SerializeField] Canvas _gameOverCanvas;
     [SerializeField] TMP_Text _gameOverText;
     [SerializeField] TMP_Text _heightText;
+    [SerializeField] RawImage _winImage;
+    [SerializeField] RawImage _loseImage;
     [SerializeField] Image _timeBar;
     [SerializeField] float _maxTime;
     float _time;
@@ -240,15 +242,19 @@ public class EscaladaManager : MonoBehaviour
             if (fail)
             {
                 //Debug.Log("Sos un pete");
-                _gameOverText.text = "You Lose";
-                _gameOverText.color = Color.red;
+                //_gameOverText.text = "You Lose";
+                //_gameOverText.color = Color.red;
+                _winImage.enabled = false;
+                _loseImage.enabled = true;
                 _audioSource.PlayOneShot(_loseClip);
             }
             else
             {
                 //Debug.Log("Buena campeon");
-                _gameOverText.text = "You Win";
-                _gameOverText.color = Color.green;
+                //_gameOverText.text = "You Win";
+                //_gameOverText.color = Color.green;
+                _winImage.enabled = true;
+                _loseImage.enabled = false;
                 _audioSource.PlayOneShot(_winClip);
             }
         }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameOverScreen : BaseScreen
 {
@@ -14,6 +15,11 @@ public class GameOverScreen : BaseScreen
     [SerializeField] AudioClip _loseClip;
     //[SerializeField] AudioClip _clickSound;
     [SerializeField] AudioSource _audioSource;
+
+    [SerializeField] RawImage _winImage;
+    [SerializeField] RawImage _loseImage;
+
+    [SerializeField] Canvas _confirmCanvas;
 
     private void Awake()
     {
@@ -39,8 +45,9 @@ public class GameOverScreen : BaseScreen
 
     void Win(params object[] noUse)
     {
-        _text.text = "YOU WIN";
-        _text.color = Color.green;
+        _winImage.enabled = true;
+        _loseImage.enabled = false;
+
         _retryButton.SetActive(false);
 
         _audioSource.PlayOneShot(_winClip);
@@ -50,8 +57,9 @@ public class GameOverScreen : BaseScreen
 
     void Lose(params object[] noUse)
     {
-        _text.text = "YOU LOSE";
-        _text.color = Color.red;
+        _winImage.enabled = false;
+        _loseImage.enabled = true;
+
         _retryButton.SetActive(true);
 
         _audioSource.PlayOneShot(_loseClip);
@@ -89,10 +97,11 @@ public class GameOverScreen : BaseScreen
 
     public void BackToMenu()
     {
-        BulletHell.ScreenManager.Instance.DeactivateScreen();
+        //BulletHell.ScreenManager.Instance.DeactivateScreen();
 
         //SceneManager.LoadScene(1);
-        SceneLoaderManager.instance.SceneToLoad = 2;
+        _confirmCanvas.enabled = true;
+        //SceneLoaderManager.instance.SceneToLoad = 2;
     }
 
     void CallCheckpoint()

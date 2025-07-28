@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 using BulletHell;
+using TMPro;
 
 public class PauseScreen : BaseScreen
 {
@@ -12,6 +13,9 @@ public class PauseScreen : BaseScreen
 
     [SerializeField] AudioSource _audioSource;
     [SerializeField] AudioClip _clickClip;
+
+    [SerializeField] Canvas _confirmCanvas;
+    
 
     public override void Deactivate()
     {
@@ -39,8 +43,9 @@ public class PauseScreen : BaseScreen
 
         BulletHell.ScreenManager.Instance.DeactivateScreen();
 
+        _confirmCanvas.enabled = true;
         //SceneManager.LoadScene(0);
-        SceneLoaderManager.instance.SceneToLoad = 2;
+        //SceneLoaderManager.instance.SceneToLoad = 2;
     }
 
     public void CallCheckpoint()

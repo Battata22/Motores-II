@@ -108,6 +108,12 @@ public class NotificationManager : MonoBehaviour
         AndroidNotificationCenter.CancelScheduledNotification(id);
         //Debug.Log($"Notificacion cancelada {id}");
     }
+
+    private void OnApplicationQuit()
+    {
+        PlayerPrefs.SetInt("Display_ComeBack", DisplayNotification("OLVIDONAAA", "¿Hace cuanto que no jugamos?",
+            IconSelecter.icon_reminder, IconSelecter.icon_reminderbig, DateTime.Now.AddMinutes(1), NotiChannel.reminder));
+    }
 }
 
 public enum NotiChannel
