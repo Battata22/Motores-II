@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: Gus
-  productName: Motores-II
+  productName: SampleGame
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.09411712, g: 0.4245283, b: 0.414515, a: 1}
@@ -156,7 +156,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Android: com.Gus.MotoresII
+    Android: com.Gus.SampleGame
     Standalone: com.Gus.Motores-II
   buildNumber:
     Standalone: 0
